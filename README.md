@@ -1,4 +1,7 @@
-<description of repository purpose>
+Open Breaking is a project to collect competitive breaking data and produce findings through analysis that can be incorporated into the further development of competitive breaking. The values embodied within this project are:
+- transparency - this project in its entirety is publicly accessible and usable
+- community-centered - this project is driven by members of the breaking community for the betterment of the breaking community
+- each one teach one - the diversity of skillsets that are elemental to progressing this project are made available through skill sharing
 
 ---
 
