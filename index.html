@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
+    <!--
+        Methods for converting CSV to HTML
+        https://www.convertcsv.com/csv-to-html.htm
+        https://opensourc.es/blog/csv2html/
+        https://derekeder.com/csv_to_html_table/
+        https://gist.github.com/duplaja/e8dd08644a6196406b9166d733d8e083
+
+        Embed Google Spreadsheet doesnt include freeze cells nor filters
+        https://webapps.stackexchange.com/questions/90632/is-there-a-way-to-get-frozen-rows-in-an-embedded-google-sheet
+    -->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="logo.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="html5reset.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
         <title>Open Breaking</title>
     </head>
     <body>
+        <div class="pageHeader">
+            <p>Settle it in the Cypher</p>
+            <nav>
+                Competitive Breaking Data
+            </nav>
+        </div>
+        <div class="pageBody">
+            <div id="pageBodyDiv">
+                <div id="pageBodyButton"><button><a href="data.csv" download><i class='fa-solid fa-file-arrow-down'></i>Download .csv of this data</a></button></div>
+                <div id="pageBodyContact"><p>Contact: settleitinthecypher@gmail.com</p></div>
+            </div>
+            <br>
+            <div id="tableDiv">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZLuWeqlyj8onQ2W63AF56F__ewWUaF5jD7Gowz13ve6Yqzt1yIFRW6WYKv6UH7hQXll9hehBcBwaS/pubhtml?widget=true&amp;headers=false"></iframe>
+            </div>
+        </div>
     </body>
 </html>
