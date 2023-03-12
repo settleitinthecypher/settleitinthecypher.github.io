@@ -1,3 +1,5 @@
+View the public website of this project at this link: https://settleitinthecypher.github.io
+
 Open Breaking is a project to collect competitive breaking data and produce findings through analysis that can be incorporated into the further development of competitive breaking. The values embodied within this project are:
 - transparency - this project in its entirety is publicly accessible and usable
 - community-centered - this project is driven by members of the breaking community for the betterment of the breaking community
