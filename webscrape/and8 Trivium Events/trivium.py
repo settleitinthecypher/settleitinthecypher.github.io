@@ -1,25 +1,3 @@
-# import requests
-# from bs4 import BeautifulSoup
-# import datetime
-# 
-# output = open('output.txt', 'a+')
-# 
-# baseURL = "https://and8.dance/en/stats/reports/3900/1442/r"
-# roundNum = 1
-# battleCount = 2
-# 
-# for x in range(1,battleCount + 1):
-#     currentURL = baseURL + "?l=" + str(roundNum) + "&s=" + str(x)
-#     battlePage = requests.get(currentURL)
-#     battleSoup = BeautifulSoup(battlePage.content, 'html.parser')
-#     print(currentURL)
-#     breaker1 = battleSoup.find("div", "#dancer1_h")
-#     breaker2 = battleSoup.find("#dancer2_h")
-#     print(str(breaker1) + "," + str(breaker2))
-#     #print(breaker1 + "," + breaker2, file=output)
-# 
-# output.close()
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
