@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
 URL = 'https://www.worlddancesport.org/Official/List?page=3&divisionFilter=Breaking&licenseFilter=Adjudicator&licenseFilter=Chairman&licenseFilter=Examiner&licenseFilter=Invigilator&licenseFilter=Scrutiny&licenseFilter=DJ&licenseFilter=HeadJudge&disciplineFilter=56&disciplineFilter=59&disciplineFilter=61&disciplineFilter=55&disciplineFilter=60&disciplineFilter=63&disciplineFilter=57&disciplineFilter=104&disciplineFilter=105&disciplineFilter=67&disciplineFilter=180&disciplineFilter=181&disciplineFilter=179&statusFilter=Active&statusFilter=Expired&memberCountryFilter=-1&profileFilter=false&formAction=&Column=Name&Direction=Ascending&pageSize=100'
 # figure out how many pages then update the page= in URL automatically to iterate through them
+# GKT not getting pulled when it is not "n/a", and member # displaced by one cell - seems to happen when multiple licenses listed
+# when multiple licenses, license details don't get pulled correctly because mismatch of number of <p> elements compared to <h3> elements
 
 driver.get(URL)
 time.sleep(3)
@@ -42,7 +44,7 @@ for row in tableRows[1:]:
     judgeLicenseDetails = judgeDetails.find_elements(By.TAG_NAME, "p")
     for index, license in enumerate(judgeLicenses):
         judgeLicenseType = license.text
-        judgeLicenseDetail = judgeLicenseDetails[index].get_attribute("innerText").replace("\n", ",").replace("Status: ","").replace("Division: Breaking,","").replace("Trivium: ","").replace("Judging System: ","").replace("Issued on: ","").replace("Education expires on: ","").replace("Disciplines:,","")
+        judgeLicenseDetail = judgeLicenseDetails[index].get_attribute("innerText").replace("\n", ",").replace("Status: ","").replace("Division: Breaking,","").replace("Trivium: ","").replace("Judging System: ","").replace("Issued on: ","").replace("Education expires on: ","").replace("Education expired on: ","").replace("Disciplines:","")
         judgeLicenseLevel = ""
         if judgeLicenseType == "JUDGE":
             if judgeDetails.find_elements(By.TAG_NAME, "li"):
