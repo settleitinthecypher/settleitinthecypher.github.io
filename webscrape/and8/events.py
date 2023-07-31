@@ -49,7 +49,7 @@ for event in events:
             if (eventDetail.text):
                 pageName = eventDetail.text
         elif (eventDetailTag == "<a"):
-            eventString = eventDate + ";" + eventName + ";" + pageName + ";" + eventDetail.text + ";" + eventDetail.get_attribute("href")
+            eventString = eventDate + ";" + eventName + ";" + pageName + ";" + eventDetail.text + ";" + eventDetail.get_attribute("href")[0:-1]
             print(eventString, file=output)
 
 driver.close()
