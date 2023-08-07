@@ -1,5 +1,4 @@
 # add round wins and judge vote count calculation into javascript
-# add top 32 bracket image handling
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -98,8 +97,17 @@ for URL in URLs:
         baseURL = URL[0:-1]
         print(baseURL)
         if ("Top 8" in driver.title):
-            battleLinks.append(baseURL + "?data=1&x=615&y=280&w=1225&type=r") # finals
-            battleLinks.append(baseURL + "?data=1&x=615&y=465&w=1225&type=r") # 3rd place
+            # check finals top location link has data, and if so then use finals and 3rd place links, else use finals without 3rd place link
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp.get(baseURL + "?data=1&x=615&y=280&w=1225&type=r")
+
+            if (driverTemp.find_elements(By.ID, "dancer1_h")):
+                battleLinks.append(baseURL + "?data=1&x=615&y=280&w=1225&type=r") # finals
+                battleLinks.append(baseURL + "?data=1&x=615&y=465&w=1225&type=r") # 3rd place
+            else:
+                battleLinks.append(baseURL + "?data=1&x=620&y=620&w=1225&type=r") # finals when no 3rd place
+            driverTemp.close()
+
             battleLinks.append(baseURL + "?data=1&x=760&y=360&w=1225&type=r") # semis
             battleLinks.append(baseURL + "?data=1&x=465&y=360&w=1225&type=r") # semis
             battleLinks.append(baseURL + "?data=1&x=980&y=430&w=1225&type=r") # top 8
@@ -107,8 +115,17 @@ for URL in URLs:
             battleLinks.append(baseURL + "?data=1&x=245&y=430&w=1225&type=r") # top 8
             battleLinks.append(baseURL + "?data=1&x=245&y=160&w=1225&type=r") # top 8
         elif ("Top 16" in driver.title):
-            battleLinks.append(baseURL + "?data=1&x=615&y=175&w=1225&type=r") # finals
-            battleLinks.append(baseURL + "?data=1&x=615&y=525&w=1225&type=r") # 3rd place
+            # check finals top location link has data, and if so then use finals and 3rd place links, else use finals without 3rd place link
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp.get(baseURL + "?data=1&x=615&y=175&w=1225&type=r")
+
+            if (driverTemp.find_elements(By.ID, "dancer1_h")):
+                battleLinks.append(baseURL + "?data=1&x=615&y=175&w=1225&type=r") # finals
+                battleLinks.append(baseURL + "?data=1&x=615&y=525&w=1225&type=r") # 3rd place
+            else:
+                battleLinks.append(baseURL + "?data=1&x=620&y=620&w=1225&type=r") # finals when no 3rd place
+            driverTemp.close()
+
             battleLinks.append(baseURL + "?data=1&x=745&y=360&w=1225&type=r") # semis
             battleLinks.append(baseURL + "?data=1&x=480&y=360&w=1225&type=r") # semis
             battleLinks.append(baseURL + "?data=1&x=785&y=495&w=1225&type=r") # top 8
@@ -124,11 +141,42 @@ for URL in URLs:
             battleLinks.append(baseURL + "?data=1&x=135&y=270&w=1225&type=r") # top 16
             battleLinks.append(baseURL + "?data=1&x=135&y=135&w=1225&type=r") # top 16
         elif ("Top 4" in driver.title):
+            # check 3rd place location link has data, and if so then include it
             battleLinks.append(baseURL + "?data=1&x=980&y=400&w=1225&type=r") # finals
-            battleLinks.append(baseURL + "?data=1&x=570&y=400&w=1225&type=r") # 3rd place
+
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp.get(baseURL + "?data=1&x=570&y=400&w=1225&type=r")
+
+            if (driverTemp.find_elements(By.ID, "dancer1_h")):
+                battleLinks.append(baseURL + "?data=1&x=570&y=400&w=1225&type=r") # 3rd place
+            driverTemp.close()
+
             battleLinks.append(baseURL + "?data=1&x=590&y=490&w=1225&type=r") # semis
             battleLinks.append(baseURL + "?data=1&x=590&y=300&w=1225&type=r") # semis
         elif ("Top 32" in driver.title):
+            # check finals location link has data, and if so then include full bracket links
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp.get(baseURL + "?data=1&x=615&y=200&w=1225&type=r")
+
+            if (driverTemp.find_elements(By.ID, "dancer1_h")):
+                driverTemp.get(baseURL + "?data=1&x=615&y=200&w=1225&type=r") # finals
+                driverTemp.get(baseURL + "?data=1&x=615&y=545&w=1225&type=r") # 3rd place
+                driverTemp.get(baseURL + "?data=1&x=695&y=375&w=1225&type=r") # semis
+                driverTemp.get(baseURL + "?data=1&x=535&y=375&w=1225&type=r") # semis
+                driverTemp.get(baseURL + "?data=1&x=740&y=500&w=1225&type=r") # top 8
+                driverTemp.get(baseURL + "?data=1&x=740&y=245&w=1225&type=r") # top 8
+                driverTemp.get(baseURL + "?data=1&x=490&y=500&w=1225&type=r") # top 8
+                driverTemp.get(baseURL + "?data=1&x=490&y=245&w=1225&type=r") # top 8
+                driverTemp.get(baseURL + "?data=1&x=775&y=565&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=775&y=435&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=775&y=310&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=775&y=180&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=450&y=565&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=450&y=435&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=450&y=310&w=1225&type=r") # top 16
+                driverTemp.get(baseURL + "?data=1&x=450&y=180&w=1225&type=r") # top 16
+            driverTemp.close()
+
             battleLinks.append(baseURL + "?data=1&x=935&y=610&w=1225&type=r")
             battleLinks.append(baseURL + "?data=1&x=935&y=540&w=1225&type=r")
             battleLinks.append(baseURL + "?data=1&x=935&y=475&w=1225&type=r")
@@ -145,6 +193,7 @@ for URL in URLs:
             battleLinks.append(baseURL + "?data=1&x=300&y=270&w=1225&type=r")
             battleLinks.append(baseURL + "?data=1&x=300&y=200&w=1225&type=r")
             battleLinks.append(baseURL + "?data=1&x=300&y=130&w=1225&type=r")
+            
         try:
             webscrape(battleLinks,output)
         except:
@@ -202,7 +251,7 @@ for URL in URLs:
         # finals
         # 615,175
 
-        # top 32 https://and8.dance/en/stats/reports/4437/1727/?data=1&x=___&y=___&w=1225&type=r
+        # top 32 https://and8.dance/en/stats/reports/4437/1727/?data=1&x=___&y=___&w=1225&type=r   
         # 300,130
         # 300,200
         # 300,270
@@ -219,6 +268,32 @@ for URL in URLs:
         # 935,475
         # 935,540
         # 935,610
+        #
+        # top 16
+        # 450, 180
+        # 450, 310
+        # 450, 435
+        # 450, 565
+        # 775, 180
+        # 775, 310
+        # 775, 435
+        # 775, 565
+        #
+        # top 8
+        # 490, 245
+        # 490, 500
+        # 740, 245
+        # 740, 500
+        #
+        # semis
+        # 535, 375
+        # 695, 375
+        #
+        # 3rd place
+        # 615, 545
+        #
+        # finals
+        # 615, 200
 
     elif (("Robin" in driver.title) or ("PreQ" in driver.title)):
         print("group page")
