@@ -7,7 +7,11 @@ import datetime
 
 driver = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
 URLs = [
-    "https://and8.dance/en/stats/reports/4437/1726/r",
+    "https://and8.dance/en/stats/reports/3111/311",
+    "https://and8.dance/en/stats/reports/3111/312",
+    "https://and8.dance/en/stats/reports/3111/310",
+    "https://and8.dance/en/stats/reports/3111/309",
+    "https://and8.dance/en/stats/reports/3111/308"
     ]
 # ending of URLs must be "/r"
 
