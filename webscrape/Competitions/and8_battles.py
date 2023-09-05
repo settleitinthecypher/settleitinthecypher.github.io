@@ -7,13 +7,11 @@ import datetime
 
 driver = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
 URLs = [
-    "https://and8.dance/en/stats/reports/3111/311",
-    "https://and8.dance/en/stats/reports/3111/312",
-    "https://and8.dance/en/stats/reports/3111/310",
-    "https://and8.dance/en/stats/reports/3111/309",
-    "https://and8.dance/en/stats/reports/3111/308"
-    ]
-# ending of URLs must be "/r"
+    "https://and8.dance/en/stats/reports/3677/368/",
+    "https://and8.dance/en/stats/reports/3677/369/"
+]
+
+# ending of URLs must be "/r" or "/"
 
 def webscrape(battleLinks,output):
     for link in battleLinks:
@@ -95,11 +93,13 @@ for URL in URLs:
     print("Scraped on " + str(datetime.datetime.now()), file=output)
     print("-----", file=output)
 
-    if ("Knock" in driver.title):
+    if ("Top" in driver.title): # only events with multistage qualification have "Knockout" in name of final bracket
         print("bracket page")
         battleLinks = []
         baseURL = URL[0:-1]
         print(baseURL)
+
+        # some URLs end in "type=r" and some in "type=&"
         if ("Top 8" in driver.title):
             # check finals top location link has data, and if so then use finals and 3rd place links, else use finals without 3rd place link
             driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
@@ -109,7 +109,7 @@ for URL in URLs:
                 battleLinks.append(baseURL + "?data=1&x=615&y=280&w=1225&type=r") # finals
                 battleLinks.append(baseURL + "?data=1&x=615&y=465&w=1225&type=r") # 3rd place
             else:
-                battleLinks.append(baseURL + "?data=1&x=620&y=620&w=1225&type=r") # finals when no 3rd place
+                battleLinks.append(baseURL + "?data=1&x=615&y=615&w=1225&type=r") # finals when no 3rd place
             driverTemp.close()
 
             battleLinks.append(baseURL + "?data=1&x=760&y=360&w=1225&type=r") # semis
@@ -124,26 +124,26 @@ for URL in URLs:
             driverTemp.get(baseURL + "?data=1&x=615&y=175&w=1225&type=r")
 
             if (driverTemp.find_elements(By.ID, "dancer1_h")):
-                battleLinks.append(baseURL + "?data=1&x=615&y=175&w=1225&type=r") # finals
-                battleLinks.append(baseURL + "?data=1&x=615&y=525&w=1225&type=r") # 3rd place
+                battleLinks.append(baseURL + "?data=1&x=615&y=175&w=1225&type=&") # finals
+                battleLinks.append(baseURL + "?data=1&x=615&y=525&w=1225&type=&") # 3rd place
             else:
-                battleLinks.append(baseURL + "?data=1&x=620&y=620&w=1225&type=r") # finals when no 3rd place
+                battleLinks.append(baseURL + "?data=1&x=615&y=615&w=1225&type=&") # finals when no 3rd place
             driverTemp.close()
 
-            battleLinks.append(baseURL + "?data=1&x=745&y=360&w=1225&type=r") # semis
-            battleLinks.append(baseURL + "?data=1&x=480&y=360&w=1225&type=r") # semis
-            battleLinks.append(baseURL + "?data=1&x=785&y=495&w=1225&type=r") # top 8
-            battleLinks.append(baseURL + "?data=1&x=785&y=225&w=1225&type=r") # top 8
-            battleLinks.append(baseURL + "?data=1&x=440&y=495&w=1225&type=r") # top 8
-            battleLinks.append(baseURL + "?data=1&x=440&y=225&w=1225&type=r") # top 8
-            battleLinks.append(baseURL + "?data=1&x=1085&y=540&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=1085&y=405&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=1085&y=270&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=1085&y=135&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=135&y=540&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=135&y=405&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=135&y=270&w=1225&type=r") # top 16
-            battleLinks.append(baseURL + "?data=1&x=135&y=135&w=1225&type=r") # top 16
+            battleLinks.append(baseURL + "?data=1&x=745&y=360&w=1225&type=&") # semis
+            battleLinks.append(baseURL + "?data=1&x=480&y=360&w=1225&type=&") # semis
+            battleLinks.append(baseURL + "?data=1&x=785&y=495&w=1225&type=&") # top 8
+            battleLinks.append(baseURL + "?data=1&x=785&y=225&w=1225&type=&") # top 8
+            battleLinks.append(baseURL + "?data=1&x=440&y=495&w=1225&type=&") # top 8
+            battleLinks.append(baseURL + "?data=1&x=440&y=225&w=1225&type=&") # top 8
+            battleLinks.append(baseURL + "?data=1&x=1085&y=540&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=1085&y=405&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=1085&y=270&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=1085&y=135&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=135&y=540&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=135&y=405&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=135&y=270&w=1225&type=&") # top 16
+            battleLinks.append(baseURL + "?data=1&x=135&y=135&w=1225&type=&") # top 16
         elif ("Top 4" in driver.title):
             # check 3rd place location link has data, and if so then include it
             battleLinks.append(baseURL + "?data=1&x=980&y=400&w=1225&type=r") # finals
@@ -160,43 +160,42 @@ for URL in URLs:
         elif ("Top 32" in driver.title):
             # check finals location link has data, and if so then include full bracket links
             driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
-            driverTemp.get(baseURL + "?data=1&x=615&y=200&w=1225&type=r")
+            driverTemp.get(baseURL + "?data=1&x=615&y=200&w=1225&type=&")
 
             if (driverTemp.find_elements(By.ID, "dancer1_h")):
-                driverTemp.get(baseURL + "?data=1&x=615&y=200&w=1225&type=r") # finals
-                driverTemp.get(baseURL + "?data=1&x=615&y=545&w=1225&type=r") # 3rd place
-                driverTemp.get(baseURL + "?data=1&x=695&y=375&w=1225&type=r") # semis
-                driverTemp.get(baseURL + "?data=1&x=535&y=375&w=1225&type=r") # semis
-                driverTemp.get(baseURL + "?data=1&x=740&y=500&w=1225&type=r") # top 8
-                driverTemp.get(baseURL + "?data=1&x=740&y=245&w=1225&type=r") # top 8
-                driverTemp.get(baseURL + "?data=1&x=490&y=500&w=1225&type=r") # top 8
-                driverTemp.get(baseURL + "?data=1&x=490&y=245&w=1225&type=r") # top 8
-                driverTemp.get(baseURL + "?data=1&x=775&y=565&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=775&y=435&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=775&y=310&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=775&y=180&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=450&y=565&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=450&y=435&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=450&y=310&w=1225&type=r") # top 16
-                driverTemp.get(baseURL + "?data=1&x=450&y=180&w=1225&type=r") # top 16
+                battleLinks.append(baseURL + "?data=1&x=615&y=200&w=1225&type=&") # finals
+                battleLinks.append(baseURL + "?data=1&x=615&y=545&w=1225&type=&") # 3rd place
+                battleLinks.append(baseURL + "?data=1&x=695&y=375&w=1225&type=&") # semis
+                battleLinks.append(baseURL + "?data=1&x=535&y=375&w=1225&type=&") # semis
+                battleLinks.append(baseURL + "?data=1&x=740&y=500&w=1225&type=&") # top 8
+                battleLinks.append(baseURL + "?data=1&x=740&y=245&w=1225&type=&") # top 8
+                battleLinks.append(baseURL + "?data=1&x=490&y=500&w=1225&type=&") # top 8
+                battleLinks.append(baseURL + "?data=1&x=490&y=245&w=1225&type=&") # top 8
+                battleLinks.append(baseURL + "?data=1&x=775&y=565&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=775&y=435&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=775&y=310&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=775&y=180&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=450&y=565&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=450&y=435&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=450&y=310&w=1225&type=&") # top 16
+                battleLinks.append(baseURL + "?data=1&x=450&y=180&w=1225&type=&") # top 16
             driverTemp.close()
-
-            battleLinks.append(baseURL + "?data=1&x=935&y=610&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=540&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=475&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=405&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=340&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=270&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=200&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=935&y=130&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=610&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=540&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=475&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=405&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=340&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=270&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=200&w=1225&type=r")
-            battleLinks.append(baseURL + "?data=1&x=300&y=130&w=1225&type=r")
+            battleLinks.append(baseURL + "?data=1&x=935&y=610&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=540&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=475&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=405&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=340&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=270&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=200&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=935&y=130&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=610&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=540&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=475&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=405&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=340&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=270&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=200&w=1225&type=&")
+            battleLinks.append(baseURL + "?data=1&x=300&y=130&w=1225&type=&")
             
         try:
             webscrape(battleLinks,output)

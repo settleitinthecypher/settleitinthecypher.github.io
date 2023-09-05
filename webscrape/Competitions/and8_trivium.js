@@ -1,7 +1,7 @@
 var battleString = "";
 
-var breaker1 = document.getElementById("dancer1_h").innerText.slice(1);
-var breaker2 = document.getElementById("dancer2_h").innerText.slice(1);
+var breaker1 = document.getElementById("dancer1_h").innerText.trim();
+var breaker2 = document.getElementById("dancer2_h").innerText.trim();
 var breaker1RoundWin = 0;
 var breaker2RoundWin = 0;
 var roundWinners = document.getElementsByClassName("round_info");
@@ -46,7 +46,7 @@ var numJudges = document.getElementsByClassName("judges_width").length / numRoun
 battleString += numRounds + "," + numJudges + "," + breaker1RoundWin + "," + breaker2RoundWin + "," + breaker1VoteCount + "," + breaker2VoteCount + ",";
 
 for (var i = 0; i < numJudges; i++) {
-    battleString += document.getElementsByClassName("judges_width")[i].querySelectorAll("#dancer1_tri, #dancer2_tri")[0].firstChild.innerText + ",";
+    battleString += document.getElementsByClassName("judges_width")[i].querySelectorAll("#dancer1_tri, #dancer2_tri")[0].firstChild.innerText.trim() + ",";
 }
 for (var i = 0; i < (9 - numJudges); i++) {
     battleString += ",";
@@ -84,7 +84,7 @@ for (var i = 0; i < ratingSets.length; i++) {
 
     if (((i + 1) % numJudges) == 0) {
         for (var m = 0; m < (9 - numJudges); m++) {
-            for (var x = 0; x < 8; x++) {
+            for (var x = 0; x < 9; x++) {
                 battleString += ",";
             }
         }
