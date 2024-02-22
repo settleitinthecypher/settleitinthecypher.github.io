@@ -1,3 +1,17 @@
+// update this
+var version = "threefold";
+// var version = "trivium";
+var valuesCount;
+var blanksCount;
+if (version == "threefold") {
+    valuesCount = 3;
+    blanksCount = 4;
+}
+if (version == "trivium") {
+    valuesCount = 6;
+    blanksCount = 9;
+}
+
 var battleString = "";
 
 var breaker1 = document.getElementById("dancer1_h").innerText.trim();
@@ -61,7 +75,7 @@ for (var i = 0; i < ratingSets.length; i++) {
         battleString += "-";
     }
     battleString += document.getElementsByClassName("judges_width")[i].querySelectorAll("#dancer1_tri, #dancer2_tri")[0].childNodes[2].innerText.slice(1,-1) + ",";
-    for (var j = 0; j < 6; j++) {
+    for (var j = 0; j < valuesCount; j++) {
         if (ratingSets[i].getElementsByClassName("fader_neu")[j].getElementsByTagName("div").length > 0) {
             rating = ratingSets[i].getElementsByClassName("fader_neu")[j].getElementsByTagName("div")[0];
             if (rating.id == "dancer1") {
@@ -73,18 +87,20 @@ for (var i = 0; i < ratingSets.length; i++) {
             battleString += "0,"
         }
     }
-    misc = document.querySelectorAll("#button_presses")[i];
-    if (misc.textContent) {
-        battleString += misc.getElementsByTagName("div")[0].textContent + ",";
-        battleString += misc.getElementsByTagName("div")[1].textContent + ",";
-    }
-    else {
-        battleString += ",,";
+    if (version == "trivium") {
+        misc = document.querySelectorAll("#button_presses")[i];
+        if (misc.textContent) {
+            battleString += misc.getElementsByTagName("div")[0].textContent + ",";
+            battleString += misc.getElementsByTagName("div")[1].textContent + ",";
+        }
+        else {
+            battleString += ",,";
+        }
     }
 
     if (((i + 1) % numJudges) == 0) {
         for (var m = 0; m < (9 - numJudges); m++) {
-            for (var x = 0; x < 9; x++) {
+            for (var x = 0; x < blanksCount; x++) {
                 battleString += ",";
             }
         }
