@@ -5,82 +5,137 @@ from selenium.webdriver.common.by import By
 
 import datetime
 
+system = "traditional"
+# system = "threefold"
+# system = "trivium"
+
 driver = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
 URLs = [
-    "https://and8.dance/en/stats/reports/4229/1295/r",
-    "https://and8.dance/en/stats/reports/4229/1294/r",
-    "https://and8.dance/en/stats/reports/4229/1299/r",
-    "https://and8.dance/en/stats/reports/4229/1300/r",
-    "https://and8.dance/en/stats/reports/4354/1542/r",
+    "https://and8.dance/en/stats/reports/3259/597/r",
+    "https://and8.dance/en/stats/reports/3259/599/r",
+    "https://and8.dance/en/stats/reports/3624/769/r",
+    "https://and8.dance/en/stats/reports/3624/770/r",
+    "https://and8.dance/en/stats/reports/3619/764/r",
+    "https://and8.dance/en/stats/reports/3619/765/r",
+    "https://and8.dance/en/stats/reports/3083/418/r",
+    "https://and8.dance/en/stats/reports/3618/763/r",
+    "https://and8.dance/en/stats/reports/2932/411/r",
+    "https://and8.dance/en/stats/reports/3617/761/r",
+    "https://and8.dance/en/stats/reports/3617/762/r",
+    "https://and8.dance/en/stats/reports/2929/437/r",
+    "https://and8.dance/en/stats/reports/2929/438/r",
+    "https://and8.dance/en/stats/reports/3005/398/r",
+    "https://and8.dance/en/stats/reports/3005/399/r",
+    "https://and8.dance/en/stats/reports/3005/400/r",
+    "https://and8.dance/en/stats/reports/2940/404/r",
+    "https://and8.dance/en/stats/reports/2859/323/r",
+    "https://and8.dance/en/stats/reports/2055/154/r",
+    "https://and8.dance/en/stats/reports/2597/176/r",
+    "https://and8.dance/en/stats/reports/2599/182/r",
+    "https://and8.dance/en/stats/reports/2012/98/r",
+    "https://and8.dance/en/stats/reports/1015/60/r",
+    "https://and8.dance/en/stats/reports/2278/121/r",
+    "https://and8.dance/en/stats/reports/2278/119/r",
+    "https://and8.dance/en/stats/reports/2052/64/r",
+    "https://and8.dance/en/stats/reports/2052/65/r",
+    "https://and8.dance/en/stats/reports/1399/78/r",
 ]
 
 # ending of URLs must be "/r" or "/"
 
 def webscrape(battleLinks,output):
     for link in battleLinks:
-        battleString = ""
-        driver2 = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
-        driver2.get(link)
-        breaker1 = driver2.find_element(By.ID, "dancer1_h").text
-        breaker2 = driver2.find_element(By.ID, "dancer2_h").text
-        breaker1RoundWin = 0
-        breaker2RoundWin = 0
-        roundWinners = driver2.find_elements(By.CLASS_NAME, "round_info")
-        for roundWinner in roundWinners:
-            if (roundWinner.get_attribute("class")[17:18] == "1"):
-                breaker1RoundWin += 1;
-            elif (roundWinner.get_attribute("class")[17:18] == "2"):
-                breaker2RoundWin += 1;          
-        numRounds = len(driver2.find_elements(By.CLASS_NAME, "round_info"))
-        breaker1VoteCount = 0
-        breaker2VoteCount = 0
-        voteCounts = driver2.find_elements(By.TAG_NAME, "nobr")
-        for voteCount in voteCounts[1:(numRounds + 1)]:
-            breaker1VoteCount += int(voteCount.get_attribute("innerText")[11])
-            breaker2VoteCount += int(voteCount.get_attribute("innerText")[13])
-        if (breaker1RoundWin > breaker2RoundWin):
-            winner = breaker1
-        elif (breaker1RoundWin < breaker2RoundWin):
-            winner = breaker2
-        elif (breaker1RoundWin == breaker2RoundWin):
-            if (breaker1VoteCount > breaker2VoteCount):
+        try:
+            battleString = ""
+            driver2 = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driver2.get(link)
+            breaker1 = driver2.find_element(By.ID, "dancer1_h").text
+            breaker2 = driver2.find_element(By.ID, "dancer2_h").text
+            breaker1RoundWin = 0
+            breaker2RoundWin = 0
+            roundWinners = driver2.find_elements(By.CLASS_NAME, "round_info")
+            for roundWinner in roundWinners:
+                if (roundWinner.get_attribute("class")[17:18] == "1"):
+                    breaker1RoundWin += 1;
+                elif (roundWinner.get_attribute("class")[17:18] == "2"):
+                    breaker2RoundWin += 1;          
+            numRounds = len(driver2.find_elements(By.CLASS_NAME, "round_info"))
+            breaker1VoteCount = 0
+            breaker2VoteCount = 0
+            voteCounts = driver2.find_elements(By.TAG_NAME, "nobr")
+            for voteCount in voteCounts[1:(numRounds + 1)]:
+                breaker1VoteCount += int(voteCount.get_attribute("innerText")[11])
+                breaker2VoteCount += int(voteCount.get_attribute("innerText")[13])
+            if (breaker1RoundWin > breaker2RoundWin):
                 winner = breaker1
-            elif (breaker1VoteCount < breaker2VoteCount):
+            elif (breaker1RoundWin < breaker2RoundWin):
                 winner = breaker2
-            elif (breaker1VoteCount == breaker2VoteCount):
-                winner = "Tie"
-        battleString += breaker1 + "," + breaker2 + "," + winner + ","
-        numJudges = int(len(driver2.find_elements(By.CLASS_NAME, "judges_width")) / numRounds)
-        judgeNames = ""
-        for i in range(numJudges):
-            judgeNames += driver2.find_elements(By.CLASS_NAME, "judges_width")[i].find_elements_by_css_selector("[id^='dancer']")[0].find_elements(By.TAG_NAME, "b")[0].text + ","
-        battleString += str(numRounds) + "," + str(numJudges) + "," + str(breaker1RoundWin) + "," + str(breaker2RoundWin) + "," + str(breaker1VoteCount) + "," + str(breaker2VoteCount) + "," + judgeNames
-        for i in range(9 - numJudges):
-            battleString += ","
-        ratingSets = driver2.find_elements(By.CLASS_NAME, "all_details")
-        for i in range(len(ratingSets)):
-            if (ratingSets[i].find_element_by_xpath("..").get_attribute("id") == "dancer1_tri"):
-                battleString += "-"
-            battleString += driver2.find_elements(By.CLASS_NAME, "judges_width")[i].find_elements_by_css_selector("[id^='dancer']")[0].find_elements(By.TAG_NAME, "b")[1].text[1:-1] + ","
-            ratingDetails = ratingSets[i].find_elements(By.CLASS_NAME, "fader_neu")
-            for j in range(len(ratingDetails)):
-                ratingDiv = ratingDetails[j].find_elements(By.TAG_NAME, "div")
-                if (len(ratingDiv) > 0):
-                    if (ratingDiv[0].get_attribute("id") == "dancer1"):
+            elif (breaker1RoundWin == breaker2RoundWin):
+                if (breaker1VoteCount > breaker2VoteCount):
+                    winner = breaker1
+                elif (breaker1VoteCount < breaker2VoteCount):
+                    winner = breaker2
+                elif (breaker1VoteCount == breaker2VoteCount):
+                    winner = "Tie"
+            battleString += breaker1 + "," + breaker2 + "," + winner + ","
+            numJudges = int(len(driver2.find_elements(By.CLASS_NAME, "judges_width")) / numRounds)
+            judgeNames = ""
+            for i in range(numJudges):
+                judgeNames += driver2.find_elements(By.CLASS_NAME, "judges_width")[i].find_elements_by_css_selector("[id^='dancer']")[0].find_elements(By.TAG_NAME, "b")[0].text + ","
+            if (system == "traditional"):
+                numRounds = ""
+            battleString += str(numRounds) + "," + str(numJudges) + ","
+            if (system != "traditional"):
+                battleString += str(breaker1RoundWin) + "," + str(breaker2RoundWin) + ","
+            battleString += str(breaker1VoteCount) + "," + str(breaker2VoteCount) + "," + judgeNames
+            for i in range(9 - numJudges):
+                battleString += ","
+
+            if (system == "traditional"):
+                judgeVotes = driver2.find_elements(By.CLASS_NAME, "judges_width")
+                # print("number of judge votes is " + str(len(judgeVotes)))
+                for i in range(len(judgeVotes)):
+                    # print("i")
+                    if (judgeVotes[i].find_elements_by_css_selector("[id^='dancer1']")):
+                        battleString += "red,"
+                    elif (judgeVotes[i].find_elements_by_css_selector("[id^='dancer2']")):
+                        battleString += "blue,"
+                    # elif (judgeVotes[i].find_elements_by_css_selector("[id*='TIE']")):
+                    else:
+                        print("tie found")
+                        battleString += "tie,"
+                    # also need to accommodate tiebreaker rounds
+            else:
+                ratingSets = driver2.find_elements(By.CLASS_NAME, "all_details")
+                for i in range(len(ratingSets)):
+                    if (ratingSets[i].find_element_by_xpath("..").get_attribute("id") == "dancer1_tri"):
                         battleString += "-"
-                    rating = ratingDiv[0].get_attribute("innerHTML")
-                    battleString += rating[1:-1] + ","
-                else:
-                    battleString += "0,"
-            if (ratingSets[i].find_elements(By.ID, "button_presses")):
-                battleString += ratingSets[i].find_element(By.ID, "button_presses").find_element(By.ID, "dancer1_tri").get_attribute("innerText") + ","
-                battleString += ratingSets[i].find_element(By.ID, "button_presses").find_element(By.ID, "dancer2_tri").get_attribute("innerText") + ","
-            if (((i + 1) % numJudges) == 0):
-                for m in range(9 - numJudges):
-                    for x in range(len(ratingDetails) + 1):
-                        battleString += ","
+                    battleString += driver2.find_elements(By.CLASS_NAME, "judges_width")[i].find_elements_by_css_selector("[id^='dancer']")[0].find_elements(By.TAG_NAME, "b")[1].text[1:-1] + ","
+                    ratingDetails = ratingSets[i].find_elements(By.CLASS_NAME, "fader_neu")
+                    for j in range(len(ratingDetails)):
+                        ratingDiv = ratingDetails[j].find_elements(By.TAG_NAME, "div")
+                        if (len(ratingDiv) > 0):
+                            if (ratingDiv[0].get_attribute("id") == "dancer1"):
+                                battleString += "-"
+                            rating = ratingDiv[0].get_attribute("innerHTML")
+                            battleString += rating[1:-1] + ","
+                        else:
+                            battleString += "0,"
                     if (ratingSets[i].find_elements(By.ID, "button_presses")):
-                        battleString += ",,"
+                        battleString += ratingSets[i].find_element(By.ID, "button_presses").find_element(By.ID, "dancer1_tri").get_attribute("innerText") + ","
+                        battleString += ratingSets[i].find_element(By.ID, "button_presses").find_element(By.ID, "dancer2_tri").get_attribute("innerText") + ","
+                    if (((i + 1) % numJudges) == 0):
+                        for m in range(9 - numJudges):
+                            for x in range(len(ratingDetails) + 1):
+                                battleString += ","
+                            if (ratingSets[i].find_elements(By.ID, "button_presses")):
+                                battleString += ",,"
+        except:
+            battleString = ","
+            print(battleString)
+            print(battleString, file=output)
+            driver2.close()
+            continue
         print(battleString)
         print(battleString, file=output)
         driver2.close()
