@@ -1,5 +1,6 @@
-// update this
-var system = "traditional";
+// var system = "traditional";
+var system = "round by round";
+// var system = "single slider";
 // var system = "threefold";
 // var system = "trivium";
 
@@ -12,6 +13,9 @@ if (system == "threefold") {
 if (system == "trivium") {
     valuesCount = 6;
     blanksCount = 9;
+}
+if ((system == "round by round") || (system == "single slider")) {
+    blanksCount = 1;
 }
 
 var battleString = "";
@@ -112,7 +116,7 @@ for (var i = 0; i < (9 - numJudges); i++) {
     battleString += ",";
 }
 
-if (system == "traditional") {
+if ((system == "traditional") || (system == "round by round")) {
     var judgeVotes = document.getElementsByClassName("judges_width");
     for (var i = 0; i < judgeVotes.length; i++) {
         if (judgeVotes[i].children[0].id.includes("dancer1")) battleString += "red,";
@@ -135,17 +139,22 @@ else {
         if (ratingSets[i].parentElement.id == "dancer1_tri") {
             battleString += "-";
         }
-        battleString += document.getElementsByClassName("judges_width")[i].querySelectorAll("#dancer1_tri, #dancer2_tri")[0].childNodes[2].innerText.slice(1,-1) + ",";
-        for (var j = 0; j < valuesCount; j++) {
-            if (ratingSets[i].getElementsByClassName("fader_neu")[j].getElementsByTagName("div").length > 0) {
-                rating = ratingSets[i].getElementsByClassName("fader_neu")[j].getElementsByTagName("div")[0];
-                if (rating.id == "dancer1") {
-                    battleString += "-";
+        if (system == "single slider") {
+            battleString += ratingSets[i].innerText.slice(1,-1) + ",";
+        }
+        else {
+            battleString += document.getElementsByClassName("judges_width")[i].querySelectorAll("#dancer1_tri, #dancer2_tri")[0].childNodes[2].innerText.slice(1,-1) + ",";
+            for (var j = 0; j < valuesCount; j++) {
+                if (ratingSets[i].getElementsByClassName("fader_neu")[j].getElementsByTagName("div").length > 0) {
+                    rating = ratingSets[i].getElementsByClassName("fader_neu")[j].getElementsByTagName("div")[0];
+                    if (rating.id == "dancer1") {
+                        battleString += "-";
+                    }
+                    battleString += rating.innerText.slice(1,-1) + ",";
                 }
-                battleString += rating.innerText.slice(1,-1) + ",";
-            }
-            else {
-                battleString += "0,"
+                else {
+                    battleString += "0,"
+                }
             }
         }
         if (system == "trivium") {
