@@ -10,11 +10,11 @@ if (system == "threefold") {
     valuesCount = 3;
     blanksCount = 4;
 }
-if (system == "trivium") {
+else if (system == "trivium") {
     valuesCount = 6;
     blanksCount = 9;
 }
-if ((system == "round by round") || (system == "single slider")) {
+else if ((system == "round by round") || (system == "single slider")) {
     blanksCount = 1;
 }
 

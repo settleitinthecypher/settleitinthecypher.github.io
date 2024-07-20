@@ -3,11 +3,32 @@
 // because wdsf has the left and right position swapped for red and blue
 // have to make sure correct number is pulled to correct position within data
 
+// var system = "pseudo threefold"
+var system = "wdsf"
+// var system = "trivium"
+
+var valuesCount;
+var blanksCount;
+if (system == "pseudo threefold") {
+    valuesCount = 3;
+    blanksCount = 4;
+}
+else if (system == "wdsf") {
+    valuesCount = 5;
+    blanksCount = 6;
+}
+else if (system == "trivium") {
+    valuesCount = 6;
+    blanksCount = 9;
+}
+
 var battlesString = "";
 var battleString;
 
 var breaker1;
 var breaker2;
+var breaker1RoundVotes;
+var breaker2RoundVotes;
 var breaker1VoteCount;
 var breaker2VoteCount;
 var breaker1RoundWin;
@@ -34,8 +55,10 @@ for (var i = (battles.length - 1); i >= 0; i--) {
     breaker2VoteCount = 0;
     breaker1RoundWin = 0;
     breaker2RoundWin = 0;
-    roundWinners = battles[i].getElementsByClassName("round-title");
-    numRounds = roundWinners.length;
+    rounds = battles[i].getElementsByClassName("battle-round");
+    numRounds = rounds.length;
+    judges = battles[i].getElementsByClassName("battle-round")[0].getElementsByClassName("col-sm-12 trivium_scores");
+    numJudges = judges.length;
     var j;
     for (j = 0; j < numRounds; j++) {
         // breaker1VoteCount += parseInt(roundWinners[j].innerText.split(":")[1]);
@@ -46,15 +69,27 @@ for (var i = (battles.length - 1); i >= 0; i--) {
         // else if (parseInt(roundWinners[j].innerText.split(":")[1]) < parseInt(roundWinners[j].innerText.split(":")[0])) {
         //     breaker2RoundWin += 1;
         // }
-        breaker1VoteCount += parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[1]);
-        breaker2VoteCount += parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[0]);
-        if (parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[1]) > parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[0])) {
-            breaker1RoundWin += 1;
+
+        // breaker1VoteCount += parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[1]);
+        // breaker2VoteCount += parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[0]);
+        // if (parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[1]) > parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[0])) {
+        //     breaker1RoundWin += 1;
+        // }
+        // else if (parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[1]) < parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[0])) {
+        //     breaker2RoundWin += 1;
+        // }
+        breaker1RoundVotes = 0;
+        breaker2RoundVotes = 0;
+        for (k = 0; k < numJudges; k++) {
+            if (rounds[j].getElementsByClassName("scores")[k].classList[1].includes("1")) breaker1RoundVotes++;
+            if (rounds[j].getElementsByClassName("scores")[k].classList[1].includes("2")) breaker2RoundVotes++;
         }
-        else if (parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[1]) < parseInt(roundWinners[j].innerText.split("(")[1].split(")")[0].split(":")[0])) {
-            breaker2RoundWin += 1;
-        }
+        breaker1VoteCount += breaker1RoundVotes;
+        breaker2VoteCount += breaker2RoundVotes;
+        if (breaker1RoundVotes > breaker2RoundVotes) breaker1RoundWin++;
+        else if (breaker1RoundVotes < breaker2RoundVotes) breaker2RoundWin++;
     }
+
     if (breaker1RoundWin > breaker2RoundWin) {
         winner = breaker1;
     }
@@ -74,9 +109,6 @@ for (var i = (battles.length - 1); i >= 0; i--) {
     }
 
     battleString += breaker1 + "," + breaker2 + "," + winner + ",";
-
-    judges = battles[i].getElementsByClassName("battle-round")[0].getElementsByClassName("col-sm-12 trivium_scores");
-    numJudges = judges.length;
     battleString += numRounds + "," + numJudges + "," + breaker1RoundWin + "," + breaker2RoundWin + "," + breaker1VoteCount + "," + breaker2VoteCount + ",";
     for (j = 0; j < numJudges; j++) {
         battleString += judges[j].getElementsByClassName("judge-name")[0].innerText.trim() + ",";
@@ -85,7 +117,6 @@ for (var i = (battles.length - 1); i >= 0; i--) {
         battleString += ",";
     }
 
-    rounds = battles[i].getElementsByClassName("battle-round");
     for (j = 0; j < numRounds; j++) {
         scoreSets = rounds[j].getElementsByClassName("trivium_scores");
         var k;
@@ -107,13 +138,17 @@ for (var i = (battles.length - 1); i >= 0; i--) {
                     battleString += scores[m].innerText.slice(1,-1) + ",";
                 }
             }
-            battleString += scoreSets[k].getElementsByClassName("AthleteBlue")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
-            battleString += scoreSets[k].getElementsByClassName("AthleteRed")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
-            // battleString += scoreSets[k].getElementsByClassName("athlete2")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
-            // battleString += scoreSets[k].getElementsByClassName("athlete1")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
+            if (system == "trivium") {
+                battleString += scoreSets[k].getElementsByClassName("AthleteBlue")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
+                battleString += scoreSets[k].getElementsByClassName("AthleteRed")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
+                // battleString += scoreSets[k].getElementsByClassName("athlete2")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
+                // battleString += scoreSets[k].getElementsByClassName("athlete1")[0].innerText.trim().replaceAll(/(\r\n|\n|\r)/gm, "").replaceAll(" ","").replaceAll("1x", "1x ").replaceAll("2x", "2x ").replaceAll("3x", "3x ") + ",";
+            }
         }
         for (k = 0; k < (9 - numJudges); k++) {
-            battleString += ",,,,,,,,,";
+            for (var x = 0; x < blanksCount; x++) {
+                battleString += ",";
+            }
         }
     }
 
