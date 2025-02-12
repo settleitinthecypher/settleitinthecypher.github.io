@@ -1,0 +1,66 @@
+PreQ,India vs Talash,https://web.archive.org/web/20240817111803mp_/https://olympics.com/en/paris-2024/results/breaking/b-girls/r32-000100--
+Group A,671 vs Sunny,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpa-000100--
+Group A,Vanessa vs India,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpa-000200--
+Group A,671 vs Vanessa,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpa-000300--
+Group A,India vs Sunny,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpa-000400--
+Group A,India vs 671,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpa-000500--
+Group A,Vanessa vs Sunny,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpa-000600--
+Group B,Nicka vs Syssy,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpb-000100--
+Group B,Logistx vs Raygun,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpb-000200--
+Group B,Nicka vs Logistx,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpb-000300--
+Group B,Raygun vs Syssy,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpb-000400--
+Group B,Raygun vs Nicka,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpb-000500--
+Group B,Logistx vs Syssy,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpb-000600--
+Group C,Ami vs Anti,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpc-000100--
+Group C,Elmamouny vs Ying Zi,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpc-000200--
+Group C,Ami vs Elmamouny,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpc-000300--
+Group C,Ying Zi vs Anti,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpc-000400--
+Group C,Ying Zi vs Ami,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpc-000500--
+Group C,Elmamouny vs Anti,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpc-000600--
+Group D,Ayumi vs Stefani,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpd-000100--
+Group D,Kate vs Carlota,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpd-000200--
+Group D,Ayumi vs Kate,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpd-000300--
+Group D,Carlota vs Stefani,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpd-000400--,NO DATA?
+Group D,Carlota vs Ayumi,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpd-000500--
+Group D,Kate vs Stefani,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/gpd-000600--
+Quarters,Syssy vs Ami,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/qfnl000100--
+Quarters,Ayumi vs India,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/qfnl000200--
+Quarters,671 vs Kate,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/qfnl000300--
+Quarters,Ying Zi vs Nicka,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/qfnl000400--
+Semis,Ami vs India,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/sfnl000100--
+Semis,671 vs Nicka,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/sfnl000200--
+Third,India vs 671,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/fnl-000200--
+Finals,Ami vs Nicka,https://web.archive.org/web/20240817111803/https://olympics.com/en/paris-2024/results/breaking/b-girls/fnl-000100--
+---
+Group A,Shigekix vs Victor,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpa-000100--
+Group A,Litheing vs Hiro10,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpa-000200--
+Group A,Shigekix vs Hiro10,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpa-000300--
+Group A,Victor vs Lithe-ing,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpa-000400--
+Group A,Lithe-ing vs Shigekix,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpa-000500--
+Group A,Hiro10 vs Victor,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpa-000600--
+Group B,Phil Wizard vs Dany Dann,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpb-000100--
+Group B,J Attack vs Kuzya,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpb-000200--
+Group B,Phil Wizard vs Kuzya,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpb-000300--
+Group B,Dany Dann vs J Attack,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpb-000400--
+Group B,J Attack vs Phil Wizard,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpb-000500--
+Group B,Kuzya vs Dany Dann,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpb-000600--
+Group C,Jeffro vs Lagaet,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpc-000100--
+Group C,Hong Ten vs Lee,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpc-000200--
+Group C,Jeffro vs Lee,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpc-000300--
+Group C,Lagaet vs Hong Ten,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpc-000400--
+Group C,Hong Ten vs Jeffro,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpc-000500--
+Group C,Lee vs Lagaet,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpc-000600--
+Group D,Amir vs Menno,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpd-000100--
+Group D,Quake vs Billy,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpd-000200--
+Group D,Amir vs Billy,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpd-000300--
+Group D,Menno vs Quake,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpd-000400--
+Group D,Quake vs Amir,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpd-000500--
+Group D,Billy vs Menno,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/gpd-000600--
+Quarters,Dany Dann vs Jeffro,https://web.archive.org/web/20240810203919/https://olympics.com/en/paris-2024/results/breaking/b-boys/qfnl000100--
+Quarters,Amir vs Victor,https://web.archive.org/web/20240810203919/https://olympics.com/en/paris-2024/results/breaking/b-boys/qfnl000200--
+Quarters,Shigekix vs Menno,https://web.archive.org/web/20240810203919/https://olympics.com/en/paris-2024/results/breaking/b-boys/qfnl000300--
+Quarters,Lee vs Phil Wizard,https://web.archive.org/web/20240810203919mp_/https://olympics.com/en/paris-2024/results/breaking/b-boys/qfnl000400--
+Semis,Dany Dann vs Victor,https://web.archive.org/web/20240814220623mp_/https://olympics.com/en/paris-2024/results/breaking/b-boys/sfnl000100--
+Semis,Shigekix vs Phil Wizard,https://web.archive.org/web/20240814125931mp_/https://olympics.com/en/paris-2024/results/breaking/b-boys/sfnl000200--
+Third,Victor vs Shigekix,https://web.archive.org/web/20240814093733/https://olympics.com/en/paris-2024/results/breaking/b-boys/fnl-000200--
+Finals,Dany Dann vs Phil Wizard,https://web.archive.org/web/20240814093733mp_/https://olympics.com/en/paris-2024/results/breaking/b-boys/fnl-000100--
