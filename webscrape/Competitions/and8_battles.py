@@ -2,22 +2,44 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 import datetime
 
 # system = "traditional"
-system = "round by round"
+# system = "round by round"
 # system = "single slider"
-# system = "threefold"
+system = "threefold"
 # system = "trivium"
 
-driver = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+chrome_options = Options()
+chrome_options.binary_location = 'C:\Program Files\Google\Chrome120forSelenium\Application\chrome.exe'
+
+driver = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe', options=chrome_options)
 URLs = [
-    "https://and8.dance/en/stats/reports/286/295/r",
-    "https://and8.dance/en/stats/reports/276/322/r",
-    "https://and8.dance/en/stats/reports/84/298/r",
-    "https://and8.dance/en/stats/reports/297/287/r",
-    "https://and8.dance/en/stats/reports/279/296/r"
+    "https://and8.dance/en/stats/reports/4250/1351/r",
+    "https://and8.dance/en/stats/reports/4250/1352/r",
+    "https://and8.dance/en/stats/reports/4250/1353/r",
+    "https://and8.dance/en/stats/reports/4250/1369/r",
+    "https://and8.dance/en/stats/reports/4250/1355/r",
+    "https://and8.dance/en/stats/reports/4250/1370/r",
+    "https://and8.dance/en/stats/reports/4250/1357/r",
+    "https://and8.dance/en/stats/reports/4250/1358/r",
+    "https://and8.dance/en/stats/reports/4250/1371/r",
+    "https://and8.dance/en/stats/reports/4247/1341/r",
+    "https://and8.dance/en/stats/reports/4247/1342/r",
+    "https://and8.dance/en/stats/reports/4247/1343/r",
+    "https://and8.dance/en/stats/reports/4247/1345/r",
+    "https://and8.dance/en/stats/reports/4247/1346/r",
+    "https://and8.dance/en/stats/reports/4213/1275/r",
+    "https://and8.dance/en/stats/reports/4213/1276/r",
+    "https://and8.dance/en/stats/reports/4168/1280/r",
+    "https://and8.dance/en/stats/reports/4168/1338/r",
+    "https://and8.dance/en/stats/reports/4168/1279/r",
+    "https://and8.dance/en/stats/reports/4168/1340/r",
+    "https://and8.dance/en/stats/reports/4168/1339/r",
+    "https://and8.dance/en/stats/reports/4227/1329/r",
+    "https://and8.dance/en/stats/reports/4227/1330/r",
 ]
 
 # ending of URLs must be "/r" or "/"
@@ -26,7 +48,7 @@ def webscrape(battleLinks,output):
     for link in battleLinks:
         try:
             battleString = ""
-            driver2 = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driver2 = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe', options=chrome_options)
             driver2.get(link)
             breaker1 = driver2.find_element(By.ID, "dancer1_h").text
             breaker2 = driver2.find_element(By.ID, "dancer2_h").text
@@ -164,7 +186,7 @@ for URL in URLs:
         # some URLs end in "type=" + urlEnd and some in "type=&"
         if ("Top 8" in driver.title):
             # check finals top location link has data, and if so then use finals and 3rd place links, else use finals without 3rd place link
-            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe', options=chrome_options)
             driverTemp.get(baseURL + "?data=1&x=615&y=280&w=1225&type=" + urlEnd)
 
             if (driverTemp.find_elements(By.ID, "dancer1_h")):
@@ -182,7 +204,7 @@ for URL in URLs:
             battleLinks.append(baseURL + "?data=1&x=245&y=160&w=1225&type=" + urlEnd) # top 8
         elif ("Top 16" in driver.title):
             # check finals top location link has data, and if so then use finals and 3rd place links, else use finals without 3rd place link
-            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe', options=chrome_options)
             driverTemp.get(baseURL + "?data=1&x=615&y=175&w=1225&type=" + urlEnd)
 
             if (driverTemp.find_elements(By.ID, "dancer1_h")):
@@ -210,7 +232,7 @@ for URL in URLs:
             # check 3rd place location link has data, and if so then include it
             battleLinks.append(baseURL + "?data=1&x=980&y=400&w=1225&type=" + urlEnd) # finals
 
-            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe', options=chrome_options)
             driverTemp.get(baseURL + "?data=1&x=570&y=400&w=1225&type=" + urlEnd)
 
             if (driverTemp.find_elements(By.ID, "dancer1_h")):
@@ -221,7 +243,7 @@ for URL in URLs:
             battleLinks.append(baseURL + "?data=1&x=590&y=300&w=1225&type=" + urlEnd) # semis
         elif ("Top 32" in driver.title):
             # check finals location link has data, and if so then include full bracket links
-            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe')
+            driverTemp = webdriver.Chrome(executable_path=r'C:\Program Files (x86)\ChromeDriver\chromedriver.exe', options=chrome_options)
             driverTemp.get(baseURL + "?data=1&x=300&y=130&w=1225&type=" + urlEnd)
 
             if (driverTemp.find_elements(By.ID, "dancer1_h")):
