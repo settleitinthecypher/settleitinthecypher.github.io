@@ -1,1 +1,0 @@
-This folder houses webscraping scripts for pulling competitive breaking data from various online sources.
