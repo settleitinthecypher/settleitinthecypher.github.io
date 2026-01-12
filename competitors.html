@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="logo.png">
+        
+        <!-- Bootstrap 5.3 https://getbootstrap.com/docs/5.3/getting-started/introduction -->
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
+        
+        <!-- fonts -->
+        <link rel='preconnect' href='https://fonts.googleapis.com'>
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>        
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Dancing Script'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+	    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' crossorigin='anonymous'>
+        
+        <!-- PyScript to run Python in web app -->
+        <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+        <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+        <py-config type="json">
+            {"packages": ["numpy", "pandas"]}
+        </py-config>
+        
+        <!-- <link rel="stylesheet" type="text/css" href="html5reset.css">
+        <link rel="stylesheet" type="text/css" href="style.css"> -->
+        <title>Competitive Breaking Data | Settle it in the Cypher</title>
+    </head>
+    <body>
+        <div>
+            <div id="pyscriptContents">
+                <!-- <div>(i)</div> -->
+                
+                <!-- competitor selector -->
+                <div id='competitorsList'></div>
+                <div id='competitorInput'>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="competitorDropDown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Competitor</button>
+                        <div class="dropdown-menu" aria-labelledby="competitorDropDown"></div>
+                    </div>
+                </div>
+                
+                <!-- judging system selector -->
+                <div id='judgingSystemInput'>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="judgingSystemDropDown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Judging System</button>
+                        <div class="dropdown-menu" aria-labelledby="judgingSystemDropDown">
+                            <a class="dropdown-item" data-judgingSystem="Trivium">Trivium</a>
+                            <a class="dropdown-item" data-judgingSystem="WDSF System">WDSF System</a>
+                            <a class="dropdown-item" data-judgingSystem="Threefold">Threefold</a>
+                            <a class="dropdown-item" data-judgingSystem="WDSF Pseudo Threefold">WDSF Pseudo Threefold</a>
+                            <a class="dropdown-item" data-judgingSystem="Single Slider">Single Slider</a>
+                            <!-- <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Round by Round</a>
+                            <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Traditional</a> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div id='loadingPlaceholder'></div>
+                
+                <!-- data filters: date, competitor, judge, etc. -->
+                
+                <!-- descriptive statistics for the competitor -->
+                <div id='descriptiveStatistics'></div>
+                <!-- separate column for judgin systems, all combined, individual -->
+                <!-- num wins (%) / # battles, rounds won (%) / # rounds, votes received (%) / # possible votes, breakdown by category 
+                
+                <!-- table of num rounds num judges for competitor participated battles -->
+                <div id='roundsJudgesTableDiv'></div>
+                
+                <div id='scoreStatisticsTableDiv'>
+                    <!-- <tr>
+                            score range
+                            mean
+                            median
+                            std dev
+                            # zeroes
+                        </tr> -->
+                </div>
+                
+                <!-- table of raw data of competitors' battles -->
+                <div id='rawDataTableDiv' style='height: 50vh; overflow-y: scroll;'></div>
+                <!-- separate one for each judging system -->
+                
+                <!-- clicked row battle judge score display -->
+                <div id='battleDiv'></div>
+            </div>
+        </div>
+        
+        <section class='pyscript'>
+            <script type='py'>
+                
+            </script>
+        </section>
+        <script>
+            // directly access live Google Sheet seems too complex, so just export Sheet to csv and include with repository
+            // PyScript can't access local files, so have to upload and access online link
+            const TriviumData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BTrivium%5D.csv";
+            const WDSFSystemData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BWDSF%20System%5D%20(Raw).csv";
+            const ThreefoldData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Threefold%5D%20(Raw).csv";
+            const PseudoThreefoldData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BWDSF%20Pseudo%20Threefold%5D%20(Raw).csv";
+            const SingleSliderData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Single%20Slider%5D%20(Raw).csv";
+            
+            var judgingSystem;
+            var numCategories;
+            var categories;
+            var categoryAbbreviations;
+            
+            function changeJudgingSystem(judgingSystem, url) {
+                document.getElementById('judgingSystemDropDown').innerText = 'Judging System: ' + judgingSystem;
+                document.getElementById("loadingPlaceholder").innerHTML = "<p>Loading...</p>"; // temporary placeholder while data loads
+                
+                switch (judgingSystem) {
+                    case "Trivium":
+                        numCategories = 6;
+                        categories = ['Technique','Variety','Performativity','Musicality','Creativity','Personality'];
+                        categoryAbbreviations = ['tech','vari','perf','musi','crea','pers'];
+                        break;
+                    case "WDSF System":
+                        numCategories = 5;
+                        categories = ['Technique','Vocabulary','Originality','Execution','Musicality'];
+                        categoryAbbreviations = ['tech','voca','orig','exec','musi'];
+                        break;
+                    case "Threefold":
+                        numCategories = 3
+                        categories = ['Physical','Artistic','Interpretive'];
+                        categoryAbbreviations = ['phys','arti','inte'];
+                        break;
+                    case "WDSF Pseudo Threefold":
+                        numCategories = 3;
+                        categories = ['Technique','Variety','Performativity'];
+                        categoryAbbreviation1 = ['tech','vari','perf'];
+                        break;
+                    case "Single Slider":
+                        numCategories = 1;
+                        break;
+                }
+                
+                // Create script element to execute Python code dynamically
+                const script = document.createElement('script');
+                script.type = 'py';
+                script.textContent = `
+                    from pyodide.http import open_url
+                    import pandas as pd
+                    import numpy as np
+                    from js import document
+                    
+                    try:
+                        # access online hosted csv data
+                        df = pd.read_csv(open_url("${url}"))
+                        
+                        # load to html table
+                        rawData_table = df.to_html(classes='table table-striped table-hover')
+                        document.getElementById('rawDataTableDiv').innerHTML = rawData_table
+                        
+                        numCategories = ${numCategories}
+                        categories = ${JSON.stringify(categories)}
+                        
+                        # calculate descriptive statistics
+                        categoriesString = str(numCategories)
+                        if numCategories > 1:
+                            categoriesString += ': ' + ', '.join(categories[:numCategories])
+                            # for i in range(1, numCategories + 1):
+                            #     category_var = locals().get(f'category{i}')
+                            #     categoriesString += str(category_var) + ', '
+                            # categoriesString = categoriesString[:-2]
+                        document.getElementById('categories').innerText = categoriesString
+                        
+                        # TODO: date range
+                        
+                        document.getElementById('numEvents').innerText = len(np.unique(df['event'].values))
+                        
+                        document.getElementById('numBattles').innerText = len(df['r1j1over'].dropna()) # only count battles that have complete data, will need separate method for roundbyround and traditional
+                        
+                        document.getElementById('numRounds').innerText = pd.to_numeric(df['battle rounds']).sum()
+                        
+                        document.getElementById('numSets').innerText = (pd.to_numeric(df['battle rounds']) * pd.to_numeric(df['number of judges'])).sum(skipna=True)
+                        
+                        document.getElementById('numInputs').innerText = pd.to_numeric(document.getElementById('numSets').innerText) * numCategories
+                        
+                        # exclude NaN from count in case of blank rows
+                        competitors = np.unique(pd.concat([df['breaker 1 (red)'],df['breaker 2 (blue)']]).dropna().astype(str).values)
+                        document.getElementById('numCompetitors').innerHTML = str(len(competitors)) + '<button id="openCloseCompetitorsButton" class="btn btn-md" onclick="openCloseCompetitors();">v</button>'
+                        document.getElementById('competitorsList').innerText = '\\n'.join(competitors)
+                        # TODO: clickable link to individual competitor data page
+                        
+                        # exclude NaN from count in case of blank cells
+                        judges = np.unique(pd.concat([df['judge 1 name'],df['judge 2 name'],df['judge 3 name'],df['judge 4 name'],df['judge 5 name'],df['judge 6 name'],df['judge 7 name'],df['judge 8 name'],df['judge 9 name']]).dropna().astype(str).values)
+                        document.getElementById('numJudges').innerHTML = str(len(judges)) + '<button id="openCloseJudgesButton" class="btn btn-md" onclick="openCloseJudges();">v</button>'
+                        document.getElementById('judgesList').innerText = '\\n'.join(judges)
+                        # TODO: clickable link to individual judge data page
+                        
+                        df_RoundsJudges = pd.DataFrame(data = {
+                            '': ['total',
+                                 '1 round',
+                                 '2 rounds',
+                                 '3 rounds',
+                                 '4 rounds',
+                                 '5 rounds']})
+                        df_RoundsJudges['count'] = [
+                            pd.to_numeric(document.getElementById('numBattles').innerText),
+                            (df['battle rounds'] == 1).sum(),
+                            (df['battle rounds'] == 2).sum(),
+                            (df['battle rounds'] == 3).sum(),
+                            (df['battle rounds'] == 4).sum(),
+                            (df['battle rounds'] == 5).sum()
+                        ]
+                        df_RoundsJudges['%'] = [
+                            '(100%)',
+                            '(' + str(round(100 * df_RoundsJudges['count'][1] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['count'][2] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['count'][3] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['count'][4] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['count'][5] / df_RoundsJudges['count'][0])) + '%)',
+                        ]
+                        df_RoundsJudges['3 judges'] = [
+                            (df['number of judges'] == 3).sum(),
+                            ((df['number of judges'] == 3) & (df['battle rounds'] == 1)).sum(),
+                            ((df['number of judges'] == 3) & (df['battle rounds'] == 2)).sum(),
+                            ((df['number of judges'] == 3) & (df['battle rounds'] == 3)).sum(),
+                            ((df['number of judges'] == 3) & (df['battle rounds'] == 4)).sum(),
+                            ((df['number of judges'] == 3) & (df['battle rounds'] == 5)).sum()
+                        ]
+                        df_RoundsJudges['3 judges %'] = [
+                            '(' + str(round(100 * df_RoundsJudges['3 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['3 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['3 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['3 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['3 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['3 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                        ]
+                        df_RoundsJudges['5 judges'] = [
+                            (df['number of judges'] == 5).sum(),
+                            ((df['number of judges'] == 5) & (df['battle rounds'] == 1)).sum(),
+                            ((df['number of judges'] == 5) & (df['battle rounds'] == 2)).sum(),
+                            ((df['number of judges'] == 5) & (df['battle rounds'] == 3)).sum(),
+                            ((df['number of judges'] == 5) & (df['battle rounds'] == 4)).sum(),
+                            ((df['number of judges'] == 5) & (df['battle rounds'] == 5)).sum()
+                        ]
+                        df_RoundsJudges['5 judges %'] = [
+                            '(' + str(round(100 * df_RoundsJudges['5 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['5 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['5 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['5 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['5 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['5 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                        ]
+                        df_RoundsJudges['7 judges'] = [
+                            (df['number of judges'] == 7).sum(),
+                            ((df['number of judges'] == 7) & (df['battle rounds'] == 1)).sum(),
+                            ((df['number of judges'] == 7) & (df['battle rounds'] == 2)).sum(),
+                            ((df['number of judges'] == 7) & (df['battle rounds'] == 3)).sum(),
+                            ((df['number of judges'] == 7) & (df['battle rounds'] == 4)).sum(),
+                            ((df['number of judges'] == 7) & (df['battle rounds'] == 5)).sum()
+                        ]
+                        df_RoundsJudges['7 judges %'] = [
+                            '(' + str(round(100 * df_RoundsJudges['7 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['7 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['7 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['7 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['7 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['7 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                        ]
+                        df_RoundsJudges['9 judges'] = [
+                            (df['number of judges'] == 9).sum(),
+                            ((df['number of judges'] == 9) & (df['battle rounds'] == 1)).sum(),
+                            ((df['number of judges'] == 9) & (df['battle rounds'] == 2)).sum(),
+                            ((df['number of judges'] == 9) & (df['battle rounds'] == 3)).sum(),
+                            ((df['number of judges'] == 9) & (df['battle rounds'] == 4)).sum(),
+                            ((df['number of judges'] == 9) & (df['battle rounds'] == 5)).sum()
+                        ]
+                        df_RoundsJudges['9 judges %'] = [
+                            '(' + str(round(100 * df_RoundsJudges['9 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['9 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['9 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['9 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['9 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                            '(' + str(round(100 * df_RoundsJudges['9 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                        ]
+                        df_RoundsJudges = df_RoundsJudges.rename(columns={
+                            '':'',
+                            '%':'%',
+                            '3 judges':'3 judges',
+                            '3 judges %':'',
+                            '5 judges':'5 judges',
+                            '5 judges %':'',
+                            '7 judges':'7 judges',
+                            '7 judges %':'',
+                            '9 judges':'9 judges',
+                            '9 judges %':'',
+                        })
+                        roundsJudges_table = df_RoundsJudges.to_html(classes='table table-striped table-hover')
+                        document.getElementById('roundsJudgesTableDiv').innerHTML = roundsJudges_table
+                        
+                        document.getElementById('descriptiveStatistics').style.display = 'initial';
+                        document.getElementById("loadingPlaceholder").innerHTML = ''
+
+                    except Exception as e:
+                        document.getElementById("rawDataTableDiv").innerHTML = "<p>Error loading data: " + str(e) + "</p>"
+                    `;
+                document.querySelector('section.pyscript').appendChild(script); // append script element to trigger PyScript code execution engine
+                document.querySelector('section.pyscript').removeChild(script);
+            }
+            
+            // Add click handlers to dropdown items
+            document.addEventListener('DOMContentLoaded', function() {
+                const dropdownItems = document.querySelectorAll('.dropdown-item');
+                dropdownItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const judgingSystem = this.getAttribute('data-judgingSystem');
+                        const url = urlMap[judgingSystem];
+                        if (url) {
+                            changeJudgingSystem(judgingSystem, url);
+                        }
+                    });
+                });
+                
+                document.getElementById("loadingPlaceholder").innerHTML = "<p>Loading...</p>"; // temporary placeholder while data loads
+                const loadCompetitorsScript = document.createElement('script');
+                loadCompetitorsScript.type = 'py';
+                loadCompetitorsScript.textContent = `
+                    from pyodide.http import open_url
+                    import pandas as pd
+                    import numpy as np
+                    from js import document
+                    
+                    try:
+                        df_battlesTrivium = pd.read_csv(open_url('${TriviumData}'))
+                        df_battlesWDSFSystem = pd.read_csv(open_url('${WDSFSystemData}'))
+                        df_battlesThreefold = pd.read_csv(open_url('${ThreefoldData}'))
+                        df_battlesPseudoThreefold = pd.read_csv(open_url('${PseudoThreefoldData}'))
+                        df_battlesSingleSlider = pd.read_csv(open_url('${SingleSliderData}'))
+                        
+                        competitors = np.unique(pd.concat([df_battlesTrivium['breaker 1 (red)'],
+                                                              df_battlesTrivium['breaker 2 (blue)'],
+                                                              df_battlesWDSFSystem['breaker 1 (red)'],
+                                                              df_battlesWDSFSystem['breaker 2 (blue)'],
+                                                              df_battlesThreefold['breaker 1 (red)'],
+                                                              df_battlesThreefold['breaker 2 (blue)'],
+                                                              df_battlesPseudoThreefold['breaker 1 (red)'],
+                                                              df_battlesPseudoThreefold['breaker 2 (blue)'],
+                                                              df_battlesSingleSlider['breaker 1 (red)'],
+                                                              df_battlesSingleSlider['breaker 2 (blue)']]).dropna().astype(str).values)
+                        document.getElementById('competitorsList').innerText = '\\n'.join(competitors)
+                        document.getElementById("loadingPlaceholder").innerHTML = ''
+                        
+                    except Exception as e:
+                        document.getElementById("loadingPlaceholder").innerHTML = "<p>Error loading data: " + str(e) + "</p>" 
+                    `;
+                document.querySelector('section.pyscript').appendChild(loadCompetitorsScript); // append script element to trigger PyScript code execution engine
+                document.querySelector('section.pyscript').removeChild(loadCompetitorsScript);
+                
+                //
+                document.getElementById("loadingPlaceholder").innerHTML = "<p>Loading...</p>"; // temporary placeholder while data loads
+                const loadJudgesScript = document.createElement('script');
+                loadJudgesScript.type = 'py';
+                loadJudgesScript.textContent = `
+                    from pyodide.http import open_url
+                    import pandas as pd
+                    import numpy as np
+                    from js import document
+                    
+                    try:
+                        df_battlesTrivium = pd.read_csv(open_url('${TriviumData}'))
+                        df_battlesWDSFSystem = pd.read_csv(open_url('${WDSFSystemData}'))
+                        df_battlesThreefold = pd.read_csv(open_url('${ThreefoldData}'))
+                        df_battlesPseudoThreefold = pd.read_csv(open_url('${PseudoThreefoldData}'))
+                        df_battlesSingleSlider = pd.read_csv(open_url('${SingleSliderData}'))
+                        
+                        judges = np.unique(pd.concat([df_battlesTrivium['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
+                                                      df_battlesWDSFSystem['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
+                                                      df_battlesThreefold['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
+                                                      df_battlesPseudoThreefold['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
+                                                      df_battlesSingleSlider['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name']]).dropna().astype(str).values)
+                        document.getElementById('judgesList').innerText = '\\n'.join(judges)
+                        document.getElementById("loadingPlaceholder").innerHTML = ''
+                        
+                    except Exception as e:
+                        document.getElementById("loadingPlaceholder").innerHTML = "<p>Error loading data: " + str(e) + "</p>" 
+                    `;
+                document.querySelector('section.pyscript').appendChild(loadCompetitorsScript); // append script element to trigger PyScript code execution engine
+                document.querySelector('section.pyscript').removeChild(loadCompetitorsScript);
+            });
+            
+            function openCloseCompetitors() {
+                var openCloseCompetitorsButton = document.getElementById('openCloseCompetitorsButton');
+                var competitorsList = document.getElementById('competitorsList');
+                if (openCloseCompetitorsButton.innerText == 'v') {
+                    openCloseCompetitorsButton.innerText = '^';
+                    competitorsList.style.display = 'initial';
+                }
+                else {
+                    openCloseCompetitorsButton.innerText = 'v';
+                    competitorsList.style.display = 'none';
+                }
+            }
+            
+            function openCloseJudges() {
+                var openCloseJudgesButton = document.getElementById('openCloseJudgesButton');
+                var judgesList = document.getElementById('judgesList');
+                if (openCloseJudgesButton.innerText == 'v') {
+                    openCloseJudgesButton.innerText = '^';
+                    judgesList.style.display = 'initial';
+                }
+                else {
+                    openCloseJudgesButton.innerText = 'v';
+                    judgesList.style.display = 'none';
+                }
+            }
+            
+            document.getElementById('rawDataTableDiv').addEventListener('click', function (event) {
+                const tr = event.target.closest('tr');
+                if (!tr) return; // click wasn't on a row
+                
+                // Get the table headers (assuming first row with th elements)
+                const table = tr.closest('table');
+                const headerRow = table.querySelector('thead tr') || table.querySelector('tr:first-child');
+                const headers = Array.from(headerRow.querySelectorAll('th, td')).map(h => h.textContent.trim());
+                
+                // Get row data
+                var rowArray = tr.textContent.split('\n');
+                for (var i = 0; i < rowArray.length; i++) {
+                    rowArray[i] = rowArray[i].trim();
+                    if (rowArray[i] == "NaN") rowArray[i] = '';
+                }
+                rowArray.splice(0,1);
+                
+                // Create JSON object mapping headers to row values
+                const rowJSON = {};
+                headers.forEach((header, index) => {
+                    if (rowArray[index]) {
+                        rowJSON[header] = rowArray[index];
+                    }
+                });
+                console.log(JSON.stringify(rowJSON, null, 2));
+                
+                // link to original data source
+                // create header row with event, stage, breakers, round count, vote count
+                // for (var i = 0; i < rowJSON['battle rounds']; i++) {
+                //     create a row for each round
+                //     for (var j = 0; j < rowJSON['number of judges']; j++) {
+                //         create a column for each judge
+                //         create a cell for overall score for judge
+                //         for (var k = 0; k < numCategories; k++) {
+                //             create a cell for each category
+                //         }
+                //     }
+                // }
+            });
+            
+            // -- dataset view --
+            // filters and search
+            // dataset table
+            // tab for overall stats and analytics for entire dataset, affected by filters
+            // tab for specific battle when row clicked
+            // button to filter analytics to entire jam containing battle?
+            
+            // <tr onclick='loadScoreDisplay();'> // when click row, display scores in table form like and8, also produce analytics for the battle
+            
+            // -- judge view --
+            // judge dropdown selector list
+            // compare to average median judge or to another specific judge
+            // total events judged, for each judging system
+            // total battles judged, for each judging system
+            // total rounds judged, for each judging system
+            // table battles judged rows number rounds columns number judges
+            // mean, median, stddev, min max score given for each category for each system
+            // rate of voting with majority for each judge ratio for each judging system
+            // rate of 0s (ties) given for each category for each system
+            
+            // -- competitor view --
+            // single competitor view:
+            // competitor dropdown selector list
+            // compare to average median competitor or to another specific competitor
+            // total battles competed
+            // total rounds competed
+            // matchup view:
+            // table rows and columns are individual competitors, cells are # battles (for each judge system), # wins for each matchup
+            //     filter for column competitor and row competitor
+            //     filter for judging system: checkboxes select multiple
+            //     create df with first column list of competitors
+            //     for each competitor in list of competitors, create column
+            //     in each cell, win # (%) - loss # (%)
+            //     click a cell -> display details
+            //     list of battles with links
+            //     table win - loss count broken down by num rounds num judges
+            //     round win loss count? votes received count?
+            //     breakdown by category for each judging system
+        </script>
+    </body>
+</html>

@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        Methods for converting CSV to HTML
+        https://www.convertcsv.com/csv-to-html.htm
+        https://opensourc.es/blog/csv2html/
+        https://derekeder.com/csv_to_html_table/
+        https://gist.github.com/duplaja/e8dd08644a6196406b9166d733d8e083
+
+        Embed Google Spreadsheet doesnt include freeze cells nor filters
+        https://webapps.stackexchange.com/questions/90632/is-there-a-way-to-get-frozen-rows-in-an-embedded-google-sheet
+    -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="logo.png">
+        
+        <!-- Bootstrap 5.3 https://getbootstrap.com/docs/5.3/getting-started/introduction -->
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
+        
+        <!-- fonts -->
+        <link rel='preconnect' href='https://fonts.googleapis.com'>
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>        
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Dancing Script'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+	    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' crossorigin='anonymous'>
+                
+        <!-- <link rel="stylesheet" type="text/css" href="html5reset.css">
+        <link rel="stylesheet" type="text/css" href="style.css"> -->
+        <title>Competitive Breaking Data | Settle it in the Cypher</title>
+        
+    </head>
+    <body>
+        <!-- <div class="pageHeader">
+            <p>Settle it in the Cypher</p>
+            <nav>
+                Competitive Breaking Data
+            </nav>
+        </div>
+        <div class="pageBody">
+            <div id="pageBodyDiv">
+                <div id="pageBodyButton"><button><a href="data.csv" download><i class='fa-solid fa-file-arrow-down'></i>Download .csv of this data</a></button></div>
+                <div id="pageBodyContact"><p>Contact: settleitinthecypher@gmail.com</p></div>
+            </div>
+            <br>
+            <div id="tableDiv">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZLuWeqlyj8onQ2W63AF56F__ewWUaF5jD7Gowz13ve6Yqzt1yIFRW6WYKv6UH7hQXll9hehBcBwaS/pubhtml?widget=true&amp;headers=false"></iframe>
+            </div> -->
+        <div id='loadingPlaceholderDiv' style='display: none;'>LOADING...</div>
+        <div>
+            <ul id='mainNavUl' class="nav nav-tabs" onclick='mainNavToggle(event);'>
+                <li class="nav-item">
+                    <a id='judgingSystemsTabA' class="nav-link active" aria-current="page" href="#">Judging Systems</a>
+                </li>
+                <li class="nav-item">
+                    <a id='judgesTabA' class="nav-link" href="#">Judges</a>
+                </li>
+                <li class="nav-item">
+                    <a id='competitorsTabA' class="nav-link" href="#">Competitors</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <div id='judgingSystemsDiv' class='mainDiv'>
+                <!-- TODO: add 'about the judging systems overview information description' -->
+                <!-- <div>(i)</div> -->
+                
+                <!-- judging system selector -->
+                <div id='judgingSystemInput'>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="judgingSystemDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Judging System</button>
+                        <div class="dropdown-menu" aria-labelledby="judgingSystemDropdown">
+                            <a class="dropdown-item" data-judgingSystem="Trivium">Trivium</a>
+                            <a class="dropdown-item" data-judgingSystem="WDSF System">WDSF System</a>
+                            <a class="dropdown-item" data-judgingSystem="Threefold">Threefold</a>
+                            <a class="dropdown-item" data-judgingSystem="Pseudo Threefold">Pseudo Threefold</a>
+                            <a class="dropdown-item" data-judgingSystem="Single Slider">Single Slider</a>
+                            <!-- <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Round by Round</a>
+                            <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Traditional</a> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- data filters: date, competitor, judge, etc. -->
+                
+                <!-- descriptive statistics for the judging system -->
+                <div id='descriptiveStatisticsTableDiv'></div>
+                
+                <!-- table of num rounds num judges for judging system -->
+                <div id='roundsJudgesTableDiv'></div>
+                
+                <div id='scoreStatisticsTableDiv'></div>
+                
+                <!-- table of raw data of judging system -->
+                <div id='rawDataTableDiv' style='height: 50vh; overflow-y: scroll;'></div>
+                
+                <!-- clicked row battle judge score display -->
+                <div id='battleDiv'></div>
+            </div>
+            <div id='judgesDiv' class='mainDiv' style='display: none;'>
+                <div id='allJudgesDiv'>
+                    <table>
+                        <tr>
+                            <td>Number of Unique Judges:</td>
+                            <td id='numJudgesAll'></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td id='judgesListAll'></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='singleJudgeDiv'></div>
+            </div>
+            <div id='competitorsDiv' class='mainDiv' style='display: none;'>
+                <div id='allCompetitorsDiv'>
+                    <table>
+                        <tr>
+                            <td>Number of Unique Competitors:</td>
+                            <td id='numCompetitorsAll'></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td id='competitorsListAll'></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='singleCompetitorDiv'></div>
+            </div>
+        </div>
+        
+        <!--
+        <script src='TriviumDataRaw.js'></script>
+        <script src='WDSFSystemDataRaw.js'></script>
+        <script src='ThreefoldDataRaw.js'></script>
+        <script src='PseudoThreefoldDataRaw.js'></script>
+        <script src='SingleSliderDataRaw.js'></script>
+        <script src='RoundByRoundDataRaw.js'></script>
+        <script src='TraditionalDataRaw.js'></script>
+        -->
+        <script src='rawData.js'></script>
+        <script>
+            
+            //
+            // -- DATA FUNCTIONS --
+            //
+            
+            var tabLoaded = {
+                'judging systems' : true,
+                'judges' : false,
+                'competitors' : false
+            }
+            
+            // directly access live Google Sheet seems too complex, so just export Sheet to csv and include with repository
+            // PyScript can't access local files, so have to upload and access online link            
+            var judgingSystems = {
+                'Trivium' : {
+                    // 'link' : 'https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BTrivium%5D.csv',
+                    'variableName' : 'Trivium',
+                    'numCategories' : '6',
+                    'categories' : ['Technique','Variety','Performativity','Musicality','Creativity','Personality'],
+                    'categoryAbbreviations' : ['tech','vari','perf','musi','crea','pers'],
+                    'dataframe' : 'df_battlesTrivium',
+                    'arrays' : {'data' : TriviumDataRaw}, // filtered, descriptiveStatistics, roundsJudges, scoreStatistics
+                    'loaded' : false
+                },
+                'WDSF System' : {
+                    // 'link' : 'https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BWDSF%20System%5D%20(Raw).csv',
+                    'variableName' : 'WDSFSystem',
+                    'numCategories' : '5',
+                    'categories' : ['Technique','Vocabulary','Originality','Execution','Musicality'],
+                    'categoryAbbreviations' : ['tech','voca','orig','exec','musi'],
+                    'dataframe' : 'df_battlesWDSFSystem',
+                    'arrays' : {'data' : WDSFSystemDataRaw},
+                    'loaded' : false
+                },
+                'Threefold' : { // TODO: fix Breaking for Gold USA New York City NY Regional Qualifier 2023 which got incorrectly converted to array because comma
+                    // 'link' : 'https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Threefold%5D%20(Raw).csv',
+                    'variableName' : 'Threefold',
+                    'numCategories' : '3',
+                    'categories' : ['Physical','Artistic','Interpretive'],
+                    'categoryAbbreviations' : ['phys','arti','inte'],
+                    'dataframe' : 'df_battlesThreefold',
+                    'arrays' : {'data' : ThreefoldDataRaw},
+                    'loaded' : false
+                },
+                'Pseudo Threefold' : { // TODO: fix event names
+                    // 'link' : 'https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BWDSF%20Pseudo%20Threefold%5D%20(Raw).csv',
+                    'variableName' : 'PseudoThreefold',
+                    'numCategories' : '3',
+                    'categories' : ['Technique','Variety','Performativity'],
+                    'categoryAbbreviations' : ['tech','vari','perf'],
+                    'dataframe' : 'df_battlesPseudoThreefold',
+                    'arrays' : {'data' : PseudoThreefoldDataRaw},
+                    'loaded' : false
+                },
+                'Single Slider' : {
+                    // 'link' : 'https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Single%20Slider%5D%20(Raw).csv',
+                    'variableName' : 'SingleSlider',
+                    'numCategories' : '1',
+                    'categories' : [],
+                    'categoryAbbreviations' : [],
+                    'dataframe' : 'df_battlesSingleSlider',
+                    'arrays' : {'data' : SingleSliderDataRaw},
+                    'loaded' : false
+                }
+            };
+            
+            //                  | 0      1      2                3                 4       5              6                 7                     8                     9                     10                    11            12            13            14            15            16            17            18            19            20        21        22        23        24        25        26        27        28        29        30        31        32        33        34        35        36        37        38        39        40        41        42        43        44        45        46        47        48        49        50        51        52        53        54        55        56        57        58        59        60        61        62        63        64        65        66        67        68        69        70        71        72        73        74        75        76        77        78        79        80        81        82        83        84        85        86        87        88        89        90        91        92        93        94        95        96        97        98        99        100       101       102       103       104       105       106       107       108       109       110       111       112       113       114       115       116       117       118       119       120       121       122       123       124       125       126       127       128       129       130       131       132       133       134       135       136       137       138       139       140       141       142       143       144       145       146       147       148       149       150       151       152       153       154       155       156       157       158       159       160       161       162       163       164       165       166       167       168       169       170       171       172       173       174       175       176       177       178       179       180       181       182       183       184       185       186       187       188       189       190       191       192       193       194       195       196       197       198       199       200       201       202       203       204       205       206       207       208       209       210       211       212       213       214       215       216       217       218       219       220       221       222       223       224       225       226       227       228       229       230       231       232       233       234       235       236       237       238       239       240       241       242       243       244       245       246       247       248       249       250       251       252       253       254       255       256       257       258       259       260       261       262       263       264       265       266       267       268       269       270       271       272       273       274       275       276       277       278       279       280       281       282       283       284       285       286       287       288       289       290       291       292       293       294       295       296       297       298       299       300       301       302       303       304       305       306       307       308       309       310       311       312       313       314       315       316       317       318       319       320       321       322       323       324       325       326       327       328       329       330       331       332       333       334       335       336       337       338       339       340       341       342       343       344       345       346       347       348       349       350       351       352       353       354       355       356       357       358       359       360       361       362       363       364       365       366       367       368       369       370       371       372       373       374       375       376       377       378       379       380       381       382       383       384       385       386       387       388       389       390       391       392       393       394       395       396       397       398       399       400       401       402       403       404       405       406       407       408       409       410       411       412       413       414       415       416       417       418       419       420       421       422       423       424
+            //          Trivium | event, stage, breaker 1 (red), breaker 2 (blue), winner, battle rounds, number of judges, breaker 1 round wins, breaker 2 round wins, breaker 1 vote count, breaker 2 vote count, judge 1 name, judge 2 name, judge 3 name, judge 4 name, judge 5 name, judge 6 name, judge 7 name, judge 8 name, judge 9 name, r1j1over, r1j1tech, r1j1vari, r1j1perf, r1j1musi, r1j1crea, r1j1pers, r1j1but1, r1j1but2, r1j2over, r1j2tech, r1j2vari, r1j2perf, r1j2musi, r1j2crea, r1j2pers, r1j2but1, r1j2but2, r1j3over, r1j3tech, r1j3vari, r1j3perf, r1j3musi, r1j3crea, r1j3pers, r1j3but1, r1j3but2, r1j4over, r1j4tech, r1j4vari, r1j4perf, r1j4musi, r1j4crea, r1j4pers, r1j4but1, r1j4but2, r1j5over, r1j5tech, r1j5vari, r1j5perf, r1j5musi, r1j5crea, r1j5pers, r1j5but1, r1j5but2, r1j6over, r1j6tech, r1j6vari, r1j6perf, r1j6musi, r1j6crea, r1j6pers, r1j6but1, r1j6but2, r1j7over, r1j7tech, r1j7vari, r1j7perf, r1j7musi, r1j7crea, r1j7pers, r1j7but1, r1j7but2, r1j8over, r1j8tech, r1j8vari, r1j8perf, r1j8musi, r1j8crea, r1j8pers, r1j8but1, r1j8but2, r1j9over, r1j9tech, r1j9vari, r1j9perf, r1j9musi, r1j9crea, r1j9pers, r1j9but1, r1j9but2, r2j1over, r2j1tech, r2j1vari, r2j1perf, r2j1musi, r2j1crea, r2j1pers, r2j1but1, r2j1but2, r2j2over, r2j2tech, r2j2vari, r2j2perf, r2j2musi, r2j2crea, r2j2pers, r2j2but1, r2j2but2, r2j3over, r2j3tech, r2j3vari, r2j3perf, r2j3musi, r2j3crea, r2j3pers, r2j3but1, r2j3but2, r2j4over, r2j4tech, r2j4vari, r2j4perf, r2j4musi, r2j4crea, r2j4pers, r2j4but1, r2j4but2, r2j5over, r2j5tech, r2j5vari, r2j5perf, r2j5musi, r2j5crea, r2j5pers, r2j5but1, r2j5but2, r2j6over, r2j6tech, r2j6vari, r2j6perf, r2j6musi, r2j6crea, r2j6pers, r2j6but1, r2j6but2, r2j7over, r2j7tech, r2j7vari, r2j7perf, r2j7musi, r2j7crea, r2j7pers, r2j7but1, r2j7but2, r2j8over, r2j8tech, r2j8vari, r2j8perf, r2j8musi, r2j8crea, r2j8pers, r2j8but1, r2j8but2, r2j9over, r2j9tech, r2j9vari, r2j9perf, r2j9musi, r2j9crea, r2j9pers, r2j9but1, r2j9but2, r3j1over, r3j1tech, r3j1vari, r3j1perf, r3j1musi, r3j1crea, r3j1pers, r3j1but1, r3j1but2, r3j2over, r3j2tech, r3j2vari, r3j2perf, r3j2musi, r3j2crea, r3j2pers, r3j2but1, r3j2but2, r3j3over, r3j3tech, r3j3vari, r3j3perf, r3j3musi, r3j3crea, r3j3pers, r3j3but1, r3j3but2, r3j4over, r3j4tech, r3j4vari, r3j4perf, r3j4musi, r3j4crea, r3j4pers, r3j4but1, r3j4but2, r3j5over, r3j5tech, r3j5vari, r3j5perf, r3j5musi, r3j5crea, r3j5pers, r3j5but1, r3j5but2, r3j6over, r3j6tech, r3j6vari, r3j6perf, r3j6musi, r3j6crea, r3j6pers, r3j6but1, r3j6but2, r3j7over, r3j7tech, r3j7vari, r3j7perf, r3j7musi, r3j7crea, r3j7pers, r3j7but1, r3j7but2, r3j8over, r3j8tech, r3j8vari, r3j8perf, r3j8musi, r3j8crea, r3j8pers, r3j8but1, r3j8but2, r3j9over, r3j9tech, r3j9vari, r3j9perf, r3j9musi, r3j9crea, r3j9pers, r3j9but1, r3j9but2, r4j1over, r4j1tech, r4j1vari, r4j1perf, r4j1musi, r4j1crea, r4j1pers, r4j1but1, r4j1but2, r4j2over, r4j2tech, r4j2vari, r4j2perf, r4j2musi, r4j2crea, r4j2pers, r4j2but1, r4j2but2, r4j3over, r4j3tech, r4j3vari, r4j3perf, r4j3musi, r4j3crea, r4j3pers, r4j3but1, r4j3but2, r4j4over, r4j4tech, r4j4vari, r4j4perf, r4j4musi, r4j4crea, r4j4pers, r4j4but1, r4j4but2, r4j5over, r4j5tech, r4j5vari, r4j5perf, r4j5musi, r4j5crea, r4j5pers, r4j5but1, r4j5but2, r4j6over, r4j6tech, r4j6vari, r4j6perf, r4j6musi, r4j6crea, r4j6pers, r4j6but1, r4j6but2, r4j7over, r4j7tech, r4j7vari, r4j7perf, r4j7musi, r4j7crea, r4j7pers, r4j7but1, r4j7but2, r4j8over, r4j8tech, r4j8vari, r4j8perf, r4j8musi, r4j8crea, r4j8pers, r4j8but1, r4j8but2, r4j9over, r4j9tech, r4j9vari, r4j9perf, r4j9musi, r4j9crea, r4j9pers, r4j9but1, r4j9but2, r5j1over, r5j1tech, r5j1vari, r5j1perf, r5j1musi, r5j1crea, r5j1pers, r5j1but1, r5j1but2, r5j2over, r5j2tech, r5j2vari, r5j2perf, r5j2musi, r5j2crea, r5j2pers, r5j2but1, r5j2but2, r5j3over, r5j3tech, r5j3vari, r5j3perf, r5j3musi, r5j3crea, r5j3pers, r5j3but1, r5j3but2, r5j4over, r5j4tech, r5j4vari, r5j4perf, r5j4musi, r5j4crea, r5j4pers, r5j4but1, r5j4but2, r5j5over, r5j5tech, r5j5vari, r5j5perf, r5j5musi, r5j5crea, r5j5pers, r5j5but1, r5j5but2, r5j6over, r5j6tech, r5j6vari, r5j6perf, r5j6musi, r5j6crea, r5j6pers, r5j6but1, r5j6but2, r5j7over, r5j7tech, r5j7vari, r5j7perf, r5j7musi, r5j7crea, r5j7pers, r5j7but1, r5j7but2, r5j8over, r5j8tech, r5j8vari, r5j8perf, r5j8musi, r5j8crea, r5j8pers, r5j8but1, r5j8but2, r5j9over, r5j9tech, r5j9vari, r5j9perf, r5j9musi, r5j9crea, r5j9pers, r5j9but1, r5j9but2
+            //      WDSF System | event, stage, breaker 1 (red), breaker 2 (blue), winner, battle rounds, number of judges, breaker 1 round wins, breaker 2 round wins, breaker 1 vote count, breaker 2 vote count, judge 1 name, judge 2 name, judge 3 name, judge 4 name, judge 5 name, judge 6 name, judge 7 name, judge 8 name, judge 9 name, r1j1over, r1j1tech, r1j1voca, r1j1orig, r1j1exec, r1j1musi, r1j2over, r1j2tech, r1j2voca, r1j2orig, r1j2exec, r1j2musi, r1j3over, r1j3tech, r1j3voca, r1j3orig, r1j3exec, r1j3musi, r1j4over, r1j4tech, r1j4voca, r1j4orig, r1j4exec, r1j4musi, r1j5over, r1j5tech, r1j5voca, r1j5orig, r1j5exec, r1j5musi, r1j6over, r1j6tech, r1j6voca, r1j6orig, r1j6exec, r1j6musi, r1j7over, r1j7tech, r1j7voca, r1j7orig, r1j7exec, r1j7musi, r1j8over, r1j8tech, r1j8voca, r1j8orig, r1j8exec, r1j8musi, r1j9over, r1j9tech, r1j9voca, r1j9orig, r1j9exec, r1j9musi, r2j1over, r2j1tech, r2j1voca, r2j1orig, r2j1exec, r2j1musi, r2j2over, r2j2tech, r2j2voca, r2j2orig, r2j2exec, r2j2musi, r2j3over, r2j3tech, r2j3voca, r2j3orig, r2j3exec, r2j3musi, r2j4over, r2j4tech, r2j4voca, r2j4orig, r2j4exec, r2j4musi, r2j5over, r2j5tech, r2j5voca, r2j5orig, r2j5exec, r2j5musi, r2j6over, r2j6tech, r2j6voca, r2j6orig, r2j6exec, r2j6musi, r2j7over, r2j7tech, r2j7voca, r2j7orig, r2j7exec, r2j7musi, r2j8over, r2j8tech, r2j8voca, r2j8orig, r2j8exec, r2j8musi, r2j9over, r2j9tech, r2j9voca, r2j9orig, r2j9exec, r2j9musi, r3j1over, r3j1tech, r3j1voca, r3j1orig, r3j1exec, r3j1musi, r3j2over, r3j2tech, r3j2voca, r3j2orig, r3j2exec, r3j2musi, r3j3over, r3j3tech, r3j3voca, r3j3orig, r3j3exec, r3j3musi, r3j4over, r3j4tech, r3j4voca, r3j4orig, r3j4exec, r3j4musi, r3j5over, r3j5tech, r3j5voca, r3j5orig, r3j5exec, r3j5musi, r3j6over, r3j6tech, r3j6voca, r3j6orig, r3j6exec, r3j6musi, r3j7over, r3j7tech, r3j7voca, r3j7orig, r3j7exec, r3j7musi, r3j8over, r3j8tech, r3j8voca, r3j8orig, r3j8exec, r3j8musi, r3j9over, r3j9tech, r3j9voca, r3j9orig, r3j9exec, r3j9musi
+            //        Threefold | event, stage, breaker 1 (red), breaker 2 (blue), winner, battle rounds, number of judges, breaker 1 round wins, breaker 2 round wins, breaker 1 vote count, breaker 2 vote count, judge 1 name, judge 2 name, judge 3 name, judge 4 name, judge 5 name, judge 6 name, judge 7 name, judge 8 name, judge 9 name, r1j1over, r1j1phys, r1j1arti, r1j1inte, r1j2over, r1j2phys, r1j2arti, r1j2inte, r1j3over, r1j3phys, r1j3arti, r1j3inte, r1j4over, r1j4phys, r1j4arti, r1j4inte, r1j5over, r1j5phys, r1j5arti, r1j5inte, r1j6over, r1j6phys, r1j6arti, r1j6inte, r1j7over, r1j7phys, r1j7arti, r1j7inte, r1j8over, r1j8phys, r1j8arti, r1j8inte, r1j9over, r1j9phys, r1j9arti, r1j9inte, r2j1over, r2j1phys, r2j1arti, r2j1inte, r2j2over, r2j2phys, r2j2arti, r2j2inte, r2j3over, r2j3phys, r2j3arti, r2j3inte, r2j4over, r2j4phys, r2j4arti, r2j4inte, r2j5over, r2j5phys, r2j5arti, r2j5inte, r2j6over, r2j6phys, r2j6arti, r2j6inte, r2j7over, r2j7phys, r2j7arti, r2j7inte, r2j8over, r2j8phys, r2j8arti, r2j8inte, r2j9over, r2j9phys, r2j9arti, r2j9inte, r3j1over, r3j1phys, r3j1arti, r3j1inte, r3j2over, r3j2phys, r3j2arti, r3j2inte, r3j3over, r3j3phys, r3j3arti, r3j3inte, r3j4over, r3j4phys, r3j4arti, r3j4inte, r3j5over, r3j5phys, r3j5arti, r3j5inte, r3j6over, r3j6phys, r3j6arti, r3j6inte, r3j7over, r3j7phys, r3j7arti, r3j7inte, r3j8over, r3j8phys, r3j8arti, r3j8inte, r3j9over, r3j9phys, r3j9arti, r3j9inte, r4j1over, r4j1phys, r4j1arti, r4j1inte, r4j2over, r4j2phys, r4j2arti, r4j2inte, r4j3over, r4j3phys, r4j3arti, r4j3inte, r4j4over, r4j4phys, r4j4arti, r4j4inte, r4j5over, r4j5phys, r4j5arti, r4j5inte, r4j6over, r4j6phys, r4j6arti, r4j6inte, r4j7over, r4j7phys, r4j7arti, r4j7inte, r4j8over, r4j8phys, r4j8arti, r4j8inte, r4j9over, r4j9phys, r4j9arti, r4j9inte
+            // Pseudo Threefold | event, stage, breaker 1 (red), breaker 2 (blue), winner, battle rounds, number of judges, breaker 1 round wins, breaker 2 round wins, breaker 1 vote count, breaker 2 vote count, judge 1 name, judge 2 name, judge 3 name, judge 4 name, judge 5 name, judge 6 name, judge 7 name, judge 8 name, judge 9 name, r1j1over, r1j1tech, r1j1vari, r1j1perf, r1j2over, r1j2tech, r1j2vari, r1j2perf, r1j3over, r1j3tech, r1j3vari, r1j3perf, r1j4over, r1j4tech, r1j4vari, r1j4perf, r1j5over, r1j5tech, r1j5vari, r1j5perf, r1j6over, r1j6tech, r1j6vari, r1j6perf, r1j7over, r1j7tech, r1j7vari, r1j7perf, r1j8over, r1j8tech, r1j8vari, r1j8perf, r1j9over, r1j9tech, r1j9vari, r1j9perf, r2j1over, r2j1tech, r2j1vari, r2j1perf, r2j2over, r2j2tech, r2j2vari, r2j2perf, r2j3over, r2j3tech, r2j3vari, r2j3perf, r2j4over, r2j4tech, r2j4vari, r2j4perf, r2j5over, r2j5tech, r2j5vari, r2j5perf, r2j6over, r2j6tech, r2j6vari, r2j6perf, r2j7over, r2j7tech, r2j7vari, r2j7perf, r2j8over, r2j8tech, r2j8vari, r2j8perf, r2j9over, r2j9tech, r2j9vari, r2j9perf, r3j1over, r3j1tech, r3j1vari, r3j1perf, r3j2over, r3j2tech, r3j2vari, r3j2perf, r3j3over, r3j3tech, r3j3vari, r3j3perf, r3j4over, r3j4tech, r3j4vari, r3j4perf, r3j5over, r3j5tech, r3j5vari, r3j5perf, r3j6over, r3j6tech, r3j6vari, r3j6perf, r3j7over, r3j7tech, r3j7vari, r3j7perf, r3j8over, r3j8tech, r3j8vari, r3j8perf, r3j9over, r3j9tech, r3j9vari, r3j9perf, r4j1over, r4j1tech, r4j1vari, r4j1perf, r4j2over, r4j2tech, r4j2vari, r4j2perf, r4j3over, r4j3tech, r4j3vari, r4j3perf, r4j4over, r4j4tech, r4j4vari, r4j4perf, r4j5over, r4j5tech, r4j5vari, r4j5perf, r4j6over, r4j6tech, r4j6vari, r4j6perf, r4j7over, r4j7tech, r4j7vari, r4j7perf, r4j8over, r4j8tech, r4j8vari, r4j8perf, r4j9over, r4j9tech, r4j9vari, r4j9perf
+            //    Single Slider | event, stage, breaker 1 (red), breaker 2 (blue), winner, battle rounds, number of judges, breaker 1 round wins, breaker 2 round wins, breaker 1 vote count, breaker 2 vote count, judge 1 name, judge 2 name, judge 3 name, judge 4 name, judge 5 name, judge 6 name, judge 7 name, judge 8 name, judge 9 name, r1j1over, r1j2over, r1j3over, r1j4over, r1j5over, r1j6over, r1j7over, r1j8over, r1j9over, r2j1over, r2j2over, r2j3over, r2j4over, r2j5over, r2j6over, r2j7over, r2j8over, r2j9over, r3j1over, r3j2over, r3j3over, r3j4over, r3j5over, r3j6over, r3j7over, r3j8over, r3j9over, r4j1over, r4j2over, r4j3over, r4j4over, r4j5over, r4j6over, r4j7over, r4j8over, r4j9over
+            //
+            //  0- 1 | event + stage
+            //  2- 4 | breakers + winner
+            //  5- 6 | round + judge count
+            //  7-10 | battle stats
+            // 11-19 | judges
+            // 20-   | scores
+            //
+            //          Trivium |   j1      j2      j3      j4      j5      j6      j7      j8      j9
+            //               r1 |  20- 28  29- 37  38- 46  47- 55  56- 64  65- 73  74- 82  83- 91  92-100
+            //               r2 | 101-109 110-118 119-127 128-136 137-145 146-154 155-163 164-172 173-181
+            //               r3 | 182-190 191-199 200-208 209-217 218-226 227-235 236-244 245-253 254-262
+            //               r4 | 263-271 272-280 281-289 290-298 299-307 308-316 317-325 326-334 335-343
+            //               r5 | 344-352 353-361 362-370 371-379 380-388 389-397 398-406 407-415 416-424
+            //                  |   over    tech    vari    perf    musi    crea    pers    but1    but2
+            //                  |    +0      +1      +2      +3      +4      +5      +6      +7      +8
+            //
+            //      WDSF System |   j1      j2      j3      j4      j5      j6      j7      j8      j9
+            //               r1 |  20- 25  26- 31  32- 37  38- 43  44- 49  50- 55  56- 61  62- 67  68- 73
+            //               r2 |  74- 79  80- 85  86- 91  92- 97  98-103 104-109 110-115 116-121 122-127
+            //               r3 | 128-133 134-139 140-145 146-151 152-157 158-163 164-169 170-175 176-181
+            //                  |   over    tech    voca    orig    exec    musi
+            //                  |    +0      +1      +2      +3      +4      +5
+            //
+            //        Threefold |   j1      j2      j3      j4      j5      j6      j7      j8      j9
+            //               r1 |  20- 23  24- 27  28- 31  32- 35  36- 39  40- 43  44- 47  48- 51  52- 55
+            //               r2 |  56- 59  60- 63  64- 67  68- 71  72- 75  76- 79  80- 83  84- 87  88- 91
+            //               r3 |  92- 95  96- 99 100-103 104-107 108-111 112-115 116-119 120-123 124-127
+            //               r4 | 128-131 132-135 136-139 140-143 144-147 148-151 152-155 156-159 160-163
+            //                  |   over    phys    arti    inte
+            //                  |    +0      +1      +2      +3
+            //
+            // Pseudo Threefold |   j1      j2      j3      j4      j5      j6      j7      j8      j9
+            //               r1 |  20- 23  24- 27  28- 31  32- 35  36- 39  40- 43  44- 47  48- 51  52- 55
+            //               r2 |  56- 59  60- 63  64- 67  68- 71  72- 75  76- 79  80- 83  84- 87  88- 91
+            //               r3 |  92- 95  96- 99 100-103 104-107 108-111 112-115 116-119 120-123 124-127
+            //               r4 | 128-131 132-135 136-139 140-143 144-147 148-151 152-155 156-159 160-163
+            //                  |   over    tech    vari    perf
+            //                  |    +0      +1      +2      +3
+            //
+            //    Single Slider | j1 j2 j3 j4 j5 j6 j7 j8 j9
+            //               r1 | 20 21 22 23 24 25 26 27 28
+            //               r2 | 29 30 31 32 33 34 35 36 37
+            //               r3 | 38 39 40 41 42 43 44 45 46
+            //               r4 | 47 48 49 50 51 52 53 54 55
+            //
+            // var numColumns=4; // to generate column numbers for above
+            // var output = ''
+            // for (var i = 19; i < 424; i++) {
+            //     for (var j = 0; j < 9; j++) {
+            //         output += parseInt(i+1+((numColumns-1)*j)) + '-' + parseInt(i+numColumns+((numColumns-1)*j)) + ' ';
+            //         i+=1;
+            //     }
+            //     console.log(output);
+            //     output = '';
+            //     i+=(numColumns-1)*9-1
+            // }
+            
+            // don't need this anymore now that arrays are provided in js file
+            // async function loadCSVtoArray() {
+            //     console.log('** loadCSVtoArray **');
+            //     console.log('Loading...');
+            //     var fetchResponse;
+            //     var responseText;
+            //     var tempData;
+            //     var counter = 0;
+            //     for (var key in judgingSystems) {
+            //         try {
+            //             fetchResponse = await fetch(judgingSystems[key]['link']);
+            //             responseText = await fetchResponse.text();
+            //             tempData = responseText.split('\n'); // split csv by line breaks
+            //             for (var j = 0; j < tempData.length; j++) {
+            //                 judgingSystems[key]['arrays']['data'].push(tempData[j].split(',')); // split individual lines by comma
+            //             }
+            //             console.log('........' + Object.keys(judgingSystems)[counter] + ' data');
+            //             counter++;
+            //         } catch (e) {
+            //             console.error('Failed to load ' + Object.keys(judgingSystems)[counter] + ' data: ', e);
+            //         }
+            //     }
+            //     console.log('-- Loading complete --');
+            // }
+            // OR? parse csv data using?
+            // const apiCall = async () => {
+            //    const apiCallPromise  = await fetch('https://api.example.com/data');
+            //    const apiCallObj = await apiCallPromise.text();
+            //    return apiCallObj;
+            // };
+            
+            // TODO: move these functions to appropriate spots
+            function generateTableFromArray(array, numHeaderRows, numHeaderColumns) {
+                console.log('** generateTableFromArray **');
+                var table = document.createElement('table');
+                table.classList = 'table table-sm table-striped table-hover';
+                var headerRow = document.createElement('thead');
+                var row;
+                var cell;
+                
+                // create table header rows if have them
+                if (numHeaderRows > 0) {
+                    for (var y = 0; y < numHeaderRows; y++) {
+                        row = document.createElement('tr');
+                        for (var x = 0; x < array[y].length; x++) {
+                            cell = document.createElement('th');
+                            cell.setAttribute('scope','col');
+                            cell.innerText = array[y][x];
+                            row.appendChild(cell);
+                        }
+                        headerRow.appendChild(row);
+                    }
+                    table.appendChild(headerRow);
+                }
+                
+                // create table body
+                var tableBody = document.createElement('tbody');
+                for (var y = numHeaderRows; y < array.length; y++) {
+                    row = document.createElement('tr');
+                    
+                    // create row headers if have them
+                    for (var x = 0; x < numHeaderColumns; x++) {
+                        cell = document.createElement('th');
+                        cell.setAttribute('scope','row');
+                        cell.innerText = array[y][x];
+                        row.appendChild(cell);
+                    }
+                    for (var x = numHeaderColumns; x < array[y].length; x++) {
+                        cell = document.createElement('td');
+                        cell.innerText = array[y][x];
+                        row.appendChild(cell);
+                    }
+                    tableBody.appendChild(row);
+                }
+                table.appendChild(tableBody);
+                return table;
+            }
+            
+            // filter the array before any calculations on datasets
+            function filterArray(array) {
+                console.log('** filterArray **');
+                var filteredArray = array.slice();
+                
+                // filter out rows (battles) with incomplete data, to be ran before any calculations on datasets
+                var checkColumn = filteredArray[0].indexOf('r1j1over');
+                for (var y = (filteredArray.length - 1); y > 0; y--) {
+                    if (filteredArray[y][checkColumn] == '') {
+                        console.log('........removing row ' + y + ' which is ' + filteredArray[y][0] + ' : ' + filteredArray[y][2] + ' vs ' + filteredArray[y][3]);
+                        filteredArray.splice(y, 1);
+                    }
+                }
+                
+                // TODO: apply other filters like date range, num rounds, etc.
+                return filteredArray;
+            }
+            
+            //
+            // -- TOP LEVEL PAGE FUNCTIONS --
+            //
+            
+            // TODO: seems to work for initial page load, but not for any other individual functions that change page state
+            const loadingPlaceholderDiv = document.getElementById('loadingPlaceholderDiv');
+            function toggleLoadingPlaceholderDiv() {
+                console.log('** toggleLoadingPlaceholderDiv **')
+                console.log(loadingPlaceholderDiv.style.display);
+                if (loadingPlaceholderDiv.style.display == 'none') {
+                    loadingPlaceholderDiv.style.display = 'initial';
+                } else {
+                    loadingPlaceholderDiv.style.display = 'none';
+                }
+                console.log(loadingPlaceholderDiv.style.display);
+            }
+            
+            function mainNavToggle(e) {
+                console.log('** mainNavToggle **');
+                toggleLoadingPlaceholderDiv();
+                
+                const clickedA = e.target.closest('a.nav-link');
+                if (!clickedA) return;
+                
+                const navLinks = document.getElementById('mainNavUl').getElementsByClassName('nav-link');
+                for (var i = 0; i < navLinks.length; i++) {
+                    navLinks[i].classList.remove('active');
+                }
+                clickedA.classList.add('active');
+                
+                const mainDivs = document.getElementsByClassName('mainDiv');
+                for (var i = 0; i < mainDivs.length; i++) {
+                    mainDivs[i].style.display = 'none';
+                }
+                switch (clickedA.id) {
+                    case 'judgingSystemsTabA':
+                        document.getElementById('judgingSystemsDiv').style.display = 'initial';
+                        // if (!tabLoaded['judging systems']) {
+                        //     tabLoaded['judging systems'] = true;
+                        // }
+                        break;
+                    case 'judgesTabA':
+                        document.getElementById('judgesDiv').style.display = 'initial';
+                        // if (!tabLoaded['judges']) {
+                        //     initializeJudgesTab();
+                        //     tabLoaded['judges'] = true;
+                        // }
+                        break;
+                    case 'competitorsTabA':
+                        document.getElementById('competitorsDiv').style.display = 'initial';
+                        // if (!tabLoaded['competitors']) {
+                        //     initializeCompetitorsTab();
+                        //     tabLoaded['competitors'] = true;
+                        // }
+                        break;
+                }
+                toggleLoadingPlaceholderDiv();
+            }
+            
+            //
+            // -- JUDGING SYSTEMS TAB FUNCTIONS --
+            //
+            
+            // TODO: split the HTML element creation section from the initial data load sections
+            function initializeJudgingSystemsTab() {
+                
+            }
+            
+            function toggleJudgingSystem(system) {
+                console.log('** toggleJudgingSystem **');
+                console.log('........switching judging system to ' + system);
+                toggleLoadingPlaceholderDiv();
+                
+                for (var key in judgingSystems) {
+                    if (key == system) {
+                        document.getElementById('descriptiveStatisticsTable' + judgingSystems[key]['variableName']).style.display = 'initial';
+                        document.getElementById('roundsJudgesTable' + judgingSystems[key]['variableName']).style.display = 'initial';
+                        document.getElementById('rawDataTable' + judgingSystems[key]['variableName']).style.display = 'initial';
+                        document.getElementById('scoreStatisticsTable' + judgingSystems[key]['variableName']).style.display = 'initial';
+                    }
+                    else {
+                        document.getElementById('descriptiveStatisticsTable' + judgingSystems[key]['variableName']).style.display = 'none';
+                        document.getElementById('roundsJudgesTable' + judgingSystems[key]['variableName']).style.display = 'none';
+                        document.getElementById('rawDataTable' + judgingSystems[key]['variableName']).style.display = 'none';
+                        document.getElementById('scoreStatisticsTable' + judgingSystems[key]['variableName']).style.display = 'none';
+                    }
+                }
+                document.getElementById('judgingSystemDropdown').innerText = 'Judging System: ' + system;
+                
+                toggleLoadingPlaceholderDiv();
+            }
+            
+            // load data
+            // TODO: currently this assumes landing on judge system tab first, but it needs to be genericized to only load the foundational data and create foundational elements, then use individual functions to load tabs when clicked
+            // TODO: split the data load sections of this from the HTML element creation sections
+            document.addEventListener('DOMContentLoaded', async function() {
+                console.log('** DOMContentLoaded function **');
+                toggleLoadingPlaceholderDiv();
+                
+                try {
+                    // load CSV data - don't need this anymore now that arrays are provided in js file
+                    // await loadCSVtoArray();
+                    
+                    // create raw data tables from each judging system's data array
+                    var tempDiv;
+                    for (var key in judgingSystems) {
+                        tempDiv = document.createElement('div');
+                        tempDiv.id = 'rawDataTable' + judgingSystems[key]['variableName'];
+                        tempDiv.style = 'display: none;';
+                        tempDiv.appendChild(generateTableFromArray(judgingSystems[key]['arrays']['data'], 1, 4));
+                        document.getElementById('rawDataTableDiv').appendChild(tempDiv);
+                        
+                        judgingSystems[key]['arrays']['filtered'] = filterArray(judgingSystems[key]['arrays']['data']);
+                        console.log('........processing ' + judgingSystems[key]['variableName'] + ' data');
+                        
+                        judgingSystems[key]['arrays']['descriptiveStatistics'] = calculateDescriptiveStatistics(judgingSystems[key]);
+                        tempDiv = document.createElement('div');
+                        tempDiv.id = 'descriptiveStatisticsTable' + judgingSystems[key]['variableName'];
+                        tempDiv.style = 'display: none;';
+                        tempDiv.appendChild(generateTableFromArray(judgingSystems[key]['arrays']['descriptiveStatistics'], 0, 1));
+                        document.getElementById('descriptiveStatisticsTableDiv').appendChild(tempDiv);
+                        // TODO: insert rows for list of competitors and judges
+                        
+                        judgingSystems[key]['arrays']['roundsJudges'] = calculateRoundsJudges(judgingSystems[key]);
+                        tempDiv = document.createElement('div');
+                        tempDiv.id = 'roundsJudgesTable' + judgingSystems[key]['variableName'];
+                        tempDiv.style = 'display: none;';
+                        tempDiv.appendChild(generateTableFromArray(judgingSystems[key]['arrays']['roundsJudges'], 1, 1));
+                        document.getElementById('roundsJudgesTableDiv').appendChild(tempDiv);
+                        
+                        judgingSystems[key]['arrays']['scoreStatistics'] = calculateScoreStatistics(judgingSystems[key]);
+                        tempDiv = document.createElement('div');
+                        tempDiv.id = 'scoreStatisticsTable' + judgingSystems[key]['variableName'];
+                        tempDiv.style = 'display: none;';
+                        tempDiv.appendChild(generateTableFromArray(judgingSystems[key]['arrays']['scoreStatistics'], 1, 1));
+                        document.getElementById('scoreStatisticsTableDiv').appendChild(tempDiv);
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+                
+                // Add click handlers to dropdown items
+                const dropdownItems = document.querySelectorAll('.dropdown-item');
+                dropdownItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const judgingSystem = this.getAttribute('data-judgingSystem');
+                        toggleJudgingSystem(judgingSystem);
+                    });
+                });
+                
+                toggleLoadingPlaceholderDiv();
+            });
+            
+            // calculate descriptive statistics for a judging system
+            // TODO: generalize to be able to handle date filter
+            function calculateDescriptiveStatistics(judgingSystemsKey) {
+                console.log('** calculateDescriptiveStatistics **');
+                console.log('........processing ' + judgingSystemsKey['variableName'] + ' descriptive statistics');
+                var filteredArray = judgingSystemsKey['arrays']['filtered']; // TODO: maybe just = dateFilterFunction(judgingSystemsKey['arrays']['filtered'], startDate, endDate)
+                
+                var numCategories = judgingSystemsKey['numCategories'];
+                var categoriesString = numCategories + ': ';
+                for (var i = 0; i < judgingSystemsKey['categories'].length; i++) {
+                    categoriesString += judgingSystemsKey['categories'][i] + ', ';
+                }
+                categoriesString = categoriesString.slice(0, -2);
+                
+                var events = [];
+                var dateRange = '';
+                var numBattles = 0;
+                var numRounds = 0;
+                var numJudgeInputSets = 0;
+                var competitors = [];
+                var judges = [];
+                for (var i = 1; i < filteredArray.length; i++) {
+                    events.push(filteredArray[i][filteredArray[0].indexOf('event')]);
+                    numBattles++;
+                    numRounds += parseInt(filteredArray[i][filteredArray[0].indexOf('battle rounds')]);
+                    numJudgeInputSets += parseInt(filteredArray[i][filteredArray[0].indexOf('battle rounds')] * filteredArray[i][filteredArray[0].indexOf('number of judges')]);
+                    
+                    competitors.push(filteredArray[i][filteredArray[0].indexOf('breaker 1 (red)')]);
+                    competitors.push(filteredArray[i][filteredArray[0].indexOf('breaker 2 (blue)')]);
+                    
+                    var judge;
+                    for (var j = 1; j <= 9; j++) {
+                        judge = filteredArray[i][filteredArray[0].indexOf('judge ' + j + ' name')];
+                        if (judge) {
+                            judges.push(judge);
+                        }
+                    }
+                }
+                events = [...new Set(events)];
+                var numEvents = events.length;
+                
+                competitors = [...new Set(competitors)].sort();
+                var numCompetitors = competitors.length;
+                
+                judges = [...new Set(judges)].sort();
+                var numJudges = judges.length;
+                
+                var descriptiveStatisticsArray = [
+                    ['Categories:', categoriesString],
+                    ['Date Range:', dateRange],
+                    ['Number of Events:', numEvents],
+                    ['Number of Battles:', numBattles],
+                    ['Number of Rounds:', numRounds],
+                    ['Number of Judge Input Sets:\n(sum of rounds × judges)', numJudgeInputSets],
+                    ['Number of Judge Inputs:\n(sum of rounds × judges × categories)', numJudgeInputSets * numCategories],
+                    ['Number of Unique Competitors:', numCompetitors],
+                    // ['', competitors],
+                    ['Number of Unique Judges:', numJudges],
+                    // ['', judges]
+                ];
+                return descriptiveStatisticsArray;
+            }
+            
+            // TODO: update this function since each judging system gets its own div
+            function openCloseCompetitors(variableName) {
+                console.log('** openCloseCompetitors **');
+                var openCloseCompetitorsButton = document.getElementById('openCloseCompetitorsButton' + variableName);
+                var competitorsListRow = document.getElementById('competitorsList'  + variableName).parentElement.parentElement;
+                if (openCloseCompetitorsButton.innerText == 'v') {
+                    openCloseCompetitorsButton.innerText = '^';
+                    competitorsListRow.style.display = 'initial';
+                }
+                else {
+                    openCloseCompetitorsButton.innerText = 'v';
+                    competitorsListRow.style.display = 'none';
+                }
+            }
+            
+            // TODO: update this function since each judging system gets its own div
+            function openCloseJudges(variableName) {
+                console.log('** openCloseJudges **');
+                var openCloseJudgesButton = document.getElementById('openCloseJudgesButton' + variableName);
+                var judgesListRow = document.getElementById('judgesList' + variableName).parentElement.parentElement;
+                if (openCloseJudgesButton.innerText == 'v') {
+                    openCloseJudgesButton.innerText = '^';
+                    judgesListRow.style.display = 'initial';
+                }
+                else {
+                    openCloseJudgesButton.innerText = 'v';
+                    judgesListRow.style.display = 'none';
+                }
+            }
+            
+            function calculateRoundsJudges(judgingSystemsKey) {
+                console.log('** calculateRoundsJudges **');
+                console.log('........processing ' + judgingSystemsKey['variableName'] + ' rounds judges');
+                var filteredArray = judgingSystemsKey['arrays']['filtered'];
+                
+                var numBattles = judgingSystemsKey['arrays']['descriptiveStatistics'][3][1];
+                
+                var numBattles1R = 0;
+                var numBattles2R = 0;
+                var numBattles3R = 0;
+                var numBattles4R = 0;
+                var numBattles5R = 0;
+                
+                var numBattlesT3J = 0;
+                var numBattles1R3J = 0;
+                var numBattles2R3J = 0;
+                var numBattles3R3J = 0;
+                var numBattles4R3J = 0;
+                var numBattles5R3J = 0;
+                
+                var numBattlesT5J = 0;
+                var numBattles1R5J = 0;
+                var numBattles2R5J = 0;
+                var numBattles3R5J = 0;
+                var numBattles4R5J = 0;
+                var numBattles5R5J = 0;
+                
+                var numBattlesT7J = 0;
+                var numBattles1R7J = 0;
+                var numBattles2R7J = 0;
+                var numBattles3R7J = 0;
+                var numBattles4R7J = 0;
+                var numBattles5R7J = 0;
+                
+                var numBattlesT9J = 0;
+                var numBattles1R9J = 0;
+                var numBattles2R9J = 0;
+                var numBattles3R9J = 0;
+                var numBattles4R9J = 0;
+                var numBattles5R9J = 0;
+                
+                for (var i = 1; i <= numBattles; i++) {
+                    switch (filteredArray[i][filteredArray[0].indexOf('number of judges')]) {
+                        case '3':
+                            numBattlesT3J++;
+                            switch (filteredArray[i][filteredArray[0].indexOf('battle rounds')]) {
+                                case '1':
+                                    numBattles1R++;
+                                    numBattles1R3J++;
+                                    break;
+                                case '2':
+                                    numBattles2R++;
+                                    numBattles2R3J++;
+                                    break;
+                                case '3':
+                                    numBattles3R++;
+                                    numBattles3R3J++;
+                                    break;
+                                case '4':
+                                    numBattles4R++;
+                                    numBattles4R3J++;
+                                    break;
+                                case '5':
+                                    numBattles5R++;
+                                    numBattles5R3J++;
+                                    break;
+                            }
+                            break;
+                        case '5':
+                            numBattlesT5J++;
+                            switch (filteredArray[i][filteredArray[0].indexOf('battle rounds')]) {
+                                case '1':
+                                    numBattles1R++;
+                                    numBattles1R5J++;
+                                    break;
+                                case '2':
+                                    numBattles2R++;
+                                    numBattles2R5J++;
+                                    break;
+                                case '3':
+                                    numBattles3R++;
+                                    numBattles3R5J++;
+                                    break;
+                                case '4':
+                                    numBattles4R++;
+                                    numBattles4R5J++;
+                                    break;
+                                case '5':
+                                    numBattles5R++;
+                                    numBattles5R5J++;
+                                    break;
+                            }
+                            break;
+                        case '7':
+                            numBattlesT7J++;
+                            switch (filteredArray[i][filteredArray[0].indexOf('battle rounds')]) {
+                                case '1':
+                                    numBattles1R++;
+                                    numBattles1R7J++;
+                                    break;
+                                case '2':
+                                    numBattles2R++;
+                                    numBattles2R7J++;
+                                    break;
+                                case '3':
+                                    numBattles3R++;
+                                    numBattles3R7J++;
+                                    break;
+                                case '4':
+                                    numBattles4R++;
+                                    numBattles4R7J++;
+                                    break;
+                                case '5':
+                                    numBattles5R++;
+                                    numBattles5R7J++;
+                                    break;
+                            }
+                            break;
+                        case '9':
+                            numBattlesT9J++;
+                            switch (filteredArray[i][filteredArray[0].indexOf('battle rounds')]) {
+                                case '1':
+                                    numBattles1R++;
+                                    numBattles1R9J++;
+                                    break;
+                                case '2':
+                                    numBattles2R++;
+                                    numBattles2R9J++;
+                                    break;
+                                case '3':
+                                    numBattles3R++;
+                                    numBattles3R9J++;
+                                    break;
+                                case '4':
+                                    numBattles4R++;
+                                    numBattles4R9J++;
+                                    break;
+                                case '5':
+                                    numBattles5R++;
+                                    numBattles5R9J++;
+                                    break;
+                            }
+                            break;
+                    }
+                }
+                
+                var roundsJudgesArray = [
+                    ['', 'Total', '%', '3 judges', '', '5 judges', '', '7 judges', '', '9 judges'],
+                    ['Total', numBattles, '100%', numBattlesT3J, '(' + Math.round(100 * numBattlesT3J / numBattles) + '%)', numBattlesT5J, '(' + Math.round(100 * numBattlesT5J / numBattles) + '%)', numBattlesT7J, '(' + Math.round(100 * numBattlesT7J / numBattles) + '%)', numBattlesT9J, '(' + Math.round(100 * numBattlesT9J / numBattles) + '%)'],
+                    ['1 Round', numBattles1R, '(' + Math.round(100 * numBattles1R / numBattles) + '%)', numBattles1R3J, '(' + Math.round(100 * numBattles1R3J / numBattles) + '%)', numBattles1R5J, '(' + Math.round(100 * numBattles1R5J / numBattles) + '%)', numBattles1R7J, '(' + Math.round(100 * numBattles1R7J / numBattles) + '%)', numBattles1R9J, '(' + Math.round(100 * numBattles1R9J / numBattles) + '%)'],
+                    ['2 Rounds', numBattles2R, '(' + Math.round(100 * numBattles2R / numBattles) + '%)', numBattles2R3J, '(' + Math.round(100 * numBattles2R3J / numBattles) + '%)', numBattles2R5J, '(' + Math.round(100 * numBattles2R5J / numBattles) + '%)', numBattles2R7J, '(' + Math.round(100 * numBattles2R7J / numBattles) + '%)', numBattles2R9J, '(' + Math.round(100 * numBattles2R9J / numBattles) + '%)'],
+                    ['3 Rounds', numBattles3R, '(' + Math.round(100 * numBattles3R / numBattles) + '%)', numBattles3R3J, '(' + Math.round(100 * numBattles3R3J / numBattles) + '%)', numBattles3R5J, '(' + Math.round(100 * numBattles3R5J / numBattles) + '%)', numBattles3R7J, '(' + Math.round(100 * numBattles3R7J / numBattles) + '%)', numBattles3R9J, '(' + Math.round(100 * numBattles3R9J / numBattles) + '%)'],
+                    ['4 Rounds', numBattles4R, '(' + Math.round(100 * numBattles4R / numBattles) + '%)', numBattles4R3J, '(' + Math.round(100 * numBattles4R3J / numBattles) + '%)', numBattles4R5J, '(' + Math.round(100 * numBattles4R5J / numBattles) + '%)', numBattles4R7J, '(' + Math.round(100 * numBattles4R7J / numBattles) + '%)', numBattles4R9J, '(' + Math.round(100 * numBattles4R9J / numBattles) + '%)'],
+                    ['5 Rounds', numBattles5R, '(' + Math.round(100 * numBattles5R / numBattles) + '%)', numBattles5R3J, '(' + Math.round(100 * numBattles5R3J / numBattles) + '%)', numBattles5R5J, '(' + Math.round(100 * numBattles5R5J / numBattles) + '%)', numBattles5R7J, '(' + Math.round(100 * numBattles5R7J / numBattles) + '%)', numBattles5R9J, '(' + Math.round(100 * numBattles5R9J / numBattles) + '%)'],
+                ];
+                return roundsJudgesArray;
+            }
+            
+            // min, median, max scores for each category for a judging system
+            function calculateScoreStatistics(judgingSystemsKey) {
+                console.log('** calculateScoreStatistics **');
+                console.log('........processing ' + judgingSystemsKey['variableName'] + ' score statistics');
+                var filteredArray = judgingSystemsKey['arrays']['filtered'];
+                
+                // TODO: differentiate between overall as in judge round sum score (which is what currently is) and overall as in all categories analyzed together
+                // TODO: for trivium split overall (all categories analyzed together) for categories with wider score range and categories with smaller score range
+                var scoreStatisticsArray = [
+                    ['','Overall'],
+                    ['Maximum'],
+                    ['Median'],
+                    ['Minimum'],
+                    ['Mean'],
+                    ['Standard Deviation'],
+                ];
+                
+                var categoryArrays = [[]];
+                for (var y = 1; y < filteredArray.length; y++) {
+                    for (var x = 0; x < filteredArray[0].length; x++) {
+                        if (filteredArray[0][x].includes('over') && filteredArray[y][x]) {
+                            categoryArrays[0].push(Math.abs(parseFloat(filteredArray[y][x]))); // absolute value because directionality not relevant for this analysis (or is it? TODO: check whether min med max differs between scoring for red versus scoring for blue)
+                        }
+                    }
+                }
+                for (var i = 0; i < judgingSystemsKey['categoryAbbreviations'].length; i++) {
+                    scoreStatisticsArray[0].push(judgingSystemsKey['categories'][i]);
+                    categoryArrays.push([]);
+                    for (var y = 1; y < filteredArray.length; y++) {
+                        for (var x = 0; x  < filteredArray[0].length; x++) {
+                            if (filteredArray[0][x].includes(judgingSystemsKey['categoryAbbreviations'][i]) && filteredArray[y][x]) {
+                                categoryArrays[i + 1].push(Math.abs(parseFloat(filteredArray[y][x]))); // absolute value because directionality not relevant for this analysis (or is it? TODO: check whether min med max differs between scoring for red versus scoring for blue)
+                            }   
+                        }
+                    }
+                }
+                
+                var sortedArray;
+                var arrayMid;
+                var mean;
+                for (var i = 0; i < categoryArrays.length; i++) {
+                    // max
+                    scoreStatisticsArray[1].push(Math.max(...categoryArrays[i]));
+                    
+                    // median
+                    sortedArray = [...categoryArrays[i]].sort((a, b) => a - b);
+                    arrayMid = Math.floor(sortedArray.length / 2);
+                    if (sortedArray.length % 2 === 0) {
+                        scoreStatisticsArray[2].push((sortedArray[arrayMid - 1] + sortedArray[arrayMid + 1]) / 2);
+                    } else {
+                        scoreStatisticsArray[2].push(sortedArray[arrayMid]);
+                    }
+                    
+                    // min
+                    scoreStatisticsArray[3].push(Math.min(...categoryArrays[i]));
+                    
+                    // mean
+                    mean = categoryArrays[i].reduce((a, b) => a + b, 0) / categoryArrays[i].length;
+                    scoreStatisticsArray[4].push(mean.toFixed(2));
+                    
+                    // std dev
+                    scoreStatisticsArray[5].push((categoryArrays[i].reduce((sum, x) => sum + (x - mean) ** 2, 0) / (categoryArrays[i].length - 1)).toFixed(2));
+                }
+                
+                console.log(categoryArrays);
+                
+                // # zeroes?
+                
+                // bar graph?
+                
+                return scoreStatisticsArray;
+            }
+            
+            // judge vote splits
+            // function () {
+            // }
+            
+            // TODO: update this function since each judging system gets its own div
+            document.getElementById('rawDataTableDiv').addEventListener('click', function (event) {
+                const tr = event.target.closest('tr');
+                if (!tr) return; // click wasn't on a row
+                
+                // Get the table headers (assuming first row with th elements)
+                const table = tr.closest('table');
+                const headerRow = table.querySelector('thead tr') || table.querySelector('tr:first-child');
+                const headers = Array.from(headerRow.querySelectorAll('th, td')).map(h => h.textContent.trim());
+                
+                // Get row data
+                var rowArray = tr.textContent.split('\n');
+                for (var i = 0; i < rowArray.length; i++) {
+                    rowArray[i] = rowArray[i].trim();
+                    if (rowArray[i] == "NaN") rowArray[i] = '';
+                }
+                rowArray.splice(0,1);
+                
+                // Create JSON object mapping headers to row values
+                const rowJSON = {};
+                headers.forEach((header, index) => {
+                    if (rowArray[index]) {
+                        rowJSON[header] = rowArray[index];
+                    }
+                });
+                console.log(JSON.stringify(rowJSON, null, 2));
+                
+                // link to original data source
+                // create header row with event, stage, breakers, round count, vote count
+                // for (var i = 0; i < rowJSON['battle rounds']; i++) {
+                //     create a row for each round
+                //     for (var j = 0; j < rowJSON['number of judges']; j++) {
+                //         create a column for each judge
+                //         create a cell for overall score for judge
+                //         for (var k = 0; k < numCategories; k++) {
+                //             create a cell for each category
+                //         }
+                //     }
+                // }
+            });
+            
+            //
+            // -- JUDGES TAB SCRIPTS --
+            //
+            
+            // -- judge view --
+            // judge dropdown selector list
+            // compare to average median judge or to another specific judge
+            // total events judged, for each judging system
+            // total battles judged, for each judging system
+            // total rounds judged, for each judging system
+            // table battles judged rows number rounds columns number judges
+            // mean, median, stddev, min max score given for each category for each system
+            // rate of voting with majority for each judge ratio for each judging system
+            // rate of 0s (ties) given for each category for each system
+            
+            // TODO: replace list with table, add text input box for filter
+            // table columns: # battles (all, each judging system,)
+            // function initializeJudgesTab() {
+            //     document.getElementById("loadingPlaceholder").innerText = 'Loading...'; // temporary placeholder while data loads
+            //     console.log('Loading judges...');
+            //     
+            //     const loadJudgesScript = document.createElement('script');
+            //     loadJudgesScript.type = 'py';
+            //     loadJudgesScript.textContent = `
+            //         try:
+            //             judges = np.unique(pd.concat([
+            //                 df_battlesTrivium['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
+            //                 df_battlesWDSFSystem['judge 1 name'],df_battlesWDSFSystem['judge 2 name'],df_battlesWDSFSystem['judge 3 name'],df_battlesWDSFSystem['judge 4 name'],df_battlesWDSFSystem['judge 5 name'],df_battlesWDSFSystem['judge 6 name'],df_battlesWDSFSystem['judge 7 name'],df_battlesWDSFSystem['judge 8 name'],df_battlesWDSFSystem['judge 9 name'],
+            //                 df_battlesThreefold['judge 1 name'],df_battlesThreefold['judge 2 name'],df_battlesThreefold['judge 3 name'],df_battlesThreefold['judge 4 name'],df_battlesThreefold['judge 5 name'],df_battlesThreefold['judge 6 name'],df_battlesThreefold['judge 7 name'],df_battlesThreefold['judge 8 name'],df_battlesThreefold['judge 9 name'],
+            //                 df_battlesPseudoThreefold['judge 1 name'],df_battlesPseudoThreefold['judge 2 name'],df_battlesPseudoThreefold['judge 3 name'],df_battlesPseudoThreefold['judge 4 name'],df_battlesPseudoThreefold['judge 5 name'],df_battlesPseudoThreefold['judge 6 name'],df_battlesPseudoThreefold['judge 7 name'],df_battlesPseudoThreefold['judge 8 name'],df_battlesPseudoThreefold['judge 9 name'],
+            //                 df_battlesSingleSlider['judge 1 name'],df_battlesSingleSlider['judge 2 name'],df_battlesSingleSlider['judge 3 name'],df_battlesSingleSlider['judge 4 name'],df_battlesSingleSlider['judge 5 name'],df_battlesSingleSlider['judge 6 name'],df_battlesSingleSlider['judge 7 name'],df_battlesSingleSlider['judge 8 name'],df_battlesSingleSlider['judge 9 name']
+            //                 ]).dropna().astype(str).values)
+            //             document.getElementById('numJudgesAll').innerHTML = str(len(judges))
+            //             document.getElementById('judgesListAll').innerText = '\\n'.join(judges)
+            //             
+            //             document.getElementById("loadingPlaceholder").innerText = '';
+            //             print('-- Loading complete --')
+            //         
+            //         except Exception as e:
+            //             tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
+            //             
+            //             error_msg1 = 'Error: ' + str(e)
+            //             error_msg2 = 'File: ' + str(tb_info.filename)
+            //             error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
+            //             
+            //             document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
+            //     `
+            //     document.querySelector('section.pyscript').appendChild(loadJudgesScript);
+            //     document.querySelector('section.pyscript').removeChild(loadJudgesScript);
+            // }
+            
+            //
+            // -- COMPETITORS TAB SCRIPTS --
+            //
+            
+            // -- competitor view --
+            // single competitor view:
+            //     attributes? bboy / bgirl, country, etc.
+            //     competitor dropdown selector list
+            //     compare to average median competitor or to another specific competitor
+            //     total battles competed
+            //     total rounds competed
+            // matchup view:
+            // table rows and columns are individual competitors, cells are # battles (for each judge system), # wins for each matchup
+            //     filter for column competitor and row competitor
+            //     filter for judging system: checkboxes select multiple
+            //     create df with first column list of competitors
+            //     for each competitor in list of competitors, create column
+            //     in each cell, win # (%) - loss # (%)
+            //     click a cell -> display details
+            //     list of battles with links
+            //     table win - loss count broken down by num rounds num judges
+            //     round win loss count? votes received count?
+            //     breakdown by category for each judging system
+            
+            // TODO: replace list with table, add text input box for filter
+            // table columns: # battles (all, each judging system,)
+            // function initializeCompetitorsTab() {
+            //     document.getElementById("loadingPlaceholder").innerText = 'Loading...'; // temporary placeholder while data loads
+            //     console.log('Loading competitors...');
+            //     
+            //     const loadCompetitorsScript = document.createElement('script');
+            //     loadCompetitorsScript.type = 'py';
+            //     loadCompetitorsScript.textContent = `
+            //         try:
+            //             competitors = np.unique(pd.concat([
+            //                 df_battlesTrivium['breaker 1 (red)'],df_battlesTrivium['breaker 2 (blue)'],
+            //                 df_battlesWDSFSystem['breaker 1 (red)'],df_battlesWDSFSystem['breaker 2 (blue)'],
+            //                 df_battlesThreefold['breaker 1 (red)'],df_battlesThreefold['breaker 2 (blue)'],
+            //                 df_battlesPseudoThreefold['breaker 1 (red)'],df_battlesPseudoThreefold['breaker 2 (blue)'],
+            //                 df_battlesSingleSlider['breaker 1 (red)'],df_battlesSingleSlider['breaker 2 (blue)']
+            //                 ]).dropna().astype(str).values)
+            //             document.getElementById('numCompetitorsAll').innerHTML = str(len(competitors))
+            //             document.getElementById('competitorsListAll').innerText = '\\n'.join(competitors)
+            //             
+            //             document.getElementById("loadingPlaceholder").innerText = '';
+            //             print('-- Loading complete --')
+            //             
+            //         except Exception as e:
+            //             tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
+            //             
+            //             error_msg1 = 'Error: ' + str(e)
+            //             error_msg2 = 'File: ' + str(tb_info.filename)
+            //             error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
+            //             
+            //             document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
+            //     `
+            //     document.querySelector('section.pyscript').appendChild(loadCompetitorsScript);
+            //     document.querySelector('section.pyscript').removeChild(loadCompetitorsScript);
+            // }
+            
+            // -- dataset view --
+            // filters and search
+            // dataset table
+            // tab for overall stats and analytics for entire dataset, affected by filters
+            // tab for specific battle when row clicked
+            // button to filter analytics to entire jam containing battle?
+            
+            // <tr onclick='loadScoreDisplay();'> // when click row, display scores in table form like and8, also produce analytics for the battle
+                
+            //
+            // -- CUSTOM ANALYSIS TAB SCRIPTS --
+            //
+            // select starting point:
+            // - judging system(s)
+            //   - category(s) within judging system(s) e.g. select all score inputs for Trivium Technique as a column
+            //   - 
+            // apply filters:
+            // - battle attributes
+            //   - winner is red/blue/tie
+            //   - num rounds
+            //   - num judges
+            //   - round win ratio
+            //   - vote ratio
+            //   - includes specific competitor(s)
+            //   - includes specific judge(s)
+        </script>
+    </body>
+</html>

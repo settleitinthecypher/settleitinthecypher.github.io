@@ -1,0 +1,731 @@
+event	stage	breaker 1 (red)	breaker 2 (blue)	winner	battle rounds	tiebreaker	number of judges	breaker 1 vote count	breaker 2 vote count	tie vote count	tie breaker 1 vote count	tie breaker 2 vote count	tie tie vote count	judge 1 name	judge 2 name	judge 3 name	judge 4 name	judge 5 name	judge 6 name	judge 7 name	judge 8 name	judge 9 name	j1vote	j2vote	j3vote	j4vote	j5vote	j6vote	j7vote	j8vote	j9vote	tiej1vote	tiej2vote	tiej3vote	tiej4vote	tiej5vote	tiej6vote	tiej7vote	tiej8vote	tiej9vote
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group D	Kidmario	Noé	Noé		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group D	Wilfried	Killian	Killian		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group D	Wilfried	Noé	Noé		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group D	Kidmario	Killian	Killian		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					red	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group D	Wilfried	Kidmario	Wilfried		no	5	4	1	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	red	red	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group D	Noé	Killian	Noé		no	5	3	2	0				Babyson	Yves	Nabil	Magnum	Resist					red	red	red	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group C	Dylan LO	Martin	Martin		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					red	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group C	Luka	Wali	Luka		no	5	3	2	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	blue	blue	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group C	Luka	Martin	Luka		no	5	5	0	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	red	red	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group C	Dylan LO	Wali	Dylan LO		no	5	4	1	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	red	blue	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group C	Luka	Dylan LO	Luka		no	5	4	1	0				Babyson	Yves	Nabil	Magnum	Resist					red	red	blue	red	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group C	Martin	Wali	Martin		no	5	4	1	0				Babyson	Yves	Nabil	Magnum	Resist					red	red	red	red	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group B	Mounir	Yassif	Yassif		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					red	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group B	Sekou	Marlone	Marlone		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group B	Sekou	Yassif	Yassif		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					red	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group B	Mounir	Marlone	Mounir		no	5	3	2	0				Magnum	Yves	Babyson	Resist	Nabil					red	blue	red	red	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group B	Sekou	Mounir	Mounir		no	5	2	3	0				Magnum	Yves	Babyson	Resist	Nabil					blue	red	blue	blue	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group B	Yassif	Marlone	Marlone		no	5	2	3	0				Babyson	Yves	Nabil	Magnum	Resist					red	blue	blue	red	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group A	Nasty	Lucky	Nasty		no	5	5	0	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	red	red	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group A	Fresh Mez	Dany Dann	Dany Dann		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group A	Fresh Mez	Lucky	Lucky		no	5	2	3	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	red	red	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group A	Nasty	Dany Dann	Dany Dann		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group A	Fresh Mez	Nasty	Nasty		no	5	2	3	0				Babyson	Yves	Nabil	Magnum	Resist					red	blue	blue	blue	red													
+Championnat de France 2023	B-Boys +16 Top 16 Round Robin Group A	Lucky	Dany Dann	Dany Dann		no	5	0	5	0				Babyson	Yves	Nabil	Magnum	Resist					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group D	Mareva	Zouza	Zouza		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group D	Lily Rose	Carlota	Carlota		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group D	Lily Rose	Zouza	Zouza		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group D	Mareva	Carlota	Carlota		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group D	Lily Rose	Mareva	Mareva		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	red													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group D	Zouza	Carlota	Carlota		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group C	Anna	Ninah	Ninah		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	red	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group C	Romanesque	Syssy	Syssy		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group C	Romanesque	Ninah	Ninah		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	red	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group C	Anna	Syssy	Syssy		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group C	Romanesque	Anna	Anna		no	5	2	3	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group C	Ninah	Syssy	Syssy		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group B	Célia	Clea	Clea		no	5	2	3	0				Magnum	Yves	Babyson	Resist	Nabil					blue	red	blue	red	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group B	Emma	Kimie	Kimie		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group B	Emma	Clea	Clea		no	5	1	4	0				Magnum	Yves	Babyson	Resist	Nabil					blue	red	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group B	Célia	Kimie	Kimie		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group B	Emma	Célia	Emma		no	5	3	2	0				Magnum	Yves	Babyson	Resist	Nabil					blue	red	blue	red	red													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group B	Clea	Kimie	Kimie		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group A	Warlène	Léonie	Warlène		no	5	5	0	0				Magnum	Yves	Babyson	Resist	Nabil					red	red	red	red	red													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group A	Lou Adele	Sarah Bee	Sarah Bee		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group A	Lou Adele	Léonie	Léonie		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group A	Warlène	Sarah Bee	Sarah Bee		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group A	Lou Adele	Warlène	Warlène		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Championnat de France 2023	B-Girls +16 Top 16 Round Robin Group A	Léonie	Sarah Bee	Sarah Bee		no	5	0	5	0				Magnum	Yves	Babyson	Resist	Nabil					blue	blue	blue	blue	blue													
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	AirNastya	Sinaya	Sinaya		no	3	1	2	0				Dora	Flearock	Kastet							blue	red	blue															
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	SoFly	Sinaya	Sinaya		no	3	0	3	0				Dora	Flearock	Kastet							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	Alinza	AirNastya	AirNastya		no	3	0	3	0				Dora	Flearock	Kastet							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	Sinaya	casc8	Sinaya		no	3	2	1	0				Dora	Flearock	Kastet							red	red	blue															
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	SoFly	Ella	SoFly		no	3	3	0	0				Dora	Flearock	Kastet							red	red	red															
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	Blanca	AirNastya	AirNastya		no	3	0	3	0				Dora	Flearock	Kastet							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Girls Top 8 Knockout	Tatiana	Alinza	Alinza		no	3	0	3	0				Dora	Flearock	Kastet							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Amin Drillz	Hynamite	Hynamite		no	3	1	2	0				Kastet	Flearock	Dora							blue	red	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Sigma	Hynamite	Hynamite		no	3	1	2	0				Kastet	Flearock	Dora							blue	red	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Koda	Amin Drillz	Amin Drillz		no	3	0	3	0				Kastet	Flearock	Dora							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	El Vasi	Hynamite	Hynamite		no	3	0	3	0				Kastet	Flearock	Dora							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Ghostface	Sigma	Sigma		no	3	0	2	1				Kastet	Flearock	Dora							tie	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Pain	Amin Drillz	Amin Drillz		no	3	0	3	0				Kastet	Flearock	Dora							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Rocknroli	Koda	Koda		no	3	1	2	0				Kastet	Flearock	Dora							blue	blue	red															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Hynamite	Felipe Macanudo	Hynamite		no	3	3	0	0				Kastet	Flearock	Dora							red	red	red															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Guti	El Vasi	El Vasi		no	3	1	2	0				Kastet	Flearock	Dora							blue	red	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Valo	Sigma	Sigma		no	3	1	2	0				Kastet	Flearock	Dora							blue	blue	red															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Flo	Ghostface	Ghostface		no	3	1	2	0				Kastet	Flearock	Dora							blue	blue	red															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Amin Drillz	Julien	Amin Drillz		no	3	3	0	0				Kastet	Flearock	Dora							red	red	red															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Kelt	Pain	Pain		no	3	0	3	0				Kastet	Flearock	Dora							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Coolboy	Koda	Koda		no	3	0	3	0				Kastet	Flearock	Dora							blue	blue	blue															
+Red Bull BC One Cypher Austria 2023	B-Boys Top 16 Knockout	Rocknroli	Istwan	Rocknroli		no	3	2	1	0				Kastet	Flearock	Dora							blue	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Kid Colombia	Cis	Kid Colombia		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Cis	Nazgul	Cis		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Stepper	Kid Colombia	Kid Colombia		no	3	0	3	0				El Niño	Roxy	Menno							blue	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Toby	Nazgul	Nazgul		no	3	0	3	0				El Niño	Roxy	Menno							blue	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Cis	Timbo	Cis		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	IT	Kid Colombia	Kid Colombia		no	3	0	3	0				El Niño	Roxy	Menno							blue	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Tawfiq	Stepper	Stepper		no	3	1	2	0				El Niño	Roxy	Menno							blue	red	blue															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Nazgul	Liam	Nazgul		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Kenji	Toby	Toby		no	3	1	2	0				El Niño	Roxy	Menno							red	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Timbo	Bentwood	Timbo		no	3	2	1	0				El Niño	Roxy	Menno							red	blue	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Cis	Levi	Cis		no	3	2	1	0				El Niño	Roxy	Menno							red	blue	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	HD	Kid Colombia	Kid Colombia		no	3	0	3	0				El Niño	Roxy	Menno							blue	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	IT	Legove	IT		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Stepper	Bwanna	Stepper		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Boys Top 16 Knockout	Tawfiq	Dullart	Tawfiq		no	3	2	1	0				El Niño	Roxy	Menno							blue	red	red															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Jazzy	Pauline	Pauline		no	3	0	3	0				El Niño	Roxy	Menno							blue	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Cha-Ja	Pauline	Pauline		no	3	1	2	0				El Niño	Roxy	Menno							blue	blue	red															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Jazzy	Zoe	Jazzy		no	3	2	1	0				El Niño	Roxy	Menno							red	blue	red															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Evita	Pauline	Pauline		no	3	0	3	0				El Niño	Roxy	Menno							blue	blue	blue															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Cha-Ja	Spooky	Cha-Ja		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Zoe	Vicky	Zoe		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Holland 2023	B-Girls Top 8 Knockout	Jazzy	Rocks	Jazzy		no	3	3	0	0				El Niño	Roxy	Menno							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Kangur	Geru	Kangur		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Geru	Minigun	Geru		no	3	2	1	0				Decó	Killa Kim	Junior							red	blue	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Jee Ess	Kangur	Kangur		no	3	1	2	0				Decó	Killa Kim	Junior							red	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Minigun	Gieras	Minigun		no	3	2	1	0				Decó	Killa Kim	Junior							blue	red	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Bartek	Geru	Geru		no	3	1	2	0				Decó	Killa Kim	Junior							blue	blue	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Nikita	Kangur	Kangur		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Mysliwy	Jee Ess	Jee Ess		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Gieras	Chorzel	Gieras		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Minigun	Lil Drill	Minigun		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Geru	Zawisza	Geru		no	3	2	1	0				Decó	Killa Kim	Junior							blue	red	red															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Amstaff	Bartek	Bartek		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	2Haj	Kangur	Kangur		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Martin	Nikita	Nikita		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Brzoza	Jee Ess	Jee Ess		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Boys Top 16 Knockout	Mysliwy	Mefedroniks	Mysliwy		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Mery Berry	Paulina	Paulina		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Anka	Paulina	Paulina		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Mery Berry	Houston	Mery Berry		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Maylo	Paulina	Paulina		no	3	0	3	0				Decó	Killa Kim	Junior							blue	blue	blue															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Anka	Domka	Anka		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Darion	Houston	Houston		no	3	1	2	0				Decó	Killa Kim	Junior							blue	blue	red															
+Red Bull BC One Cypher Poland 2023	B-Girls Top 8 Knockout	Mery Berry	Sandi	Mery Berry		no	3	3	0	0				Decó	Killa Kim	Junior							red	red	red															
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Alessandrina	Paulina	Alessandrina		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Vanessa	Paulina	Paulina		no	5	0	5	0				Vicious	Valentine	Flearock	Dora	Differ					blue	blue	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Sunny	Alessandrina	Alessandrina		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Paulina	SashaFox	Paulina		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Vanessa	Yurie	Vanessa		no	5	4	1	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Alessandrina	Sayora	Alessandrina		no	5	4	1	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Sunny	Camine	Sunny		no	5	4	1	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	blue	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	SashaFox	Maia	SashaFox		no	5	3	2	0				Vicious	Valentine	Flearock	Dora	Differ					blue	blue	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Sidi	Paulina	Paulina		no	5	0	5	0				Vicious	Valentine	Flearock	Dora	Differ					blue	blue	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Cha-Ja	Yurie	Yurie		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	blue	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Vanessa	Furia	Vanessa		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Sayora	R Ning	Sayora		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Carlota	Alessandrina	Alessandrina		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Camine	Roxy	Roxy		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Girls Top 16 Knockout	Sunny	El Mamouny	Sunny		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Lil Zoo	Wigor	Lil Zoo		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Mighty Jim	Wigor	Wigor		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Lil Zoo	Illz	Lil Zoo		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Ali	Wigor	Wigor		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Mini Joe	Mighty Jim	Mighty Jim		no	5	1	4	0				Vicious	Valentine	Flearock	Dora	Differ					blue	blue	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Ozzi	Illz	Illz		no	5	1	4	0				Vicious	Valentine	Flearock	Dora	Differ					blue	blue	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Issin	Lil Zoo	Lil Zoo		no	5	2	3	0				Vicious	Valentine	Flearock	Dora	Differ					red	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Wigor	Create	Wigor		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Mathis	Ali	Ali		no	5	0	5	0				Vicious	Valentine	Flearock	Dora	Differ					blue	blue	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Mighty Jim	Cri6	Mighty Jim		no	5	3	1	1				Vicious	Valentine	Flearock	Dora	Differ					red	red	tie	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Mini Joe	Jester	Mini Joe		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Illz	Leony	Illz		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Ozzi	Onel	Ozzi		no	5	4	1	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Lil Zoo	Flying Machine	Lil Zoo		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2022	B-Boys Top 16 Knockout	Issin	Daga	Issin		no	5	5	0	0				Vicious	Valentine	Flearock	Dora	Differ					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	India	Logistx	India		no	5	3	2	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	red	red	red	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Sunny	Logistx	Logistx		no	5	2	3	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	red	blue	red	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	671	India	India		no	5	1	4	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	red	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Anti	Logistx	Logistx		no	5	2	3	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Sunny	Kimie	Sunny		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Swami	India	India		no	5	0	5	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	671	Vanessa	671		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Logistx	Emma	Logistx		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Yuika	Anti	Anti		no	5	2	3	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	red	red	blue	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Kimie	Paulina	Kimie		no	5	3	2	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	red	red	blue	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Sunny	Fresh Bella	Sunny		no	5	3	2	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	red	blue	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	India	Luma	India		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Swami	Carlota	Swami		no	5	4	1	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	red	red	red													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	Isis	Vanessa	Vanessa		no	5	0	5	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Girls Top 16 Knockout	671	Alessandrina	671		no	5	4	1	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	red	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Lee	Victor	Victor		no	5	2	3	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	red	blue	red	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Yu-ki	Victor	Victor		no	5	0	5	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Issin	Lee	Lee		no	5	1	4	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Phil Wizard	Victor	Victor		no	5	1	4	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Lil Zoo	Yu-ki	Yu-ki		no	5	1	4	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Amir	Lee	Lee		no	5	2	3	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	blue	blue	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Alvin	Issin	Issin		no	5	0	5	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Victor	Marlone	Victor		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Phil Wizard	Mini Joe	Phil Wizard		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Wigor	Yu-ki	Yu-ki		no	5	1	4	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					blue	blue	red	blue	blue													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Lil Zoo	Wildchild	Lil Zoo		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Lee	Illz	Lee		no	5	4	1	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	blue	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Amir	Mighty Jim	Amir		no	5	4	1	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	blue	red	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Issin	Lorenzo	Issin		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Red Bull BC One World Final 2022	B-Boys Top 16 Knockout	Alvin	Quake	Alvin		no	5	5	0	0				Sick	FabGirl	Jey	Ayumi	Kid Glyde					red	red	red	red	red													
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Karlo	Phil6	Karlo		yes	3	1	1	1	3	0	0	Tony	Schätzle	Loony							blue	tie	red							red	red	red						
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Albert	Kid Hamster	Kid Hamster		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Kid Hamster	Phil6	Phil6		no	3	0	1	2				Tony	Schätzle	Loony							tie	blue	tie															
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Albert	Karlo	Karlo		no	3	1	2	0				Tony	Schätzle	Loony							red	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Phil6	Noah	Phil6		no	3	3	0	0				Tony	Schätzle	Loony							red	red	red															
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Leon	Kid Hamster	Kid Hamster		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Pablo	Karlo	Karlo		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Kids Top 8 Knockout	Albert	Samuel	Albert		no	3	2	1	0				Tony	Schätzle	Loony							red	blue	red															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Lee-On	Rico	Rico		no	3	1	2	0				Tony	Schätzle	Loony							red	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Schnipie	Miron	Miron		no	3	1	2	0				Tony	Schätzle	Loony							blue	blue	red															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Miron	Rico	Rico		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Lee-On	Schnipie	Lee-On		no	3	2	1	0				Tony	Schätzle	Loony							red	red	blue															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Lia	Rico	Rico		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Sakul	Miron	Miron		no	3	1	2	0				Tony	Schätzle	Loony							blue	blue	red															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Schnipie	Noah	Schnipie		no	3	3	0	0				Tony	Schätzle	Loony							red	red	red															
+Intern. Allgäu Schwaben Battle 2022	Juniors Top 8 Knockout	Anna-Lia	Lee-On	Lee-On		no	3	0	1	2				Tony	Schätzle	Loony							tie	blue	tie															
+Intern. Allgäu Schwaben Battle 2022	Minis Top 4 Knockout	Samuel	Leon	Samuel		no	3	3	0	0				Tony	Schätzle	Loony							red	red	red															
+Intern. Allgäu Schwaben Battle 2022	Minis Top 4 Knockout	Leonard	Philip	Philip		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Intern. Allgäu Schwaben Battle 2022	Minis Top 4 Knockout	Leon	Philip	Leon		no	3	3	0	0				Tony	Schätzle	Loony							red	red	red															
+Intern. Allgäu Schwaben Battle 2022	Minis Top 4 Knockout	Leonard	Samuel	Samuel		no	3	0	3	0				Tony	Schätzle	Loony							blue	blue	blue															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Double D	Chau-Lin	Chau-Lin		no	3	0	3	0				Vartan	Sarah Bee	Taisuke							blue	blue	blue															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Chau-Lin	Cicov	Chau-Lin		no	3	2	1	0				Vartan	Sarah Bee	Taisuke							red	blue	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Double D	Light	Double D		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Cicov	Artform	Cicov		no	3	2	1	0				Vartan	Sarah Bee	Taisuke							blue	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Chau-Lin	Sarro	Chau-Lin		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Termi	Light	Light		no	3	0	3	0				Vartan	Sarah Bee	Taisuke							blue	blue	blue															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Double D	Flo	Double D		no	3	2	1	0				Vartan	Sarah Bee	Taisuke							red	red	blue															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Artform	DeadlyDani	Artform		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Cicov	Toni	Cicov		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Yosemite Sam	Sarro	Sarro		no	3	1	2	0				Vartan	Sarah Bee	Taisuke							blue	blue	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Chau-Lin	Mik the Menace	Chau-Lin		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Light	Red Rock	Light		no	3	2	1	0				Vartan	Sarah Bee	Taisuke							blue	red	red															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	LamJino	Termi	Termi		no	3	1	2	0				Vartan	Sarah Bee	Taisuke							red	blue	blue															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Erik Daily	Flo	Flo		no	3	1	2	0				Vartan	Sarah Bee	Taisuke							blue	red	blue															
+Red Bull BC One Cypher Germany 2022	B-Boys Top 16 Knockout	Double D	Tapio	Double D		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Prudance	Jojo	Jojo		no	3	0	3	0				Vartan	Sarah Bee	Taisuke							blue	blue	blue															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Jojo	Loopi	Jojo		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Prudance	Naomi	Prudance		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Sude	Loopi	Loopi		no	3	0	3	0				Vartan	Sarah Bee	Taisuke							blue	blue	blue															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Jojo	Neeli	Jojo		no	3	3	0	0				Vartan	Sarah Bee	Taisuke							red	red	red															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Naomi	Sona	Naomi		no	3	2	1	0				Vartan	Sarah Bee	Taisuke							blue	red	red															
+Red Bull BC One Cypher Germany 2022	B-Girls Top 8 Knockout	Prudance	Tina The Turner	Prudance		no	3	2	1	0				Vartan	Sarah Bee	Taisuke							red	blue	red															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Sina	Esthalavista	Sina		no	3	3	0	0				Ronnie	San Andrea	The Wolfer							red	red	red															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Manu	Esthalavista	Esthalavista		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Jennie-Love	Sina	Sina		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Esthalavista	Sinaya	Esthalavista		no	3	2	1	0				Ronnie	San Andrea	The Wolfer							blue	red	red															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Gameova	Manu	Manu		no	3	1	2	0				Ronnie	San Andrea	The Wolfer							blue	blue	red															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Soph	Sina	Sina		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Girls Top 8 Knockout	Thaliya	Jennie-Love	Jennie-Love		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Marox	Lil Zoo	Lil Zoo		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Hynamite	Lil Zoo	Lil Zoo		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Marox	Istwan	Marox		no	3	2	1	0				Ronnie	San Andrea	The Wolfer							red	blue	red															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Marci Marc	Lil Zoo	Lil Zoo		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Amin Drillz	Hynamite	Hynamite		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Istwan	Animus	Istwan		no	3	2	1	0				Ronnie	San Andrea	The Wolfer							red	blue	red															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Ibot	Marox	Marox		yes	3	1	1	1	0	3	0	Ronnie	San Andrea	The Wolfer							tie	blue	red							blue	blue	blue						
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Mogli	Lil Zoo	Lil Zoo		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Marci Marc	Philmo	Marci Marc		no	3	2	1	0				Ronnie	San Andrea	The Wolfer							red	red	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Roc Lee	Hynamite	Hynamite		no	3	0	3	0				Ronnie	San Andrea	The Wolfer							blue	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Amin Drillz	Töma	Amin Drillz		no	3	3	0	0				Ronnie	San Andrea	The Wolfer							red	red	red															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Animus	Sevone	Animus		no	3	2	1	0				Ronnie	San Andrea	The Wolfer							blue	red	red															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Ghostface	Istwan	Istwan		no	3	1	2	0				Ronnie	San Andrea	The Wolfer							blue	blue	red															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Koda	Marox	Marox		no	3	1	2	0				Ronnie	San Andrea	The Wolfer							red	blue	blue															
+Red Bull BC One Cypher Austria 2022	B-Boys Top 16 Knockout	Ibot	Rock'n'Roli	Ibot		no	3	3	0	0				Ronnie	San Andrea	The Wolfer							red	red	red															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Noris	LooseFit	Noris		no	3	3	0	0				Dora	Elia	Ibra							red	red	red															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Rubio	LooseFit	LooseFit		yes	3	1	1	1	0	3	0	Dora	Elia	Ibra							red	blue	tie							blue	blue	blue						
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Ibot	Noris	Noris		no	3	1	2	0				Dora	Elia	Ibra							red	blue	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	LooseFit	Hynamite	LooseFit		no	3	2	1	0				Dora	Elia	Ibra							red	red	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Rubio	Jonny	Rubio		no	3	2	1	0				Dora	Elia	Ibra							red	red	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Tik	Noris	Noris		no	3	1	2	0				Dora	Elia	Ibra							blue	blue	red															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Jet Leg	Ibot	Ibot		no	3	1	2	0				Dora	Elia	Ibra							blue	blue	red															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Flo	Hynamite	Hynamite		no	3	1	2	0				Dora	Elia	Ibra							red	blue	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Animus	LooseFit	LooseFit		no	3	0	3	0				Dora	Elia	Ibra							blue	blue	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Jonny	Tasic	Jonny		no	3	2	1	0				Dora	Elia	Ibra							red	red	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Rubio	Aranha	Rubio		no	3	2	1	0				Dora	Elia	Ibra							red	red	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Koda	Noris	Noris		no	3	0	3	0				Dora	Elia	Ibra							blue	blue	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Speedy	Tik	Tik		no	3	0	3	0				Dora	Elia	Ibra							blue	blue	blue															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Ibot	Shox	Ibot		no	3	2	1	0				Dora	Elia	Ibra							red	blue	red															
+Carinthian-X-Break 2022 Vol 7	Open Top 16 Knockout	Jet Leg	Roll	Jet Leg		no	3	2	1	0				Dora	Elia	Ibra							red	blue	red															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Sina	Sinaya	Sina		no	3	3	0	0				Dora	Elia	Ibra							red	red	red															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Je Jè	Sinaya	Sinaya		no	3	1	2	0				Dora	Elia	Ibra							red	blue	blue															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Nja	Sina	Sina		no	3	1	2	0				Dora	Elia	Ibra							red	blue	blue															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Manu	Sinaya	Sinaya		no	3	1	2	0				Dora	Elia	Ibra							red	blue	blue															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Je Jè	Alinza	Je Jè		no	3	2	0	1				Dora	Elia	Ibra							red	tie	red															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Sina	Soph	Sina		no	3	3	0	0				Dora	Elia	Ibra							red	red	red															
+Carinthian-X-Break 2022 Vol 7	B-Girls Top 8 Knockout	Nja	Taby	Nja		no	3	2	1	0				Dora	Elia	Ibra							blue	red	red															
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Nori	Amir	Nori		no	5	3	2	0				Roxy	Jey	Hong 10	Karima	Machine					blue	red	blue	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Amir	Johnny Fox	Amir		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Lee	Nori	Nori		no	5	1	4	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Kuzya	Johnny Fox	Johnny Fox		no	5	2	3	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	red	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Amir	Pac Pac	Amir		no	5	3	2	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Nori	Lion	Nori		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Quake	Lee	Lee		no	5	0	5	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Jester	Johnny Fox	Johnny Fox		no	5	1	4	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Kuzya	Sheku	Kuzya		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Pesto	Pac Pac	Pac Pac		no	5	2	3	0				Roxy	Jey	Hong 10	Karima	Machine					blue	red	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Amir	Morris	Amir		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Lion	Shane	Lion		no	5	5	0	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Nori	Wild Child	Nori		no	5	5	0	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Lee	Mini Joe	Lee		no	5	5	0	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Boys Top 16 Knockout	Quake	The Wolfer	Quake		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Ayumi	Vavi	Ayumi		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Stefani	Vavi	Vavi		no	5	0	5	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Ayumi	Fanny	Ayumi		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Vavi	Fresh Bella	Vavi		no	5	3	2	0				Roxy	Jey	Hong 10	Karima	Machine					red	blue	blue	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Stefani	Vanessa	Stefani		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	blue	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Fanny	Killa Kim	Fanny		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Isis	Ayumi	Ayumi		no	5	0	5	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	blue	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Fresh Bella	Pauline	Fresh Bella		no	5	3	2	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Vavi	Jilou	Vavi		no	5	5	0	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Ayane	Vanessa	Vanessa		no	5	2	3	0				Roxy	Jey	Hong 10	Karima	Machine					red	blue	blue	red	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Mery Berry	Stefani	Stefani		no	5	2	3	0				Roxy	Jey	Hong 10	Karima	Machine					blue	red	red	blue	blue													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Anti	Killa Kim	Killa Kim		no	5	1	4	0				Roxy	Jey	Hong 10	Karima	Machine					blue	blue	blue	blue	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Fanny	Dora	Fanny		no	5	5	0	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Ayumi	Sayora	Ayumi		no	5	5	0	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	red	red													
+Red Bull BC One World Final Last Chance Cypher 2021	B-Girls Top 16 Knockout	Isis	Emma	Isis		no	5	4	1	0				Roxy	Jey	Hong 10	Karima	Machine					red	red	red	blue	red													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Phil Wizard	Amir	Amir		no	5	2	3	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	red	red													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Amir	Flea Rock	Amir		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Lee	Phil Wizard	Phil Wizard		no	5	1	4	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	red	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Flea Rock	Shigekix	Flea Rock		no	5	4	1	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Zoopreme	Amir	Amir		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Bart	Phil Wizard	Phil Wizard		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	TawfiQ	Lee	Lee		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Shigekix	Johnny Fox	Shigekix		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Flea Rock	Thomaz	Flea Rock		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Sunni	Amir	Amir		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Zoopreme	Wild Jerry	Zoopreme		no	5	3	2	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Phil Wizard	Nori	Phil Wizard		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Lagaet	Bart	Bart		no	5	2	3	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	Xak	Lee	Lee		no	5	1	4	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	red	blue													
+Red Bull BC One World Final 2021	B-Boys Top 16 Knockout	TawfiQ	Gun	TawfiQ		no	5	3	2	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	red	red	red	blue													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Logistx	Vavi	Logistx		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Kastet	Vavi	Vavi		no	5	2	3	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	blue	blue	blue	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Logistx	Nadia	Logistx		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Paulina	Vavi	Vavi		no	5	2	3	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	blue	blue	blue	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Kastet	Ram	Kastet		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Nadia	Sidi	Nadia		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Logistx	Ayumi	Logistx		no	5	4	1	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	blue	red	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Madmax	Vavi	Vavi		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Paulina	Luma	Paulina		no	5	3	2	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	blue	blue													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Ram	Stefani	Ram		no	5	4	1	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	blue	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Kastet	Carito	Kastet		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Sidi	Fanny	Sidi		no	5	3	2	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	blue	blue	red	red													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Ami	Nadia	Nadia		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	San Andrea	Ayumi	Ayumi		no	5	0	5	0				Kleju	Sarah Bee	Menno	Beta	El Niño					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2021	B-Girls Top 16 Knockout	Logistx	Yell	Logistx		no	5	5	0	0				Kleju	Sarah Bee	Menno	Beta	El Niño					red	red	red	red	red													
+JBL Unbreakable 2021	Kids Top 8 Knockout	B-Boy K.G	Anthony	Anthony		no	3	0	3	0				MG	Saidon	Simon							blue	blue	blue															
+JBL Unbreakable 2021	Kids Top 8 Knockout	Mattix	Anthony	Mattix		no	3	3	0	0				MG	Saidon	Simon							red	red	red															
+JBL Unbreakable 2021	Kids Top 8 Knockout	Maflex	B-Boy K.G	B-Boy K.G		no	3	1	2	0				MG	Saidon	Simon							blue	red	blue															
+JBL Unbreakable 2021	Kids Top 8 Knockout	Anthony	Lil Gio	Anthony		no	3	3	0	0				MG	Saidon	Simon							red	red	red															
+JBL Unbreakable 2021	Kids Top 8 Knockout	Aiko	Mattix	Mattix		no	3	0	3	0				MG	Saidon	Simon							blue	blue	blue															
+JBL Unbreakable 2021	Kids Top 8 Knockout	B-Boy K.G	Djibril	B-Boy K.G		no	3	3	0	0				MG	Saidon	Simon							red	red	red															
+JBL Unbreakable 2021	Kids Top 8 Knockout	Danger	Maflex	Maflex		no	3	1	2	0				MG	Saidon	Simon							blue	red	blue															
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Madmax	Kastet	Kastet		no	5	1	4	0				Movie One	Omar	Ayumi	Lilou	AT					red	blue	blue	blue	blue													
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Kastet	Ayane	Kastet		no	5	3	2	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	blue	red	blue													
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Madmax	Jilou	Madmax		no	5	4	1	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	blue	red	red													
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Ayane	Kami	Ayane		no	5	5	0	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	red	red	red													
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Kastet	Mess	Kastet		no	5	5	0	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	red	red	red													
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Jilou	Sina	Jilou		no	5	4	1	0				Movie One	Omar	Ayumi	Lilou	AT					red	blue	red	red	red													
+Red Bull BC One World Final 2020	B-Girls Top 8 Knockout	Madmax	Sunny	Madmax		no	5	3	2	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	blue	blue	red													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Shigekix	Alkolil	Shigekix		no	5	4	1	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	red	red	blue													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Lil Zoo	Alkolil	Alkolil		no	5	0	5	0				Movie One	Omar	Ayumi	Lilou	AT					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Shigekix	Vero	Shigekix		no	5	4	1	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	blue	red	red													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Alkolil	Pac Pac	Alkolil		no	5	3	2	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	red	blue	blue													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Lil Zoo	Philip	Lil Zoo		no	5	4	1	0				Movie One	Omar	Ayumi	Lilou	AT					blue	red	red	red	red													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Killa-Kolya	Vero	Vero		no	5	2	3	0				Movie One	Omar	Ayumi	Lilou	AT					blue	red	blue	red	blue													
+Red Bull BC One World Final 2020	B-Boys Top 8 Knockout	Shigekix	Kid Karam	Shigekix		no	5	5	0	0				Movie One	Omar	Ayumi	Lilou	AT					red	red	red	red	red													
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	King Bart	Four	King Bart		no	3	3	0	0				Sharp	Dyzee	Krishna							red	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	Four	Yoga	Four		no	3	3	0	0				Sharp	Dyzee	Krishna							red	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	KennyG	King Bart	King Bart		no	3	1	2	0				Sharp	Dyzee	Krishna							blue	red	blue															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	Yoga	Lian	Yoga		no	3	2	0	1				Sharp	Dyzee	Krishna							tie	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	RM	Four	Four		no	3	0	3	0				Sharp	Dyzee	Krishna							blue	blue	blue															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	King Bart	ShowMilk	King Bart		no	3	2	1	0				Sharp	Dyzee	Krishna							blue	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	KennyG	Sprite	KennyG		no	3	3	0	0				Sharp	Dyzee	Krishna							red	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	Lian	Shao	Lian		no	3	2	1	0				Sharp	Dyzee	Krishna							red	red	blue															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	WillyRoc	Yoga	Yoga		no	3	1	2	0				Sharp	Dyzee	Krishna							blue	blue	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	Four	Quake	Four		no	3	2	0	1				Sharp	Dyzee	Krishna							tie	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	RM	Hertz	RM		no	3	3	0	0				Sharp	Dyzee	Krishna							red	red	red															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	ShowMilk	Saru	ShowMilk		no	3	2	1	0				Sharp	Dyzee	Krishna							red	red	blue															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	Lilma	King Bart	King Bart		no	3	1	2	0				Sharp	Dyzee	Krishna							red	blue	blue															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	Sprite	QD	Sprite		no	3	2	1	0				Sharp	Dyzee	Krishna							red	red	blue															
+Taipei Bboy City 2020 Fight Covid19 1vs1 Live Stream	Open Top 16 Knockout	KennyG	Jhao	KennyG		no	3	3	0	0				Sharp	Dyzee	Krishna							red	red	red															
+Groove E Session	B-Girls Top 8 Knock-Out	Kastet	Ami	Ami		no	3	0	3	0				Movie One	Roxy	Nadia							blue	blue	blue															
+Groove E Session	B-Girls Top 8 Knock-Out	San Andrea	Ami	Ami		no	3	1	2	0				Movie One	Roxy	Nadia							blue	red	blue															
+Groove E Session	B-Girls Top 8 Knock-Out	Ayane	Kastet	Kastet		no	3	0	3	0				Movie One	Roxy	Nadia							blue	blue	blue															
+Groove E Session	B-Girls Top 8 Knock-Out	Yell	Ami	Ami		no	3	0	3	0				Movie One	Roxy	Nadia							blue	blue	blue															
+Groove E Session	B-Girls Top 8 Knock-Out	Kate	San Andrea	San Andrea		no	3	0	3	0				Movie One	Roxy	Nadia							blue	blue	blue															
+Groove E Session	B-Girls Top 8 Knock-Out	Jilou	Kastet	Kastet		no	3	0	3	0				Movie One	Roxy	Nadia							blue	blue	blue															
+Groove E Session	B-Girls Top 8 Knock-Out	Ayane	Carito	Ayane		no	3	2	1	0				Movie One	Roxy	Nadia							red	red	blue															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Matita	Jeian	Matita		no	5	3	1	1				Duzk	Machine	Artis	Anita	Renegade					red	tie	blue	red	red													
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Jeian	Peaky Rock	Jeian		no	3	3	0	0				Duzk	Machine	Artis							red	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Matita	Salo	Matita		no	3	3	0	0				Duzk	Machine	Artis							red	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Peaky Rock	Ojitos	Peaky Rock		no	3	2	1	0				Duzk	Machine	Artis							blue	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Jeian	Ratin	Jeian		no	3	2	1	0				Duzk	Machine	Artis							red	blue	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Salo	Dany Swing	Salo		no	3	2	1	0				Duzk	Machine	Artis							red	blue	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Matita	Kieron	Matita		no	3	2	1	0				Duzk	Machine	Artis							red	red	blue															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Ojitos	Nazgul	Ojitos		no	3	3	0	0				Duzk	Machine	Artis							red	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Peaky Rock	Ryoji	Peaky Rock		no	3	3	0	0				Duzk	Machine	Artis							red	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Ratin	Mucha	Ratin		no	3	2	1	0				Duzk	Machine	Artis							red	red	blue															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Jeian	Bene	Jeian		no	3	2	1	0				Duzk	Machine	Artis							red	red	blue															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Dany Swing	Flowmer	Dany Swing		no	3	3	0	0				Duzk	Machine	Artis							red	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Kingzoo	Salo	Salo		no	3	1	2	0				Duzk	Machine	Artis							red	blue	blue															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Kieron	Nomuf	Kieron		no	3	3	0	0				Duzk	Machine	Artis							red	red	red															
+Welcome 2 My Cypher	Open Top 16 Knock-Out	Matita	James	Matita		no	3	2	1	0				Duzk	Machine	Artis							red	red	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Mini Joe	Zip Rock	Mini Joe		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Zip Rock	Cheerito	Zip Rock		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Mini Joe	Gun	Mini Joe		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	NoIndex	Cheerito	Cheerito		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Exaggerate	Zip Rock	Zip Rock		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Cis	Gun	Gun		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Mini Joe	D-Prank	Mini Joe		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Elvis	Cheerito	Cheerito		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	NoIndex	Banana Joe	NoIndex		no	3	2	1	0				Intact	AT	Palmer							red	blue	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Kap	Zip Rock	Zip Rock		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Exaggerate	OK	Exaggerate		no	3	2	1	0				Intact	AT	Palmer							red	red	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Gun	Vicious	Gun		no	3	2	1	0				Intact	AT	Palmer							red	blue	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Cis	Nazgul	Cis		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Timbo	D-Prank	D-Prank		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Lorenzo	Mini Joe	Mini Joe		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Cheerito	Uho	Cheerito		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Noé	Elvis	Elvis		no	3	1	2	0				Intact	AT	Palmer							red	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Movycube	Banana Joe	Banana Joe		no	3	1	2	0				Intact	AT	Palmer							blue	red	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	NoIndex	Kirill Green	NoIndex		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Zip Rock	R-One	Zip Rock		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Leon	Kap	Kap		no	3	1	2	0				Intact	AT	Palmer							blue	blue	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Warrior	OK	OK		no	3	1	2	0				Intact	AT	Palmer							red	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Exaggerate	Lucas	Exaggerate		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Vicious	Gatoty	Vicious		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Gun	Question	Gun		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Nazgul	Drain	Nazgul		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Cis	Justice	Cis		no	3	2	1	0				Intact	AT	Palmer							red	blue	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Killa Sebi	D-Prank	D-Prank		no	3	0	3	0				Intact	AT	Palmer							blue	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Timbo	Drill One	Timbo		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Mathis	Mini Joe	Mini Joe		no	3	1	2	0				Intact	AT	Palmer							red	blue	blue															
+Break Free Worldwide 2020 Championship	B-Boys Top 32 Knock-Out	Lorenzo	A-S	Lorenzo		no	3	3	0	0				Intact	AT	Palmer							red	red	red															
+Groove E Session 2020	Invite Top 8 Knock-Out	Nasty Ray	Ratin	Nasty Ray		no	3	3	0	0				Ken Swift	Poe One	Aslan							red	red	red															
+Groove E Session 2020	Invite Top 8 Knock-Out	Ratin	Thesis	Ratin		no	3	2	1	0				Ken Swift	Poe One	Aslan							red	blue	red															
+Groove E Session 2020	Invite Top 8 Knock-Out	Gieras	Nasty Ray	Nasty Ray		no	3	0	3	0				Ken Swift	Poe One	Aslan							blue	blue	blue															
+Groove E Session 2020	Invite Top 8 Knock-Out	Moa	Thesis	Thesis		no	3	1	2	0				Ken Swift	Poe One	Aslan							blue	red	blue															
+Groove E Session 2020	Invite Top 8 Knock-Out	Shane	Ratin	Ratin		no	3	0	3	0				Ken Swift	Poe One	Aslan							blue	blue	blue															
+Groove E Session 2020	Invite Top 8 Knock-Out	Uzee Rock	Nasty Ray	Nasty Ray		no	3	0	3	0				Ken Swift	Poe One	Aslan							blue	blue	blue															
+Groove E Session 2020	Invite Top 8 Knock-Out	Wing Zero	Gieras	Gieras		no	3	1	2	0				Ken Swift	Poe One	Aslan							red	blue	blue															
+Groove E Session 2020	Kids Top 8 Knock-Out	Malish	Grom	Grom		no	3	1	2	0				RoxRite	Shlag	Xak							blue	red	blue															
+Groove E Session 2020	Kids Top 8 Knock-Out	Raptor	Tsukki	Tsukki		no	3	0	3	0				RoxRite	Shlag	Xak							blue	blue	blue															
+Groove E Session 2020	Kids Top 8 Knock-Out	Grom	Lil E	Grom		no	3	3	0	0				RoxRite	Shlag	Xak							red	red	red															
+Groove E Session 2020	Kids Top 8 Knock-Out	Malish	Weapon X	Malish		no	3	3	0	0				RoxRite	Shlag	Xak							red	red	red															
+Groove E Session 2020	Kids Top 8 Knock-Out	Tsukki	Alexis	Tsukki		no	3	3	0	0				RoxRite	Shlag	Xak							red	red	red															
+Groove E Session 2020	Kids Top 8 Knock-Out	Raptor	Gustas	Raptor		no	3	2	1	0				RoxRite	Shlag	Xak							red	red	blue															
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Sakul	Lee-On	Lee-On		no	5	0	5	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					blue	blue	blue	blue	blue													
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Chaos Craiser	Lee-On	Lee-On		no	5	0	5	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					blue	blue	blue	blue	blue													
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Sakul	Karlo	Sakul		no	5	5	0	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					red	red	red	red	red													
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Korbi	Lee-On	Lee-On		no	5	1	4	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					blue	blue	red	blue	blue													
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Chaos Craiser	Anna-Lia	Chaos Craiser		no	5	4	1	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					red	red	red	blue	red													
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Karlo	Jonas	Karlo		no	5	3	2	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					red	red	blue	red	blue													
+Castle Rock Jam & Battle - Vol. 3 2020	Kids Top 8 Knock-Out	Angerer	Sakul	Sakul		no	5	1	4	0				Istwan	Chau-Lin	Marox	Philmo	Ibot					blue	blue	red	blue	blue													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Sakul	Lee-On	Lee-On		no	5	0	5	0				Tomifly	Ibot	KateRock	Primary Vic	Istwan					blue	blue	blue	blue	blue													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Lee-On	Anna-Lia	Lee-On		no	5	5	0	0				Tomifly	Ibot	KateRock	Primary Vic	Istwan					red	red	red	red	red													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Maik MD	Sakul	Sakul		no	5	0	5	0				Tomifly	Ibot	KateRock	Primary Vic	Istwan					blue	blue	blue	blue	blue													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Chaos Craiser	Anna-Lia	Anna-Lia		no	5	0	4	1				Tomifly	Ibot	KateRock	Primary Vic	Istwan					blue	blue	blue	blue	tie													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Lee-On	Coppi	Lee-On		no	5	5	0	0				Tomifly	Ibot	KateRock	Primary Vic	Istwan					red	red	red	red	red													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Jonas	Sakul	Sakul		no	5	0	5	0				Tomifly	Ibot	KateRock	Primary Vic	Istwan					blue	blue	blue	blue	blue													
+Castle Rock Jam & Battle - Vol. 2 2019	Kids Top 8 Knock-Out	Maik MD	Lolo	Maik MD		no	5	5	0	0				Tomifly	Ibot	KateRock	Primary Vic	Istwan					red	red	red	red	red													
+Diversity Clash 2019	Open Top 8 Knock-Out	Tik	Fabez	Tik		no	3	2	1	0				Jaekwon	Guti	El Vasi							red	red	blue															
+Diversity Clash 2019	Open Top 8 Knock-Out	Optimus Primo	Fabez	Fabez		no	3	0	2	1				Jaekwon	Guti	El Vasi							blue	tie	blue															
+Diversity Clash 2019	Open Top 8 Knock-Out	Sirk	Tik	Tik		no	3	0	1	2				Jaekwon	Guti	El Vasi							tie	blue	tie															
+Diversity Clash 2019	Open Top 8 Knock-Out	Fabez	Super D	Fabez		no	3	3	0	0				Jaekwon	Guti	El Vasi							red	red	red															
+Diversity Clash 2019	Open Top 8 Knock-Out	Mogli	Optimus Primo	Optimus Primo		no	3	1	2	0				Jaekwon	Guti	El Vasi							blue	blue	red															
+Diversity Clash 2019	Open Top 8 Knock-Out	K.Y.S.	Tik	Tik		yes	3	1	1	1	0	3	0	Jaekwon	Guti	El Vasi							red	tie	blue							blue	blue	blue						
+Diversity Clash 2019	Open Top 8 Knock-Out	Funky C	Sirk	Sirk		no	3	0	3	0				Jaekwon	Guti	El Vasi							blue	blue	blue															
+Red Bull BC One Cypher Germany 2019	B-Girls Top 4 Knock-Out	Frost	Loopi	Loopi		no	3	0	3	0				Lil Zoo	Narumi	Menno							blue	blue	blue															
+Red Bull BC One Cypher Germany 2019	B-Girls Top 4 Knock-Out	Joëlle Camarell	Loopi	Loopi		no	3	0	3	0				Lil Zoo	Narumi	Menno							blue	blue	blue															
+Red Bull BC One Cypher Germany 2019	B-Girls Top 4 Knock-Out	Viola Luba	Frost	Frost		no	3	1	2	0				Lil Zoo	Narumi	Menno							blue	blue	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Anton	Double D	Anton		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Double D	Qube	Double D		no	3	2	1	0				Lil Zoo	Narumi	Menno							blue	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Anton	Flex Holik	Anton		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Mayo	Qube	Qube		no	3	1	2	0				Lil Zoo	Narumi	Menno							blue	blue	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Double D	Artform	Double D		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Flex Holik	NoIndex	Flex Holik		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Anton	Light	Anton		no	3	2	1	0				Lil Zoo	Narumi	Menno							blue	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Wall-D	Qube	Qube		no	3	1	2	0				Lil Zoo	Narumi	Menno							blue	blue	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Mayo	Itz#Me	Mayo		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Artform	KcOne	Artform		no	3	2	1	0				Lil Zoo	Narumi	Menno							blue	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Double D	Toschkin	Double D		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	NoIndex	Tai	NoIndex		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Flex Holik	Soulex	Flex Holik		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Light	Flo	Light		no	3	2	1	0				Lil Zoo	Narumi	Menno							red	red	blue															
+Red Bull BC One Cypher Germany 2019	B-Boys Top 16 Knock-Out	Anton	Gizmo	Anton		no	3	3	0	0				Lil Zoo	Narumi	Menno							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Nori	Shigekix	Nori		no	3	3	0	0				Issei	Justfit	Katsu One							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Gen Roc	Shigekix	Shigekix		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Nori	Okey Joe	Nori		no	3	3	0	0				Issei	Justfit	Katsu One							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Shigekix	Kossy	Shigekix		no	3	2	1	0				Issei	Justfit	Katsu One							blue	red	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Gen Roc	Yosh is Stoic	Gen Roc		no	3	2	1	0				Issei	Justfit	Katsu One							red	blue	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Ryo Flow	Okey Joe	Okey Joe		no	3	1	2	0				Issei	Justfit	Katsu One							red	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Nori	Wing Zero	Nori		no	3	3	0	0				Issei	Justfit	Katsu One							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	KaZuMi	Kossy	Kossy		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Hokt	Shigekix	Shigekix		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Yosh is Stoic	Toa	Yosh is Stoic		no	3	2	1	0				Issei	Justfit	Katsu One							blue	red	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Yu-ki	Gen Roc	Gen Roc		no	3	1	2	0				Issei	Justfit	Katsu One							red	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Kanta	Okey Joe	Okey Joe		no	3	1	2	0				Issei	Justfit	Katsu One							blue	red	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Ryo Flow	Uki on Fire	Ryo Flow		no	3	2	1	0				Issei	Justfit	Katsu One							red	blue	red															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Lil En	Wing Zero	Wing Zero		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Boys Top 16 Knock-Out	Nori	Yu Ski	Nori		no	3	3	0	0				Issei	Justfit	Katsu One							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Annasty	Ayumi	Ayumi		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Yurie	Ayumi	Ayumi		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Annasty	Ayu	Annasty		no	3	3	0	0				Issei	Justfit	Katsu One							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Yuika	Ayumi	Ayumi		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Yurie	Eri	Yurie		no	3	3	0	0				Issei	Justfit	Katsu One							red	red	red															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Ram	Ayu	Ayu		no	3	1	2	0				Issei	Justfit	Katsu One							blue	red	blue															
+Red Bull BC One Cypher Japan 2019	B-Girls Top 8 Knock-Out	Ayane	Annasty	Annasty		no	3	0	3	0				Issei	Justfit	Katsu One							blue	blue	blue															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Izaak	Jackson	Jackson		no	3	1	2	0				Spin	Neguin	RoxRite							blue	red	blue															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Infante	Jackson	Jackson		no	3	0	3	0				Spin	Neguin	RoxRite							blue	blue	blue															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Sheku	Izaak	Izaak		no	3	1	2	0				Spin	Neguin	RoxRite							blue	blue	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Jackson	Gribz	Jackson		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Infante	Razzle Roc	Infante		no	3	2	1	0				Spin	Neguin	RoxRite							red	blue	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Kid Kelvin	Izaak	Izaak		no	3	1	2	0				Spin	Neguin	RoxRite							blue	red	blue															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Marius	Sheku	Sheku		no	3	0	3	0				Spin	Neguin	RoxRite							blue	blue	blue															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Gribz	AJ The Cypher Cat	Gribz		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Sunni	Jackson	Sunni		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Razzle Roc	Echo	Razzle Roc		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Infante	Eggy	Infante		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Izaak	Victor J.	Izaak		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Kid Kelvin	Daz	Kid Kelvin		no	3	2	1	0				Spin	Neguin	RoxRite							red	blue	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Sheku	Shoggs	Sheku		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Boys Top 16 Knock-Out	Marius	Enos	Marius		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	RawGina	Vanessa	Vanessa		no	3	0	3	0				Spin	Neguin	RoxRite							blue	blue	blue															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	Munirat	Vanessa	Vanessa		no	3	0	3	0				Spin	Neguin	RoxRite							blue	blue	blue															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	RawGina	Shortbread	RawGina		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	Vanessa	Angel	Vanessa		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	Munirat	Zana	Munirat		no	3	2	1	0				Spin	Neguin	RoxRite							red	blue	red															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	Fidget	Shortbread	Shortbread		no	3	0	3	0				Spin	Neguin	RoxRite							blue	blue	blue															
+Red Bull BC One Cypher UK 2019	B-Girls Top 8 Knock-Out	RawGina	Jenn	RawGina		no	3	3	0	0				Spin	Neguin	RoxRite							red	red	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Harlekin	Cicov	Harlekin		no	3	3	0	0				Junior	Sarah Bee	Lil Zoo							red	red	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Flash	Cicov	Cicov		no	3	0	3	0				Junior	Sarah Bee	Lil Zoo							blue	blue	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Harlekin	Ghostface	Harlekin		no	3	3	0	0				Junior	Sarah Bee	Lil Zoo							red	red	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Cicov	Killapain	Cicov		no	3	2	1	0				Junior	Sarah Bee	Lil Zoo							blue	red	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Flash	Funky C	Flash		no	3	3	0	0				Junior	Sarah Bee	Lil Zoo							red	red	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Intus	Ghostface	Ghostface		no	3	0	3	0				Junior	Sarah Bee	Lil Zoo							blue	blue	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Harlekin	Töma	Harlekin		no	3	2	1	0				Junior	Sarah Bee	Lil Zoo							blue	red	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Rock Lee	Killapain	Killapain		no	3	0	3	0				Junior	Sarah Bee	Lil Zoo							blue	blue	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Avatar Joe	Cicov	Cicov		no	3	0	3	0				Junior	Sarah Bee	Lil Zoo							blue	blue	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Funky C	Miracle Smile	Funky C		no	3	2	1	0				Junior	Sarah Bee	Lil Zoo							red	red	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Rock'n'Rolli	Flash	Flash		no	3	1	2	0				Junior	Sarah Bee	Lil Zoo							blue	blue	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Ghostface	Valo	Ghostface		no	3	2	1	0				Junior	Sarah Bee	Lil Zoo							red	red	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Intus	Animus	Intus		no	3	2	1	0				Junior	Sarah Bee	Lil Zoo							red	blue	red															
+BC One Austra 2019	Open Top 16 Knock-Out	Mogli	Töma	Töma		no	3	0	3	0				Junior	Sarah Bee	Lil Zoo							blue	blue	blue															
+BC One Austra 2019	Open Top 16 Knock-Out	Harlekin	Patrix	Harlekin		no	3	2	1	0				Junior	Sarah Bee	Lil Zoo							blue	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Thomaz	Nikita	Thomaz		no	3	2	1	0				Poe One	Bartazz	Hong 10							blue	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Lil King	Nikita	Nikita		no	3	0	3	0				Poe One	Bartazz	Hong 10							blue	blue	blue															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Zawisza	Thomaz	Zawisza		no	3	3	0	0				Poe One	Bartazz	Hong 10							red	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Kido	Nikita	Nikita		no	3	1	2	0				Poe One	Bartazz	Hong 10							blue	blue	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Gieras	Lil King	Lil King		no	3	1	2	0				Poe One	Bartazz	Hong 10							blue	red	blue															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Thomaz	Kostek	Thomaz		no	3	3	0	0				Poe One	Bartazz	Hong 10							red	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Arczek	Zawisza	Zawisza		no	3	1	2	0				Poe One	Bartazz	Hong 10							blue	blue	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Nikita	Bartek	Nikita		yes	3	1	1	1	3	0	0	Poe One	Bartazz	Hong 10							blue	tie	red							red	red	red						
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Kido	Chadzik	Kido		no	3	3	0	0				Poe One	Bartazz	Hong 10							red	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Kangur	Lil King	Lil King		no	3	0	2	1				Poe One	Bartazz	Hong 10							blue	tie	blue															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Axel	Gieras	Gieras		yes	3	1	1	1	1	2	0	Poe One	Bartazz	Hong 10							tie	red	blue							blue	red	blue						
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Kostek	Nevi	Kostek		no	3	3	0	0				Poe One	Bartazz	Hong 10							red	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Thomaz	Alex	Thomaz		no	3	3	0	0				Poe One	Bartazz	Hong 10							red	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Zawisza	Monster	Zawisza		no	3	3	0	0				Poe One	Bartazz	Hong 10							red	red	red															
+Red Bull BC One Camp Poland 2019	Open Top 16 Knock-Out	Arczek	MadMax	Arczek		no	3	2	1	0				Poe One	Bartazz	Hong 10							red	blue	red															
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Cicov	Sina	Sina		no	3	1	2	0				Maximus	Ronnie	Fabez							red	blue	blue															
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Intus	Sina	Sina		no	3	0	1	2				Maximus	Ronnie	Fabez							blue	tie	tie															
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Patrix	Cicov	Cicov		no	3	1	2	0				Maximus	Ronnie	Fabez							blue	blue	red															
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Sina	Sevõne	Sina		yes	3	1	1	1	3	0	0	Maximus	Ronnie	Fabez							tie	blue	red							red	red	red						
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Intus	K.Y.S.	Intus		no	3	2	1	0				Maximus	Ronnie	Fabez							blue	red	red															
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Cicov	Zappel	Cicov		no	3	3	0	0				Maximus	Ronnie	Fabez							red	red	red															
+Carinthian-X-Break 2019 Vol 6	Open Top 8 Knock-Out	Patrix	Tik	Patrix		no	3	3	0	0				Maximus	Ronnie	Fabez							red	red	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Simon	Lucky	Simon		no	3	2	1	0				Ben$tacks	Crazy Legs	Kareem							blue	red	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Lucky	Admiracles	Lucky		no	3	3	0	0				Ben$tacks	Crazy Legs	Kareem							red	red	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Simon	Sambo	Simon		no	3	2	1	0				Ben$tacks	Crazy Legs	Kareem							red	blue	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Faisi	Admiracles	Admiracles		no	3	1	2	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Lucky	Rateb	Lucky		no	3	3	0	0				Ben$tacks	Crazy Legs	Kareem							red	red	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Sambo	Jona	Sambo		no	3	3	0	0				Ben$tacks	Crazy Legs	Kareem							red	red	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Simon	XL	Simon		no	3	2	1	0				Ben$tacks	Crazy Legs	Kareem							red	blue	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Admiracles	Saidon	Admiracles		no	3	3	0	0				Ben$tacks	Crazy Legs	Kareem							red	red	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Adi Mino	Faisi	Faisi		no	3	0	3	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	blue															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Dacos	Rateb	Rateb		no	3	1	2	0				Ben$tacks	Crazy Legs	Kareem							red	blue	blue															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Kevin	Lucky	Lucky		no	3	0	3	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	blue															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Lawson	Jona	Jona		no	3	1	2	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	red															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Fababy	Sambo	Sambo		no	3	0	3	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	blue															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	XL	Titris	XL		no	3	2	1	0				Ben$tacks	Crazy Legs	Kareem							red	red	blue															
+Red Bull BC One Cypher Belgium 2019	B-Boys Top 16 Knock-Out	Hayabusa	Simon	Simon		no	3	0	3	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	blue															
+Red Bull BC One Cypher Belgium 2019	B-Girls Top 4 Knock-Out	Camine	Mariabliss	Camine		no	3	2	1	0				Ben$tacks	Crazy Legs	Kareem							red	blue	red															
+Red Bull BC One Cypher Belgium 2019	B-Girls Top 4 Knock-Out	Stormy	Mariabliss	Mariabliss		no	3	0	3	0				Ben$tacks	Crazy Legs	Kareem							blue	blue	blue															
+Red Bull BC One Cypher Belgium 2019	B-Girls Top 4 Knock-Out	Camine	Madmax	Camine		no	3	3	0	0				Ben$tacks	Crazy Legs	Kareem							red	red	red															
+Circle Industry 2019	Kids Top 8 Knock-Out	Lee-On	Mattix	Mattix		no	3	1	2	0				Wicket	Kuzya	Xak							red	blue	blue															
+Circle Industry 2019	Kids Top 8 Knock-Out	Alex	Mattix	Mattix		no	3	0	3	0				Wicket	Kuzya	Xak							blue	blue	blue															
+Circle Industry 2019	Kids Top 8 Knock-Out	Lee-On	RyZer	Lee-On		no	3	3	0	0				Wicket	Kuzya	Xak							red	red	red															
+Circle Industry 2019	Kids Top 8 Knock-Out	Sakul	Mattix	Mattix		no	3	0	3	0				Wicket	Kuzya	Xak							blue	blue	blue															
+Circle Industry 2019	Kids Top 8 Knock-Out	Rico	Alex	Alex		no	3	0	3	0				Wicket	Kuzya	Xak							blue	blue	blue															
+Circle Industry 2019	Kids Top 8 Knock-Out	Maik MD	RyZer	RyZer		no	3	0	3	0				Wicket	Kuzya	Xak							blue	blue	blue															
+Circle Industry 2019	Kids Top 8 Knock-Out	Lee-On	MatyS	Lee-On		no	3	3	0	0				Wicket	Kuzya	Xak							red	red	red															
+Circle Industry 2019	Open Top 8 Knock-Out	Flesh	El Vasi	Flesh		no	3	3	0	0				Wicket	Kuzya	Xak							red	red	red															
+Circle Industry 2019	Open Top 8 Knock-Out	El Vasi	Patrix	El Vasi		no	3	2	1	0				Wicket	Kuzya	Xak							blue	red	red															
+Circle Industry 2019	Open Top 8 Knock-Out	Flesh	Ibot	Flesh		no	3	3	0	0				Wicket	Kuzya	Xak							red	red	red															
+Circle Industry 2019	Open Top 8 Knock-Out	Amin	Patrix	Patrix		no	3	1	2	0				Wicket	Kuzya	Xak							red	blue	blue															
+Circle Industry 2019	Open Top 8 Knock-Out	Marox	El Vasi	El Vasi		no	3	0	3	0				Wicket	Kuzya	Xak							blue	blue	blue															
+Circle Industry 2019	Open Top 8 Knock-Out	Ibot	Animus	Ibot		no	3	3	0	0				Wicket	Kuzya	Xak							red	red	red															
+Circle Industry 2019	Open Top 8 Knock-Out	Cicov	Flesh	Flesh		no	3	1	2	0				Wicket	Kuzya	Xak							red	blue	blue															
+International Streetdance Fest 2018	Minis Top 4 Knock-Out	Midge	Jacob	Jacob		no	3	0	3	0				Admir	Kid Colombia	Bestia							blue	blue	blue															
+International Streetdance Fest 2018	Minis Top 4 Knock-Out	Jacob	Vinz Dreush	Jacob		no	3	2	1	0				Admir	Kid Colombia	Bestia							blue	red	red															
+International Streetdance Fest 2018	Minis Top 4 Knock-Out	Midge	Mini V	Midge		no	3	3	0	0				Admir	Kid Colombia	Bestia							red	red	red															
+International Streetdance Fest 2018	Kids Top 4 Knock-Out	Jet Leg	BBoy Sa	Jet Leg		no	3	3	0	0				Admir	Kid Colombia	Bestia							red	red	red															
+International Streetdance Fest 2018	Kids Top 4 Knock-Out	BBoy Sa	Kid Lion	BBoy Sa		no	3	3	0	0				Admir	Kid Colombia	Bestia							red	red	red															
+International Streetdance Fest 2018	Kids Top 4 Knock-Out	Jet Leg	Matej	Jet Leg		no	3	3	0	0				Admir	Kid Colombia	Bestia							red	red	red															
+International Streetdance Fest 2018	B-Girls Top 4 Knock-Out	Indi	Solid	Solid		no	3	0	3	0				Admir	Kid Colombia	Bestia							blue	blue	blue															
+International Streetdance Fest 2018	B-Girls Top 4 Knock-Out	Solid	Sabri	Solid		no	3	3	0	0				Admir	Kid Colombia	Bestia							red	red	red															
+International Streetdance Fest 2018	B-Girls Top 4 Knock-Out	Gamora	Indi	Indi		no	3	0	3	0				Admir	Kid Colombia	Bestia							blue	blue	blue															
+Golden King 2018	Open Top 16 Knock-Out	Flo	Anton	Anton		no	3	0	3	0				Toschkin	Chau-Lin	Loopi							blue	blue	blue															
+Golden King 2018	Open Top 16 Knock-Out	Anton	Conni	Anton		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Flo	Red Rock	Red Rock		yes	3	0	1	2	3	0	0	Toschkin	Chau-Lin	Loopi							tie	blue	tie							red	red	red						
+Golden King 2018	Open Top 16 Knock-Out	Don Hoang	Conni	Conni		no	3	0	3	0				Toschkin	Chau-Lin	Loopi							blue	blue	blue															
+Golden King 2018	Open Top 16 Knock-Out	Deny	Anton	Anton		yes	3	0	1	2	0	3	0	Toschkin	Chau-Lin	Loopi							tie	blue	tie							blue	blue	blue						
+Golden King 2018	Open Top 16 Knock-Out	Red Rock	Lerok	Red Rock		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Double D	Flo	Flo		no	3	1	2	0				Toschkin	Chau-Lin	Loopi							blue	blue	red															
+Golden King 2018	Open Top 16 Knock-Out	Conni	Arif	Conni		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Don Hoang	Biff	Don Hoang		no	3	2	0	1				Toschkin	Chau-Lin	Loopi							red	tie	red															
+Golden King 2018	Open Top 16 Knock-Out	Anton	Timo	Anton		no	3	2	1	0				Toschkin	Chau-Lin	Loopi							red	red	blue															
+Golden King 2018	Open Top 16 Knock-Out	Deny	Ibot	Deny		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Lerok	MiKe	Lerok		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Red Rock	Kid Chrino	Red Rock		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Flo	Seal	Flo		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Golden King 2018	Open Top 16 Knock-Out	Double D	Mafia	Double D		no	3	3	0	0				Toschkin	Chau-Lin	Loopi							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Flying Machine	The Wolfer	Flying Machine		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Moa	The Wolfer	The Wolfer		no	3	0	3	0				Dany Dann	Kuzya	Vision							blue	blue	blue															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Light	Flying Machine	Flying Machine		no	3	1	2	0				Dany Dann	Kuzya	Vision							blue	red	blue															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	The Wolfer	Kranskee	The Wolfer		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Beat	Moa	Moa		yes	3	1	1	1	1	2	0	Dany Dann	Kuzya	Vision							blue	tie	red							red	blue	blue						
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Ibot	Flying Machine	Flying Machine		no	3	0	3	0				Dany Dann	Kuzya	Vision							blue	blue	blue															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Elia	Light	Light		no	3	0	3	0				Dany Dann	Kuzya	Vision							blue	blue	blue															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Kranskee	Naccia	Kranskee		no	3	2	0	1				Dany Dann	Kuzya	Vision							red	tie	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	The Wolfer	Tik	The Wolfer		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Moa	Blanco	Moa		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Beat	Marox	Beat		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Flying Machine	Sona	Flying Machine		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Ibot	Spitem	Ibot		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Light	Mogli	Light		no	3	2	1	0				Dany Dann	Kuzya	Vision							red	red	blue															
+Breakin' Boundaries 2018	Open Top 16 Knock-Out	Elia	Ali-Gator	Elia		no	3	3	0	0				Dany Dann	Kuzya	Vision							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Harlekin	The Wolfer	The Wolfer		no	3	0	3	0				RoxRite	AT	Menno							blue	blue	blue															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Valo	The Wolfer	The Wolfer		no	3	0	3	0				RoxRite	AT	Menno							blue	blue	blue															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Harlekin	Mogli	Harlekin		no	3	2	1	0				RoxRite	AT	Menno							red	red	blue															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	The Wolfer	Cicov	The Wolfer		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Valo	Avatar Joe	Valo		no	3	2	1	0				RoxRite	AT	Menno							red	blue	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Jaekwon	Mogli	Mogli		no	3	0	3	0				RoxRite	AT	Menno							blue	blue	blue															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Rock'n'Rolli	Harlekin	Harlekin		no	3	0	3	0				RoxRite	AT	Menno							blue	blue	blue															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Cicov	Marci Marc	Cicov		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	The Wolfer	Killa Pain	The Wolfer		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Donjelo	Avatar Joe	Avatar Joe		no	3	1	2	0				RoxRite	AT	Menno							red	blue	blue															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Valo	Blanco	Valo		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Mogli	El Vasi	Mogli		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Jaekwon	Fee Ling	Jaekwon		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Harlekin	Guti	Harlekin		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Red Bull BC One Austria Cypher 2018	Open Top 16 Knock-Out	Rock'n'Rolli	Thirsty-J	Rock'n'Rolli		no	3	3	0	0				RoxRite	AT	Menno							red	red	red															
+Urban Art Session 2018	Open Top 8 Knock-Out	Burst	El Vasi	Burst		no	3	2	1	0				Cat	Storm	Jaekwon							red	blue	red															
+Urban Art Session 2018	Open Top 8 Knock-Out	Thirsty-J	El Vasi	El Vasi		no	3	1	2	0				Cat	Storm	Jaekwon							blue	blue	red															
+Urban Art Session 2018	Open Top 8 Knock-Out	Showtime	Burst	Burst		no	3	0	3	0				Cat	Storm	Jaekwon							blue	blue	blue															
+Urban Art Session 2018	Open Top 8 Knock-Out	Rock Lee	El Vasi	El Vasi		no	3	1	2	0				Cat	Storm	Jaekwon							red	blue	blue															
+Urban Art Session 2018	Open Top 8 Knock-Out	Thirsty-J	Sinaya	Thirsty-J		no	3	3	0	0				Cat	Storm	Jaekwon							red	red	red															
+Urban Art Session 2018	Open Top 8 Knock-Out	Burst	Fabmaster	Burst		no	3	3	0	0				Cat	Storm	Jaekwon							red	red	red															
+Urban Art Session 2018	Open Top 8 Knock-Out	Showtime	Jedi Jul	Showtime		no	3	3	0	0				Cat	Storm	Jaekwon							red	red	red															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Stepis	Milo	Stepis		no	3	3	0	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	red															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Milo	Marox	Milo		no	3	3	0	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	red															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Stepis	Cosima	Stepis		no	3	3	0	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	red															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Smash	Marox	Marox		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Milo	K.Y.S.	Milo		no	3	3	0	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	red															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Cosima	LittleG	Cosima		no	3	2	1	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Martha	Stepis	Stepis		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Bboy Army	Marox	Marox		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Flo	Smash	Smash		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Marc	K.Y.S.	K.Y.S.		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Milo	Daniel	Milo		no	3	3	0	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	red															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Termi	LittleG	LittleG		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Cosima	Bboy Ari	Cosima		no	3	2	1	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Michi	Stepis	Stepis		no	3	0	3	0				Chau-Lin	Miracle Smile	Flex Holik							blue	blue	blue															
+Black Bear Breaking Battle 2018	Kids Top 16 Knock-Out	Martha	Vic	Martha		no	3	3	0	0				Chau-Lin	Miracle Smile	Flex Holik							red	red	red															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Killapain	Harlekin	Harlekin		no	3	1	2	0				Vision	Dora	Elia							blue	red	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Harlekin	Blanco	Harlekin		no	3	2	1	0				Vision	Dora	Elia							blue	red	red															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Sevõne	Killapain	Killapain		no	3	0	3	0				Vision	Dora	Elia							blue	blue	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Ghostface	Blanco	Blanco		no	3	0	3	0				Vision	Dora	Elia							blue	blue	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Lil Sunji	Harlekin	Harlekin		no	3	0	2	1				Vision	Dora	Elia							blue	tie	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Killapain	Mogli	Killapain		no	3	2	1	0				Vision	Dora	Elia							red	blue	red															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Sevõne	Rock'n Rolli	Sevõne		no	3	2	1	0				Vision	Dora	Elia							red	red	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Jedi Jul	Blanco	Blanco		no	3	0	3	0				Vision	Dora	Elia							blue	blue	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	EL Vasi	Ghostface	Ghostface		no	3	0	3	0				Vision	Dora	Elia							blue	blue	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Guti	Harlekin	Harlekin		no	3	1	2	0				Vision	Dora	Elia							blue	red	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Susko	Lil Sunji	Lil Sunji		no	3	1	2	0				Vision	Dora	Elia							blue	red	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Thirsty-J	Mogli	Mogli		no	3	0	2	1				Vision	Dora	Elia							blue	blue	tie															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Killapain	Hoomi	Killapain		no	3	3	0	0				Vision	Dora	Elia							red	red	red															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	K.Y.S.	Rock'n Rolli	Rock'n Rolli		no	3	1	2	0				Vision	Dora	Elia							red	blue	blue															
+Carinthian X Break 2018 Vol 5	Open Top 16 Knock-Out	Vic	Sevõne	Sevõne		no	3	0	3	0				Vision	Dora	Elia							blue	blue	blue															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Marson	Sheku	Marson		no	3	2	1	0				Johannes	Storm	The Wolfer							red	blue	red															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Sheku	Harlekin	Sheku		no	3	3	0	0				Johannes	Storm	The Wolfer							red	red	red															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Marson	Intus	Marson		no	3	2	1	0				Johannes	Storm	The Wolfer							blue	red	red															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Harlekin	Electrostyle	Harlekin		no	3	3	0	0				Johannes	Storm	The Wolfer							red	red	red															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Sheku	Che Che	Sheku		no	3	2	1	0				Johannes	Storm	The Wolfer							blue	red	red															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Intus	Rock'n'Rolli	Intus		no	3	3	0	0				Johannes	Storm	The Wolfer							red	red	red															
+Show Your Skillz 2018	Open Top 8 Knock-Out	Marson	Ghostface	Marson		no	3	3	0	0				Johannes	Storm	The Wolfer							red	red	red															
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Tsukki	Xuanxuan	Tsukki		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Hikaru	Xuanxuan	Xuanxuan		no	4	1	3	0				Benji	Crumbs	Orb	No Name						blue	blue	blue	red														
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Tsukki	Haruto	Tsukki		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Hiro10	Xuanxuan	Xuanxuan		no	4	1	3	0				Benji	Crumbs	Orb	No Name						red	blue	blue	blue														
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Hikaru	Liu Xuan	Hikaru		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Haruto	尤自裕	Haruto		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Kids Top 8 Knock-Out	Tsukki	B-Girl 671	Tsukki		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Phil Wizard	Bootuz	Bootuz		no	4	0	4	0				Benji	Crumbs	Orb	No Name						blue	blue	blue	blue														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Create	Bootuz	Bootuz		no	4	0	4	0				Benji	Crumbs	Orb	No Name						blue	blue	blue	blue														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Bootuz	Taichi	Bootuz		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Lussy Sky	Create	Create		no	4	0	1	3				Benji	Crumbs	Orb	No Name						tie	tie	blue	tie														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Fleau	Lil Jam	Lil Jam		no	4	1	3	0				Benji	Crumbs	Orb	No Name						blue	red	blue	blue														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Phil Wizard	Ami	Phil Wizard		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Taichi	F-Five	Taichi		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Bootuz	Quick	Bootuz		no	4	2	1	1				Benji	Crumbs	Orb	No Name						tie	red	red	blue														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Create	Drummer Man	Create		no	4	2	1	1				Benji	Crumbs	Orb	No Name						blue	red	tie	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Lussy Sky	Beggin Bin	Lussy Sky		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Roo	Lil Jam	Lil Jam		no	4	0	4	0				Benji	Crumbs	Orb	No Name						blue	blue	blue	blue														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Fleau	Ryan	Fleau		no	4	3	1	0				Benji	Crumbs	Orb	No Name						red	red	blue	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Ami	Baby Ball	Ami		no	4	4	0	0				Benji	Crumbs	Orb	No Name						red	red	red	red														
+Hustle & Freeze – Vol. 12 2017	Invite Top 16 Knock-Out	Phil Wizard	Four	Phil Wizard		no	4	3	1	0				Benji	Crumbs	Orb	No Name						red	red	blue	red														
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Lee-On	Bboy Scheggia	Bboy Scheggia		no	3	1	2	0				Sina	Dr. Ill	EdiTorpedi							blue	blue	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Alex	Bboy Scheggia	Bboy Scheggia		no	3	1	2	0				Sina	Dr. Ill	EdiTorpedi							blue	red	blue															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Lee-On	Jaron	Lee-On		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Rico	Bboy Scheggia	Bboy Scheggia		no	3	0	3	0				Sina	Dr. Ill	EdiTorpedi							blue	blue	blue															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Alex	Lil Flex	Alex		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Jaron	MD	Jaron		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Lee-On	Nina	Lee-On		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Bboy Scheggia	Samuel W.	Bboy Scheggia		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Rico	Raphi	Rico		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Lil Flex	Kirby	Lil Flex		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Alex	JN	Alex		no	3	2	1	0				Sina	Dr. Ill	EdiTorpedi							red	blue	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	MD	Fresh kid	MD		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Jaron	Philippe	Jaron		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Snaky Sarah	Nina	Nina		no	3	1	2	0				Sina	Dr. Ill	EdiTorpedi							blue	red	blue															
+Path to Flow Jam - Vol. I 2017	Minis Top 16 Knock-Out	Lee-On	Lilmonster	Lee-On		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Tik	Marox	Marox		no	3	0	3	0				Sina	Dr. Ill	EdiTorpedi							blue	blue	blue															
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Bgirl Nora	Marox	Marox		no	3	0	3	0				Sina	Dr. Ill	EdiTorpedi							blue	blue	blue															
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Tik	Ella	Tik		no	3	2	0	1				Sina	Dr. Ill	EdiTorpedi							red	tie	red															
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Marox	Alias	Marox		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Bgirl Nora	Jascha	Bgirl Nora		no	3	2	1	0				Sina	Dr. Ill	EdiTorpedi							blue	red	red															
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Elly-B	Ella	Ella		yes	3	1	1	1	0	2	1	Sina	Dr. Ill	EdiTorpedi							blue	red	tie							blue	tie	blue						
+Path to Flow Jam - Vol. I 2017	Kids Top 8 Knock-Out	Tik	Philmo	Tik		no	3	3	0	0				Sina	Dr. Ill	EdiTorpedi							red	red	red															
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Wing	Menno	Menno		no	5	0	3	2				AT	Intact	Niek	Crazy Legs	Hong 10					blue	blue	blue	tie	tie													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Menno	Shigekix	Menno		no	5	4	1	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	red	red	blue	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Lil Zoo	Wing	Wing		no	5	1	4	0				AT	Intact	Niek	Crazy Legs	Hong 10					blue	blue	blue	red	blue													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Shigekix	Alkolil	Shigekix		no	5	3	2	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	blue	blue	red	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Kill	Menno	Menno		no	5	0	5	0				AT	Intact	Niek	Crazy Legs	Hong 10					blue	blue	blue	blue	blue													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Issei	Wing	Wing		no	5	1	4	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	blue	blue	blue	blue													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Thesis	Lil Zoo	Lil Zoo		no	5	2	3	0				AT	Intact	Niek	Crazy Legs	Hong 10					blue	red	blue	blue	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Alkolil	Moy	Alkolil		no	5	3	2	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	red	red	blue	blue													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Lussy Sky	Shigekix	Shigekix		no	5	1	4	0				AT	Intact	Niek	Crazy Legs	Hong 10					blue	blue	red	blue	blue													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Menno	Ratin	Menno		no	5	5	0	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	red	red	red	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Kill	Ayumi	Kill		no	5	3	2	0				AT	Intact	Niek	Crazy Legs	Hong 10					blue	blue	red	red	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Wing	Dany Dann	Wing		no	5	5	0	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	red	red	red	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Issei	Willy	Issei		no	5	5	0	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	red	red	red	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Lil Zoo	Shane	Lil Zoo		no	5	3	2	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	blue	blue	red	red													
+Red Bull BC One World Final 2017	Open Top 16 Knock-Out	Thesis	Leony	Thesis		no	5	5	0	0				AT	Intact	Niek	Crazy Legs	Hong 10					red	red	red	red	red													

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+    <!--
+        TODO: because loading python seems to take a while especially on slower internet connection, would parsing the CSV to array of arrays in javascript load faster? (array of arrays is faster than JSON, but is it noticeably faster?)
+              python libraries have more premade advanced data analysis functions for use, whereas javascript might have to make our own
+    
+        Methods for converting CSV to HTML
+        https://www.convertcsv.com/csv-to-html.htm
+        https://opensourc.es/blog/csv2html/
+        https://derekeder.com/csv_to_html_table/
+        https://gist.github.com/duplaja/e8dd08644a6196406b9166d733d8e083
+
+        Embed Google Spreadsheet doesnt include freeze cells nor filters
+        https://webapps.stackexchange.com/questions/90632/is-there-a-way-to-get-frozen-rows-in-an-embedded-google-sheet
+    -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="logo.png">
+        
+        <!-- Bootstrap 5.3 https://getbootstrap.com/docs/5.3/getting-started/introduction -->
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
+        
+        <!-- fonts -->
+        <link rel='preconnect' href='https://fonts.googleapis.com'>
+        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>        
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Dancing Script'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+	    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' crossorigin='anonymous'>
+        
+        <!-- PyScript to run Python in web app -->
+        <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+        <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+        <py-config type="json">
+            {"packages": ["numpy", "pandas"]}
+        </py-config>
+        
+        <!-- <link rel="stylesheet" type="text/css" href="html5reset.css">
+        <link rel="stylesheet" type="text/css" href="style.css"> -->
+        <title>Competitive Breaking Data | Settle it in the Cypher</title>
+        
+        <!-- <style>
+            .pyscript {
+                color: white;
+            }
+        </style> -->
+    </head>
+    <body>
+        <!-- <div class="pageHeader">
+            <p>Settle it in the Cypher</p>
+            <nav>
+                Competitive Breaking Data
+            </nav>
+        </div>
+        <div class="pageBody">
+            <div id="pageBodyDiv">
+                <div id="pageBodyButton"><button><a href="data.csv" download><i class='fa-solid fa-file-arrow-down'></i>Download .csv of this data</a></button></div>
+                <div id="pageBodyContact"><p>Contact: settleitinthecypher@gmail.com</p></div>
+            </div>
+            <br>
+            <div id="tableDiv">
+                <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSZLuWeqlyj8onQ2W63AF56F__ewWUaF5jD7Gowz13ve6Yqzt1yIFRW6WYKv6UH7hQXll9hehBcBwaS/pubhtml?widget=true&amp;headers=false"></iframe>
+            </div> -->
+        <div>
+            <ul id='mainNavUl' class="nav nav-tabs" onclick='mainNavToggle(event);'>
+                <li class="nav-item">
+                    <a id='judgingSystemsTabA' class="nav-link active" aria-current="page" href="#">Judging Systems</a>
+                </li>
+                <li class="nav-item">
+                    <a id='judgesTabA' class="nav-link" href="#">Judges</a>
+                </li>
+                <li class="nav-item">
+                    <a id='competitorsTabA' class="nav-link" href="#">Competitors</a>
+                </li>
+            </ul>
+        </div>
+        <div id='loadingPlaceholder'></div>
+        <div>
+            <div id='judgingSystemsDiv' class='mainDiv'>
+                <!-- TODO: add 'about the judging systems overview information description' -->
+                <!-- <div>(i)</div> -->
+                
+                <!-- judging system selector -->
+                <div id='judgingSystemInput' style='display: none;'>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="judgingSystemDropDown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Judging System</button>
+                        <div class="dropdown-menu" aria-labelledby="judgingSystemDropDown">
+                            <a class="dropdown-item" data-judgingSystem="Trivium">Trivium</a>
+                            <a class="dropdown-item" data-judgingSystem="WDSF System">WDSF System</a>
+                            <a class="dropdown-item" data-judgingSystem="Threefold">Threefold</a>
+                            <a class="dropdown-item" data-judgingSystem="Pseudo Threefold">Pseudo Threefold</a>
+                            <a class="dropdown-item" data-judgingSystem="Single Slider">Single Slider</a>
+                            <!-- <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Round by Round</a>
+                            <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Traditional</a> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- data filters: date, competitor, judge, etc. -->
+                
+                <!-- descriptive statistics for the judging system -->
+                <div id='descriptiveStatistics'>
+                    <div id='descriptiveStatisticsTrivium' style='display: none;'>
+                        <table>
+                            <tr>
+                                <td>Categories:</td>
+                                <td id='categoriesTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Date Range:</td>
+                                <td id='dateRangeTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Events:</td>
+                                <td id='numEventsTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Battles:</td>
+                                <td id='numBattlesTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Rounds:</td>
+                                <td id='numRoundsTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Judge Input Sets:<br>(sum of rounds x judges)</td>
+                                <td id='numSetsTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Judge Inputs:<br>(sum of rounds x judges x categories)</td>
+                                <td id='numInputsTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Unique Competitors:</td>
+                                <td id='numCompetitorsTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id='competitorsListTrivium' style='display: none;'></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Unique Judges:</td>
+                                <td id='numJudgesTrivium'></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id='judgesListTrivium' style='display: none;'></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- table of num rounds num judges for judging system -->
+                <div id='roundsJudgesTableDiv'>
+                    <div id='roundsJudgesTableTrivium'></div>
+                    <div id='roundsJudgesTableWDSFSystem'></div>
+                    <div id='roundsJudgesTableThreefold'></div>
+                    <div id='roundsJudgesTablePseudoThreefold'></div>
+                    <div id='roundsJudgesTableSingleSlider'></div>
+                </div>
+                
+                <div id='scoreStatisticsTableDiv'>
+                    <!-- <tr>
+                            score range
+                            mean
+                            median
+                            std dev
+                            # zeroes
+                        </tr> -->
+                </div>
+                
+                <!-- table of raw data of judging system -->
+                <div id='rawDataTableDiv' style='height: 50vh; overflow-y: scroll;'>
+                    <div id='rawDataTableTrivium'></div>
+                    <div id='rawDataTableWDSFSystem'></div>
+                    <div id='rawDataTableThreefold'></div>
+                    <div id='rawDataTablePseudoThreefold'></div>
+                    <div id='rawDataTableSingleSlider'></div>
+                </div>
+                
+                <!-- clicked row battle judge score display -->
+                <div id='battleDiv'></div>
+            </div>
+            <div id='judgesDiv' class='mainDiv' style='display: none;'>
+                <div id='allJudgesDiv'>
+                    <table>
+                        <tr>
+                            <td>Number of Unique Judges:</td>
+                            <td id='numJudgesAll'></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td id='judgesListAll'></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='singleJudgeDiv'></div>
+            </div>
+            <div id='competitorsDiv' class='mainDiv' style='display: none;'>
+                <div id='allCompetitorsDiv'>
+                    <table>
+                        <tr>
+                            <td>Number of Unique Competitors:</td>
+                            <td id='numCompetitorsAll'></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td id='competitorsListAll'></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id='singleCompetitorDiv'></div>
+            </div>
+        </div>
+        
+        <section class='pyscript'>
+            <script type='py'>
+                
+            </script>
+        </section>
+        <script>
+            var tabLoaded = {
+                'judging systems' : true,
+                'judges' : false,
+                'competitors' : false
+            }
+            
+            // directly access live Google Sheet seems too complex, so just export Sheet to csv and include with repository
+            // PyScript can't access local files, so have to upload and access online link
+            // TODO: rename these as ...Link
+            const TriviumData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BTrivium%5D.csv";
+            const WDSFSystemData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BWDSF%20System%5D%20(Raw).csv";
+            const ThreefoldData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Threefold%5D%20(Raw).csv";
+            const PseudoThreefoldData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5BWDSF%20Pseudo%20Threefold%5D%20(Raw).csv";
+            const SingleSliderData = "https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Single%20Slider%5D%20(Raw).csv";
+            
+            var judgingSystems = {
+                'Trivium' : {
+                    'variableName' : 'Trivium',
+                    'numCategories' : '6',
+                    'categories' : ['Technique','Variety','Performativity','Musicality','Creativity','Personality'],
+                    'categoryAbbreviations' : ['tech','vari','perf','musi','crea','pers'],
+                    'dataframe' : 'df_battlesTrivium',
+                    'loaded' : false
+                },
+                'WDSF System' : {
+                    'variableName' : 'WDSFSystem',
+                    'numCategories' : '5',
+                    'categories' : ['Technique','Vocabulary','Originality','Execution','Musicality'],
+                    'categoryAbbreviations' : ['tech','voca','orig','exec','musi'],
+                    'dataframe' : 'df_battlesWDSFSystem',
+                    'loaded' : false
+                },
+                'Threefold' : {
+                    'variableName' : 'Threefold',
+                    'numCategories' : '3',
+                    'categories' : ['Physical','Artistic','Interpretive'],
+                    'categoryAbbreviations' : ['phys','arti','inte'],
+                    'dataframe' : 'df_battlesThreefold',
+                    'loaded' : false
+                },
+                'Pseudo Threefold' : {
+                    'variableName' : 'PseudoThreefold',
+                    'numCategories' : '3',
+                    'categories' : ['Technique','Variety','Performativity'],
+                    'categoryAbbreviations' : ['tech','vari','perf'],
+                    'dataframe' : 'df_battlesPseudoThreefold',
+                    'loaded' : false
+                },
+                'Single Slider' : {
+                    'variableName' : 'SingleSlider',
+                    'numCategories' : '1',
+                    'categories' : [],
+                    'categoryAbbreviations' : [],
+                    'dataframe' : 'df_battlesSingleSlider',
+                    'loaded' : false
+                }};
+            var judgingSystem;
+            var judgingSystemVariableName;
+            var numCategories;
+            var categories;
+            var categoryAbbreviations;
+            
+            function mainNavToggle(e) {
+                const clickedA = e.target.closest('a.nav-link');
+                if (!clickedA) return;
+                
+                const navLinks = document.getElementById('mainNavUl').getElementsByClassName('nav-link');
+                for (var i = 0; i < navLinks.length; i++) {
+                    navLinks[i].classList.remove('active');
+                }
+                clickedA.classList.add('active');
+                
+                const mainDivs = document.getElementsByClassName('mainDiv');
+                for (var i = 0; i < mainDivs.length; i++) {
+                    mainDivs[i].style.display = 'none';
+                }
+                switch (clickedA.id) {
+                    case 'judgingSystemsTabA':
+                        document.getElementById('judgingSystemsDiv').style.display = 'initial';
+                        if (!tabLoaded['judging systems']) {
+                            tabLoaded['judging systems'] = true;
+                        }
+                        break;
+                    case 'judgesTabA':
+                        document.getElementById('judgesDiv').style.display = 'initial';
+                        if (!tabLoaded['judges']) {
+                            initializeJudgesTab();
+                            tabLoaded['judges'] = true;
+                        }
+                        break;
+                    case 'competitorsTabA':
+                        document.getElementById('competitorsDiv').style.display = 'initial';
+                        if (!tabLoaded['competitors']) {
+                            initializeCompetitorsTab();
+                            tabLoaded['competitors'] = true;
+                        }
+                        break;
+                }
+            }
+            
+            //
+            // -- JUDGING SYSTEMS TAB SCRIPTS --
+            //
+            
+            // TODO: split the HTML element creation section from the initial data load sections
+            function initializeJudgingSystemsTab() {
+                
+            }
+            
+            function changeJudgingSystem(system) {
+                judgingSystem = system;
+                judgingSystemVariableName = judgingSystems[judgingSystem]['variableName'];
+                numCategories = judgingSystems[judgingSystem]['numCategories'];
+                categories = judgingSystems[judgingSystem]['categories'];
+                categoryAbbreviations = judgingSystems[judgingSystem]['categoryAbbreviations'];
+                
+                document.getElementById('judgingSystemDropDown').innerText = 'Judging System: ' + judgingSystem;
+                document.getElementById("loadingPlaceholder").innerText = 'Loading...'; // temporary placeholder while data loads
+                
+                if (!judgingSystems[judgingSystem]['loaded']) {
+                    console.log('Loading ' + judgingSystem + ' judging system...');
+                    const judgingSystemScript = document.createElement('script');
+                    judgingSystemScript.type = 'py';
+                    judgingSystemScript.textContent = `
+                        try:
+                            # access online hosted csv data
+                            # TODO: add to JSON a key to track whether data has been loaded already to avoid loading again
+                            df = globals()["${judgingSystems[judgingSystem]['dataframe']}"]
+                            variableName = '${judgingSystemVariableName}'
+                            
+                            # load to html table
+                            rawData_table = df.to_html(classes='table table-striped table-hover')
+                            document.getElementById('rawDataTable' + variableName).innerHTML = rawData_table
+                            
+                            numCategories = ${numCategories}
+                            categories = ${JSON.stringify(categories)}
+                            
+                            # calculate descriptive statistics
+                            categoriesString = str(numCategories)
+                            if numCategories > 1:
+                                categoriesString += ': ' + ', '.join(categories[:numCategories])
+                                # for i in range(1, numCategories + 1):
+                                #     category_var = locals().get(f'category{i}')
+                                #     categoriesString += str(category_var) + ', '
+                                # categoriesString = categoriesString[:-2]
+                            document.getElementById('categories' + variableName).innerText = categoriesString
+                            
+                            # TODO: date range
+                            
+                            document.getElementById('numEvents' + variableName).innerText = len(np.unique(df['event'].values))
+                            
+                            document.getElementById('numBattles' + variableName).innerText = len(df['r1j1over'].dropna()) # only count battles that have complete data, will need separate method for roundbyround and traditional
+                            
+                            document.getElementById('numRounds' + variableName).innerText = pd.to_numeric(df['battle rounds']).sum()
+                            
+                            document.getElementById('numSets' + variableName).innerText = (pd.to_numeric(df['battle rounds']) * pd.to_numeric(df['number of judges'])).sum(skipna=True)
+                            
+                            document.getElementById('numInputs' + variableName).innerText = pd.to_numeric(document.getElementById('numSets' + variableName).innerText) * numCategories
+                            
+                            # exclude NaN from count in case of blank rows
+                            competitors = np.unique(pd.concat([df['breaker 1 (red)'],df['breaker 2 (blue)']]).dropna().astype(str).values)
+                            document.getElementById('numCompetitors' + variableName).innerHTML = str(len(competitors)) + '<button id="openCloseCompetitorsButton' + variableName + '" class="btn btn-md" onclick="openCloseCompetitors(' + "'" + variableName + "'" + ');">v</button>'
+                            document.getElementById('competitorsList' + variableName).innerText = '\\n'.join(competitors)
+                            # TODO: clickable link to individual competitor data page
+                            
+                            # exclude NaN from count in case of blank cells
+                            judges = np.unique(pd.concat([df['judge 1 name'],df['judge 2 name'],df['judge 3 name'],df['judge 4 name'],df['judge 5 name'],df['judge 6 name'],df['judge 7 name'],df['judge 8 name'],df['judge 9 name']]).dropna().astype(str).values)
+                            document.getElementById('numJudges' + variableName).innerHTML = str(len(judges)) + '<button id="openCloseJudgesButton' + variableName + '" class="btn btn-md" onclick="openCloseJudges(' + "'" + variableName + "'" + ');">v</button>'
+                            document.getElementById('judgesList' + variableName).innerText = '\\n'.join(judges)
+                            # TODO: clickable link to individual judge data page
+                            
+                            df_RoundsJudges = pd.DataFrame(data = {
+                                '': ['total',
+                                     '1 round',
+                                     '2 rounds',
+                                     '3 rounds',
+                                     '4 rounds',
+                                     '5 rounds']})
+                            df_RoundsJudges['count'] = [
+                                pd.to_numeric(document.getElementById('numBattles' + variableName).innerText),
+                                (df['battle rounds'] == 1).sum(),
+                                (df['battle rounds'] == 2).sum(),
+                                (df['battle rounds'] == 3).sum(),
+                                (df['battle rounds'] == 4).sum(),
+                                (df['battle rounds'] == 5).sum()
+                            ]
+                            df_RoundsJudges['%'] = [
+                                '(100%)',
+                                '(' + str(round(100 * df_RoundsJudges['count'][1] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['count'][2] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['count'][3] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['count'][4] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['count'][5] / df_RoundsJudges['count'][0])) + '%)',
+                            ]
+                            df_RoundsJudges['3 judges'] = [
+                                (df['number of judges'] == 3).sum(),
+                                ((df['number of judges'] == 3) & (df['battle rounds'] == 1)).sum(),
+                                ((df['number of judges'] == 3) & (df['battle rounds'] == 2)).sum(),
+                                ((df['number of judges'] == 3) & (df['battle rounds'] == 3)).sum(),
+                                ((df['number of judges'] == 3) & (df['battle rounds'] == 4)).sum(),
+                                ((df['number of judges'] == 3) & (df['battle rounds'] == 5)).sum()
+                            ]
+                            df_RoundsJudges['3 judges %'] = [
+                                '(' + str(round(100 * df_RoundsJudges['3 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['3 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['3 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['3 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['3 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['3 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                            ]
+                            df_RoundsJudges['5 judges'] = [
+                                (df['number of judges'] == 5).sum(),
+                                ((df['number of judges'] == 5) & (df['battle rounds'] == 1)).sum(),
+                                ((df['number of judges'] == 5) & (df['battle rounds'] == 2)).sum(),
+                                ((df['number of judges'] == 5) & (df['battle rounds'] == 3)).sum(),
+                                ((df['number of judges'] == 5) & (df['battle rounds'] == 4)).sum(),
+                                ((df['number of judges'] == 5) & (df['battle rounds'] == 5)).sum()
+                            ]
+                            df_RoundsJudges['5 judges %'] = [
+                                '(' + str(round(100 * df_RoundsJudges['5 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['5 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['5 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['5 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['5 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['5 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                            ]
+                            df_RoundsJudges['7 judges'] = [
+                                (df['number of judges'] == 7).sum(),
+                                ((df['number of judges'] == 7) & (df['battle rounds'] == 1)).sum(),
+                                ((df['number of judges'] == 7) & (df['battle rounds'] == 2)).sum(),
+                                ((df['number of judges'] == 7) & (df['battle rounds'] == 3)).sum(),
+                                ((df['number of judges'] == 7) & (df['battle rounds'] == 4)).sum(),
+                                ((df['number of judges'] == 7) & (df['battle rounds'] == 5)).sum()
+                            ]
+                            df_RoundsJudges['7 judges %'] = [
+                                '(' + str(round(100 * df_RoundsJudges['7 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['7 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['7 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['7 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['7 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['7 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                            ]
+                            df_RoundsJudges['9 judges'] = [
+                                (df['number of judges'] == 9).sum(),
+                                ((df['number of judges'] == 9) & (df['battle rounds'] == 1)).sum(),
+                                ((df['number of judges'] == 9) & (df['battle rounds'] == 2)).sum(),
+                                ((df['number of judges'] == 9) & (df['battle rounds'] == 3)).sum(),
+                                ((df['number of judges'] == 9) & (df['battle rounds'] == 4)).sum(),
+                                ((df['number of judges'] == 9) & (df['battle rounds'] == 5)).sum()
+                            ]
+                            df_RoundsJudges['9 judges %'] = [
+                                '(' + str(round(100 * df_RoundsJudges['9 judges'][0] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['9 judges'][1] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['9 judges'][2] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['9 judges'][3] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['9 judges'][4] / df_RoundsJudges['count'][0])) + '%)',
+                                '(' + str(round(100 * df_RoundsJudges['9 judges'][5] / df_RoundsJudges['count'][0])) + '%)',
+                            ]
+                            df_RoundsJudges = df_RoundsJudges.rename(columns={
+                                '':'',
+                                '%':'%',
+                                '3 judges':'3 judges',
+                                '3 judges %':'',
+                                '5 judges':'5 judges',
+                                '5 judges %':'',
+                                '7 judges':'7 judges',
+                                '7 judges %':'',
+                                '9 judges':'9 judges',
+                                '9 judges %':'',
+                            })
+                            roundsJudges_table = df_RoundsJudges.to_html(classes='table table-striped table-hover')
+                            document.getElementById('roundsJudgesTable'  + variableName).innerHTML = roundsJudges_table
+                            
+                            window.toggleJudgingSystem('${judgingSystem}')
+                            
+                            document.getElementById('loadingPlaceholder').innerText = ''
+                            
+                            print('-- Loading complete --')
+
+                        except Exception as e:
+                            tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
+                            
+                            error_msg1 = 'Error: ' + str(e)
+                            error_msg2 = 'File: ' + str(tb_info.filename)
+                            error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
+                            
+                            document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
+                        `;
+                    document.querySelector('section.pyscript').appendChild(judgingSystemScript); // append script element to trigger PyScript code execution engine
+                    document.querySelector('section.pyscript').removeChild(judgingSystemScript);
+                }
+                else {
+                    toggleJudgingSystem(judgingSystem);
+                    document.getElementById("loadingPlaceholder").innerText = '';
+                }
+                
+                if (!judgingSystems[judgingSystem]['loaded']) {
+                    judgingSystems[judgingSystem]['loaded'] = true;
+                }
+            }
+            
+            function toggleJudgingSystem(system) {
+                for (var key in judgingSystems) {
+                    if (key == system) {
+                        document.getElementById('descriptiveStatistics' + judgingSystems[key]['variableName']).style.display = 'initial';
+                        document.getElementById('roundsJudgesTable' + judgingSystems[key]['variableName']).style.display = 'initial';
+                        document.getElementById('rawDataTable' + judgingSystems[key]['variableName']).style.display = 'initial';
+                    }
+                    else {
+                        document.getElementById('descriptiveStatistics' + judgingSystems[key]['variableName']).style.display = 'none';
+                        document.getElementById('roundsJudgesTable' + judgingSystems[key]['variableName']).style.display = 'none';
+                        document.getElementById('rawDataTable' + judgingSystems[key]['variableName']).style.display = 'none';
+                    }
+                }
+            }
+            
+            // load data
+            // TODO: split the data load sections of this from the HTML element creation sections
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('loadingPlaceholder').innerText = 'Loading...'; // temporary placeholder while data loads
+                
+                // duplicate HTML elements for each judging system
+                for (var key in judgingSystems) {
+                    if (key != 'Trivium') {
+                        var tempDiv = document.getElementById('descriptiveStatisticsTrivium').cloneNode(true);
+                        tempDiv.id = 'descriptiveStatistics' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#categoriesTrivium').id = 'categories' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#dateRangeTrivium').id = 'dateRange' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numEventsTrivium').id = 'numEvents' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numBattlesTrivium').id = 'numBattles' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numRoundsTrivium').id = 'numRounds' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numSetsTrivium').id = 'numSets' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numInputsTrivium').id = 'numInputs' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numCompetitorsTrivium').id = 'numCompetitors' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#competitorsListTrivium').id = 'competitorsList' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#numJudgesTrivium').id = 'numJudges' + judgingSystems[key]['variableName'];
+                        tempDiv.querySelector('#judgesListTrivium').id = 'judgesList' + judgingSystems[key]['variableName'];
+                        document.getElementById('descriptiveStatistics').appendChild(tempDiv);
+                    }
+                }
+                
+                console.log('Loading...');
+                console.log('........Python');
+                const loadDataScript = document.createElement('script');
+                loadDataScript.type = 'py';
+                loadDataScript.textContent = `
+                    print('........Libraries')
+                    
+                    from pyodide.http import open_url
+                    import pandas as pd
+                    import numpy as np
+                    from js import document, window
+                    import traceback
+                    
+                    try:
+                        print('........Trivium data')
+                        df_battlesTrivium = pd.read_csv(open_url('${TriviumData}'))
+                        print('........WDSF System data')
+                        df_battlesWDSFSystem = pd.read_csv(open_url('${WDSFSystemData}'))
+                        print('........Threefold data')
+                        df_battlesThreefold = pd.read_csv(open_url('${ThreefoldData}'))
+                        print('........Pseudo Threefold data')
+                        df_battlesPseudoThreefold = pd.read_csv(open_url('${PseudoThreefoldData}'))
+                        print('........Single Slider data')
+                        df_battlesSingleSlider = pd.read_csv(open_url('${SingleSliderData}'))
+                        
+                        print("-- Loading complete --")
+                        document.getElementById('judgingSystemInput').style.display = 'initial'
+                        document.getElementById('loadingPlaceholder').innerText = ''
+                        
+                    except Exception as e:
+                        tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
+                        
+                        error_msg1 = 'Error: ' + str(e)
+                        error_msg2 = 'File: ' + str(tb_info.filename)
+                        error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
+                        
+                        document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
+                    `;
+                document.querySelector('section.pyscript').appendChild(loadDataScript); // append script element to trigger PyScript code execution engine
+                // document.querySelector('section.pyscript').removeChild(loadDataScript); // for some reason having this one here prevents the script from having enough time to load data
+                
+                // Add click handlers to dropdown items
+                const dropdownItems = document.querySelectorAll('.dropdown-item');
+                dropdownItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const judgingSystem = this.getAttribute('data-judgingSystem');
+                        changeJudgingSystem(judgingSystem);
+                    });
+                });
+            });
+            
+            // TODO: update this function since each judging system gets its own div
+            function openCloseCompetitors(variableName) {
+                var openCloseCompetitorsButton = document.getElementById('openCloseCompetitorsButton' + variableName);
+                var competitorsList = document.getElementById('competitorsList'  + variableName);
+                if (openCloseCompetitorsButton.innerText == 'v') {
+                    openCloseCompetitorsButton.innerText = '^';
+                    competitorsList.style.display = 'initial';
+                }
+                else {
+                    openCloseCompetitorsButton.innerText = 'v';
+                    competitorsList.style.display = 'none';
+                }
+            }
+            
+            // TODO: update this function since each judging system gets its own div
+            function openCloseJudges(variableName) {
+                var openCloseJudgesButton = document.getElementById('openCloseJudgesButton' + variableName);
+                var judgesList = document.getElementById('judgesList' + variableName);
+                if (openCloseJudgesButton.innerText == 'v') {
+                    openCloseJudgesButton.innerText = '^';
+                    judgesList.style.display = 'initial';
+                }
+                else {
+                    openCloseJudgesButton.innerText = 'v';
+                    judgesList.style.display = 'none';
+                }
+            }
+            
+            // TODO: update this function since each judging system gets its own div
+            document.getElementById('rawDataTableDiv').addEventListener('click', function (event) {
+                const tr = event.target.closest('tr');
+                if (!tr) return; // click wasn't on a row
+                
+                // Get the table headers (assuming first row with th elements)
+                const table = tr.closest('table');
+                const headerRow = table.querySelector('thead tr') || table.querySelector('tr:first-child');
+                const headers = Array.from(headerRow.querySelectorAll('th, td')).map(h => h.textContent.trim());
+                
+                // Get row data
+                var rowArray = tr.textContent.split('\n');
+                for (var i = 0; i < rowArray.length; i++) {
+                    rowArray[i] = rowArray[i].trim();
+                    if (rowArray[i] == "NaN") rowArray[i] = '';
+                }
+                rowArray.splice(0,1);
+                
+                // Create JSON object mapping headers to row values
+                const rowJSON = {};
+                headers.forEach((header, index) => {
+                    if (rowArray[index]) {
+                        rowJSON[header] = rowArray[index];
+                    }
+                });
+                console.log(JSON.stringify(rowJSON, null, 2));
+                
+                // link to original data source
+                // create header row with event, stage, breakers, round count, vote count
+                // for (var i = 0; i < rowJSON['battle rounds']; i++) {
+                //     create a row for each round
+                //     for (var j = 0; j < rowJSON['number of judges']; j++) {
+                //         create a column for each judge
+                //         create a cell for overall score for judge
+                //         for (var k = 0; k < numCategories; k++) {
+                //             create a cell for each category
+                //         }
+                //     }
+                // }
+            });
+            
+            //
+            // -- JUDGES TAB SCRIPTS --
+            //
+            
+            // -- judge view --
+            // judge dropdown selector list
+            // compare to average median judge or to another specific judge
+            // total events judged, for each judging system
+            // total battles judged, for each judging system
+            // total rounds judged, for each judging system
+            // table battles judged rows number rounds columns number judges
+            // mean, median, stddev, min max score given for each category for each system
+            // rate of voting with majority for each judge ratio for each judging system
+            // rate of 0s (ties) given for each category for each system
+            
+            // TODO: replace list with table, add text input box for filter
+            // table columns: # battles (all, each judging system,)
+            function initializeJudgesTab() {
+                document.getElementById("loadingPlaceholder").innerText = 'Loading...'; // temporary placeholder while data loads
+                console.log('Loading judges...');
+                
+                const loadJudgesScript = document.createElement('script');
+                loadJudgesScript.type = 'py';
+                loadJudgesScript.textContent = `
+                    try:
+                        judges = np.unique(pd.concat([
+                            df_battlesTrivium['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
+                            df_battlesWDSFSystem['judge 1 name'],df_battlesWDSFSystem['judge 2 name'],df_battlesWDSFSystem['judge 3 name'],df_battlesWDSFSystem['judge 4 name'],df_battlesWDSFSystem['judge 5 name'],df_battlesWDSFSystem['judge 6 name'],df_battlesWDSFSystem['judge 7 name'],df_battlesWDSFSystem['judge 8 name'],df_battlesWDSFSystem['judge 9 name'],
+                            df_battlesThreefold['judge 1 name'],df_battlesThreefold['judge 2 name'],df_battlesThreefold['judge 3 name'],df_battlesThreefold['judge 4 name'],df_battlesThreefold['judge 5 name'],df_battlesThreefold['judge 6 name'],df_battlesThreefold['judge 7 name'],df_battlesThreefold['judge 8 name'],df_battlesThreefold['judge 9 name'],
+                            df_battlesPseudoThreefold['judge 1 name'],df_battlesPseudoThreefold['judge 2 name'],df_battlesPseudoThreefold['judge 3 name'],df_battlesPseudoThreefold['judge 4 name'],df_battlesPseudoThreefold['judge 5 name'],df_battlesPseudoThreefold['judge 6 name'],df_battlesPseudoThreefold['judge 7 name'],df_battlesPseudoThreefold['judge 8 name'],df_battlesPseudoThreefold['judge 9 name'],
+                            df_battlesSingleSlider['judge 1 name'],df_battlesSingleSlider['judge 2 name'],df_battlesSingleSlider['judge 3 name'],df_battlesSingleSlider['judge 4 name'],df_battlesSingleSlider['judge 5 name'],df_battlesSingleSlider['judge 6 name'],df_battlesSingleSlider['judge 7 name'],df_battlesSingleSlider['judge 8 name'],df_battlesSingleSlider['judge 9 name']
+                            ]).dropna().astype(str).values)
+                        document.getElementById('numJudgesAll').innerHTML = str(len(judges))
+                        document.getElementById('judgesListAll').innerText = '\\n'.join(judges)
+                        
+                        document.getElementById("loadingPlaceholder").innerText = '';
+                        print('-- Loading complete --')
+                    
+                    except Exception as e:
+                        tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
+                        
+                        error_msg1 = 'Error: ' + str(e)
+                        error_msg2 = 'File: ' + str(tb_info.filename)
+                        error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
+                        
+                        document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
+                `
+                document.querySelector('section.pyscript').appendChild(loadJudgesScript);
+                document.querySelector('section.pyscript').removeChild(loadJudgesScript);
+            }
+            
+            //
+            // -- COMPETITORS TAB SCRIPTS --
+            //
+            
+            // -- competitor view --
+            // single competitor view:
+            //     attributes? bboy / bgirl, country, etc.
+            //     competitor dropdown selector list
+            //     compare to average median competitor or to another specific competitor
+            //     total battles competed
+            //     total rounds competed
+            // matchup view:
+            // table rows and columns are individual competitors, cells are # battles (for each judge system), # wins for each matchup
+            //     filter for column competitor and row competitor
+            //     filter for judging system: checkboxes select multiple
+            //     create df with first column list of competitors
+            //     for each competitor in list of competitors, create column
+            //     in each cell, win # (%) - loss # (%)
+            //     click a cell -> display details
+            //     list of battles with links
+            //     table win - loss count broken down by num rounds num judges
+            //     round win loss count? votes received count?
+            //     breakdown by category for each judging system
+            
+            // TODO: replace list with table, add text input box for filter
+            // table columns: # battles (all, each judging system,)
+            function initializeCompetitorsTab() {
+                document.getElementById("loadingPlaceholder").innerText = 'Loading...'; // temporary placeholder while data loads
+                console.log('Loading competitors...');
+                
+                const loadCompetitorsScript = document.createElement('script');
+                loadCompetitorsScript.type = 'py';
+                loadCompetitorsScript.textContent = `
+                    try:
+                        competitors = np.unique(pd.concat([
+                            df_battlesTrivium['breaker 1 (red)'],df_battlesTrivium['breaker 2 (blue)'],
+                            df_battlesWDSFSystem['breaker 1 (red)'],df_battlesWDSFSystem['breaker 2 (blue)'],
+                            df_battlesThreefold['breaker 1 (red)'],df_battlesThreefold['breaker 2 (blue)'],
+                            df_battlesPseudoThreefold['breaker 1 (red)'],df_battlesPseudoThreefold['breaker 2 (blue)'],
+                            df_battlesSingleSlider['breaker 1 (red)'],df_battlesSingleSlider['breaker 2 (blue)']
+                            ]).dropna().astype(str).values)
+                        document.getElementById('numCompetitorsAll').innerHTML = str(len(competitors))
+                        document.getElementById('competitorsListAll').innerText = '\\n'.join(competitors)
+                        
+                        document.getElementById("loadingPlaceholder").innerText = '';
+                        print('-- Loading complete --')
+                        
+                    except Exception as e:
+                        tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
+                        
+                        error_msg1 = 'Error: ' + str(e)
+                        error_msg2 = 'File: ' + str(tb_info.filename)
+                        error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
+                        
+                        document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
+                `
+                document.querySelector('section.pyscript').appendChild(loadCompetitorsScript);
+                document.querySelector('section.pyscript').removeChild(loadCompetitorsScript);
+            }
+            
+            // -- dataset view --
+            // filters and search
+            // dataset table
+            // tab for overall stats and analytics for entire dataset, affected by filters
+            // tab for specific battle when row clicked
+            // button to filter analytics to entire jam containing battle?
+            
+            // <tr onclick='loadScoreDisplay();'> // when click row, display scores in table form like and8, also produce analytics for the battle
+        </script>
+    </body>
+</html>
