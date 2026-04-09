@@ -1,3 +1,24 @@
+<!--
+TO DO:
+- data
+    - update existing data
+        - add battle hyperlink to each row in data
+        - add date to each row in data
+        - add competitors and judges link to each row (to be able to map people using different names to same individual)
+    - scrape more recent data
+- content
+    - about the website and data description
+- visual design
+    - tables
+        - freeze column and row headers while scrolling
+        - column mouseover highlight
+- functionality
+    - scroll bar for judge dropdown menu
+    - load judge info upon clicking within dropdown menu
+- analyses
+    - zeros input by judges
+-->
+
 <!DOCTYPE html>
 <html>
     <!--
@@ -18,6 +39,10 @@
         <!-- Bootstrap 5.3 https://getbootstrap.com/docs/5.3/getting-started/introduction -->
         <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
+        <!-- for offline use:
+        <link href='bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+        <script src='bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
+        -->
         
         <!-- fonts -->
         <link rel='preconnect' href='https://fonts.googleapis.com'>
@@ -30,6 +55,20 @@
         <link rel="stylesheet" type="text/css" href="style.css"> -->
         <title>Competitive Breaking Data | Settle it in the Cypher</title>
         
+        <style>
+            body {
+                margin: 2vw;
+            }
+            /*
+            table {
+                position: relative;
+            }
+            th {
+                position: sticky;
+                top: 0;
+            }
+            */
+        </style>
     </head>
     <body>
         <!-- <div class="pageHeader">
@@ -67,22 +106,86 @@
                 <!-- <div>(i)</div> -->
                 
                 <!-- judging system selector -->
+                <!-- TODO: move this into filters, when have multiple judging systems selected only show some data and analysis tables -->
                 <div id='judgingSystemInput'>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="judgingSystemDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Judging System</button>
-                        <div class="dropdown-menu" aria-labelledby="judgingSystemDropdown">
-                            <a class="dropdown-item" data-judgingSystem="Trivium">Trivium</a>
-                            <a class="dropdown-item" data-judgingSystem="WDSF System">WDSF System</a>
-                            <a class="dropdown-item" data-judgingSystem="Threefold">Threefold</a>
-                            <a class="dropdown-item" data-judgingSystem="Pseudo Threefold">Pseudo Threefold</a>
-                            <a class="dropdown-item" data-judgingSystem="Single Slider">Single Slider</a>
-                            <!-- <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Round by Round</a>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="judgingSystemDropdownButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a Judging System:</button>
+                        <ul id='judgingSystemDropdownMenu' class="dropdown-menu" aria-labelledby="judgingSystemDropdownButton">
+                            <li><a class="dropdown-item" data-judgingSystem="Trivium">Trivium</a></li>
+                            <li><a class="dropdown-item" data-judgingSystem="WDSF System">WDSF System</a></li>
+                            <li><a class="dropdown-item" data-judgingSystem="Threefold">Threefold</a></li>
+                            <li><a class="dropdown-item" data-judgingSystem="Pseudo Threefold">Pseudo Threefold</a></li>
+                            <li><a class="dropdown-item" data-judgingSystem="Single Slider">Single Slider</a></li>
+                            <!-- <li><a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Round by Round</a></li>
                             <a class="dropdown-item" onclick='changeJudgingSystem(this.innerText);'>Traditional</a> -->
-                        </div>
+                        </ul>
                     </div>
                 </div>
                 
                 <!-- data filters: date, competitor, judge, etc. -->
+                <!-- TODO: dropdown checkbox combo and styling https://stackoverflow.com/questions/25016848/bootstrap-putting-checkbox-in-a-dropdown -->
+                <!-- TODO: round win ratio? vote count ratio? category > or < or = a value? -->
+                <!-- TODO: figure out where to insert logic AND OR between filters -->
+                <div id='judgingSystemFilters' style='display: none;'>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='judgingsystemFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Judging System</button>
+                        <div class='dropdown-menu' aria-labeledby='judgingsystemFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='eventFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Event</button>
+                        <div class='dropdown-menu' aria-labeledby='eventFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='stageFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Stage</button>
+                        <div class='dropdown-menu' aria-labeledby='stageFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='stageFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Stage</button>
+                        <div class='dropdown-menu' aria-labeledby='stageFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='breakerFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Breaker</button>
+                        <div class='dropdown-menu' aria-labeledby='breakerFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='numroundsFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'># Rounds</button>
+                        <div class='dropdown-menu' aria-labeledby='numroundsFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='numroundsFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'># Judges</button>
+                        <div class='dropdown-menu' aria-labeledby='numroundsFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <div class='dropdown'>
+                        <button class='btn dropdown-toggle' type='button' id='judgeFilterDropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Judge</button>
+                        <div class='dropdown-menu' aria-labeledby='judgeFilterDropdown'>
+                            <a class='dropdown-item'>temp item a</a>
+                            <a class='dropdown-item'>temp item b</a>
+                        </div>
+                    </div>
+                    <!-- button to apply filters -->
+                    <!-- button to clear / reset filters -->
+                </div>
                 
                 <!-- descriptive statistics for the judging system -->
                 <div id='descriptiveStatisticsTableDiv'></div>
@@ -99,6 +202,14 @@
                 <div id='battleDiv'></div>
             </div>
             <div id='judgesDiv' class='mainDiv' style='display: none;'>
+                <div id='judgesInput'>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="judgeDropdownButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a Judge:</button>
+                        <ul id='judgeDropdownMenu' class="dropdown-menu" aria-labelledby="judgeDropdownButton">
+                            <li class='px-3 pb-2'><input type='text' class='form-control' id='dropdownSearch' placeholder='Type to filter...' oninput='filterDropdown(this);'></li>
+                        </ul>
+                    </div>
+                </div>
                 <div id='allJudgesDiv'>
                     <table>
                         <tr>
@@ -114,6 +225,13 @@
                 <div id='singleJudgeDiv'></div>
             </div>
             <div id='competitorsDiv' class='mainDiv' style='display: none;'>
+                <div id='competitorsInput'>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="competitorDropdownButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a Competitor:</button>
+                        <ul id='competitorDropdownMenu' class="dropdown-menu" aria-labelledby="competitorDropdownButton">
+                        </ul>
+                    </div>
+                </div>
                 <div id='allCompetitorsDiv'>
                     <table>
                         <tr>
@@ -151,6 +269,8 @@
                 'judges' : false,
                 'competitors' : false
             }
+            
+            var judgingSystem = '';
             
             // directly access live Google Sheet seems too complex, so just export Sheet to csv and include with repository
             // PyScript can't access local files, so have to upload and access online link            
@@ -198,7 +318,7 @@
                 'Single Slider' : {
                     // 'link' : 'https://raw.githubusercontent.com/settleitinthecypher/settleitinthecypher.github.io/refs/heads/main/data%2Banalyses/webscrape/csv/Webscraping%20-%20Battles%20%5Band8%20Single%20Slider%5D%20(Raw).csv',
                     'variableName' : 'SingleSlider',
-                    'numCategories' : '1',
+                    'numCategories' : '0',
                     'categories' : [],
                     'categoryAbbreviations' : [],
                     'dataframe' : 'df_battlesSingleSlider',
@@ -302,7 +422,82 @@
             //    return apiCallObj;
             // };
             
+            var judges = {
+                // 'judgeName': {
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'competitors': '',
+                //         ???
+                //     },
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'competitors': '',
+                //         ???
+                //     }
+                // },
+                // 'judgeName': {
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'competitors': '',
+                //         ???
+                //     },
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'competitors': '',
+                //         ???
+                //     }
+                // },
+            };
+            
+            var competitors = {
+                // 'competitorName': {
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'battled against': '',
+                //         'judged by': '',
+                //         ???
+                //     },
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'battled against': '',
+                //         'judged by': '',
+                //         ???
+                //     }
+                // },
+                // 'competitorName': {
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'battled against': '',
+                //         'judged by': '',
+                //         ???
+                //     },
+                //     'judgingSystem': {
+                //         'events': '',
+                //         'battles': '',
+                //         'rounds': '',
+                //         'battled against': '',
+                //         'judged by': '',
+                //         ???
+                //     }
+                // },
+            };
+            
             // TODO: move these functions to appropriate spots
+            // TODO: hover highlight columns as well https://codepen.io/totec-sakamoto/pen/xxyRaOK?anon=true&view=pen
             function generateTableFromArray(array, numHeaderRows, numHeaderColumns) {
                 console.log('** generateTableFromArray **');
                 var table = document.createElement('table');
@@ -410,17 +605,17 @@
                         break;
                     case 'judgesTabA':
                         document.getElementById('judgesDiv').style.display = 'initial';
-                        // if (!tabLoaded['judges']) {
-                        //     initializeJudgesTab();
-                        //     tabLoaded['judges'] = true;
-                        // }
+                        if (!tabLoaded['judges']) {
+                            initializeJudgesTab();
+                            tabLoaded['judges'] = true;
+                        }
                         break;
                     case 'competitorsTabA':
                         document.getElementById('competitorsDiv').style.display = 'initial';
-                        // if (!tabLoaded['competitors']) {
-                        //     initializeCompetitorsTab();
-                        //     tabLoaded['competitors'] = true;
-                        // }
+                        if (!tabLoaded['competitors']) {
+                            initializeCompetitorsTab();
+                            tabLoaded['competitors'] = true;
+                        }
                         break;
                 }
                 toggleLoadingPlaceholderDiv();
@@ -454,7 +649,8 @@
                         document.getElementById('scoreStatisticsTable' + judgingSystems[key]['variableName']).style.display = 'none';
                     }
                 }
-                document.getElementById('judgingSystemDropdown').innerText = 'Judging System: ' + system;
+                document.getElementById('judgingSystemDropdownButton').innerText = 'Judging System: ' + system;
+                judgingSystem = system;
                 
                 toggleLoadingPlaceholderDiv();
             }
@@ -503,6 +699,10 @@
                         tempDiv.style = 'display: none;';
                         tempDiv.appendChild(generateTableFromArray(judgingSystems[key]['arrays']['scoreStatistics'], 1, 1));
                         document.getElementById('scoreStatisticsTableDiv').appendChild(tempDiv);
+                        
+                        // TODO: judge vote ratios for overall and each category
+                        
+                        // TODO: create an array of arrays where each row is a score input set
                     }
                 } catch (e) {
                     console.error(e);
@@ -539,33 +739,33 @@
                 var numBattles = 0;
                 var numRounds = 0;
                 var numJudgeInputSets = 0;
-                var competitors = [];
-                var judges = [];
+                var uniqueCompetitors = [];
+                var uniqueJudges = [];
                 for (var i = 1; i < filteredArray.length; i++) {
                     events.push(filteredArray[i][filteredArray[0].indexOf('event')]);
                     numBattles++;
                     numRounds += parseInt(filteredArray[i][filteredArray[0].indexOf('battle rounds')]);
                     numJudgeInputSets += parseInt(filteredArray[i][filteredArray[0].indexOf('battle rounds')] * filteredArray[i][filteredArray[0].indexOf('number of judges')]);
                     
-                    competitors.push(filteredArray[i][filteredArray[0].indexOf('breaker 1 (red)')]);
-                    competitors.push(filteredArray[i][filteredArray[0].indexOf('breaker 2 (blue)')]);
+                    uniqueCompetitors.push(filteredArray[i][filteredArray[0].indexOf('breaker 1 (red)')]);
+                    uniqueCompetitors.push(filteredArray[i][filteredArray[0].indexOf('breaker 2 (blue)')]);
                     
                     var judge;
                     for (var j = 1; j <= 9; j++) {
                         judge = filteredArray[i][filteredArray[0].indexOf('judge ' + j + ' name')];
                         if (judge) {
-                            judges.push(judge);
+                            uniqueJudges.push(judge);
                         }
                     }
                 }
                 events = [...new Set(events)];
                 var numEvents = events.length;
                 
-                competitors = [...new Set(competitors)].sort();
-                var numCompetitors = competitors.length;
+                uniqueCompetitors = [...new Set(uniqueCompetitors)].sort();
+                var numCompetitors = uniqueCompetitors.length;
                 
-                judges = [...new Set(judges)].sort();
-                var numJudges = judges.length;
+                uniqueJudges = [...new Set(uniqueJudges)].sort();
+                var numJudges = uniqueJudges.length;
                 
                 var descriptiveStatisticsArray = [
                     ['Categories:', categoriesString],
@@ -788,6 +988,8 @@
                     ['Standard Deviation'],
                 ];
                 
+                // over [],
+                // one row per cat []
                 var categoryArrays = [[]];
                 for (var y = 1; y < filteredArray.length; y++) {
                     for (var x = 0; x < filteredArray[0].length; x++) {
@@ -831,7 +1033,7 @@
                     mean = categoryArrays[i].reduce((a, b) => a + b, 0) / categoryArrays[i].length;
                     scoreStatisticsArray[4].push(mean.toFixed(2));
                     
-                    // std dev
+                    // std dev - TODO: is this population or sample? does it matter which one we use?
                     scoreStatisticsArray[5].push((categoryArrays[i].reduce((sum, x) => sum + (x - mean) ** 2, 0) / (categoryArrays[i].length - 1)).toFixed(2));
                 }
                 
@@ -839,41 +1041,187 @@
                 
                 // # zeroes?
                 
-                // bar graph?
+                // TODO: bar graph?
                 
                 return scoreStatisticsArray;
             }
             
             // judge vote splits
-            // function () {
-            // }
+            // 
+            // 3 judges | 3:0:0
+            function calculateJudgeVoteSplits(judgingSystemsKey) {
+                var judgeVoteSplitsArray = [];
+                
+                return judgeVoteSplitsArray;
+            }
             
-            // TODO: update this function since each judging system gets its own div
+            // category contribution
+            //           | one col per category
+            // benchmark |
+            // mean      |
+            // std dev   |
+            // max       |
+            // med       |
+            // min       |
+            function calculateCategoryContribution(judgingSystemsKey) {
+                console.log('** calculateCategoryContribution **');
+                console.log('........processing ' + judgingSystemsKey['variableName'] + ' category contribution');
+                var filteredArray = judgingSystemsKey['arrays']['filtered'];
+                
+                // create score input sets array of arrays
+                // over | one col per cat | abs val one col per cat | sum abs val | % one col per cat
+                
+                // don't need overall column for this specific application
+                // var scoreInputSetsArray = [['Overall']];
+                // for (var y = 1; y < filteredArray.length; y++) {
+                //     for (var x = 0; x < filteredArray[0].length; x++) {
+                //         if (filteredArray[0][x].includes('over') && filteredArray[y][x]) {
+                //             scoreInputSetsArray[y].push(Math.abs(parseFloat(filteredArray[y][x]))); // absolute value because directionality not relevant for this analysis (or is it? TODO: check whether min med max differs between scoring for red versus scoring for blue)
+                //         }
+                //     }
+                // }
+                
+                var scoreInputSetsArray = [[]];
+                for (var i = 0; i < judgingSystemsKey['categoryAbbreviations'].length; i++) {
+                    scoreInputSetsArray[0].push(judgingSystemsKey['categories'][i]);
+                    for (var y = 1; y < filteredArray.length; y++) {
+                        for (var x = 0; x  < filteredArray[0].length; x++) {
+                            if (filteredArray[0][x].includes(judgingSystemsKey['categoryAbbreviations'][i]) && filteredArray[y][x]) {
+                                scoreInputSetsArray[y].push(Math.abs(parseFloat(filteredArray[y][x]))); // absolute value because directionality not relevant for this analysis (or is it? TODO: check whether min med max differs between scoring for red versus scoring for blue)
+                                // can't just be [y].push because multiple input sets per y row of filtered array
+                            }   
+                        }
+                        // scoreInputSetsArray[y].push
+                        // column for sum
+                        // columns for %s
+                    }
+                }
+                
+                var categoryContributionArray = [
+                    [''],
+                    ['benchmark'],
+                    ['mean'],
+                    ['standard deviation'],
+                    ['maximum'],
+                    ['median'],
+                    ['minimum']];
+                for (var i = 0; i < judgingSystemsKey['categories'].length; i++) {
+                    categoryContributionArray[0].push(judgingSystemsKey['categories'][i]);
+                }
+                console.log(categoryContributionArray);
+                return categoryContributionArray;
+            }
+            
+            // TODO: create elements to display battle stats graphically
             document.getElementById('rawDataTableDiv').addEventListener('click', function (event) {
+                console.log('** no function name for generating battle graph from row **')
                 const tr = event.target.closest('tr');
-                if (!tr) return; // click wasn't on a row
+                if ((!tr) || tr.getElementsByTagName('th')[0].innerText == 'event') return; // click wasn't on a row
                 
                 // Get the table headers (assuming first row with th elements)
                 const table = tr.closest('table');
                 const headerRow = table.querySelector('thead tr') || table.querySelector('tr:first-child');
-                const headers = Array.from(headerRow.querySelectorAll('th, td')).map(h => h.textContent.trim());
+                const headerArray = Array.from(headerRow.querySelectorAll('th, td')).map(h => h.textContent.trim());
                 
                 // Get row data
-                var rowArray = tr.textContent.split('\n');
-                for (var i = 0; i < rowArray.length; i++) {
-                    rowArray[i] = rowArray[i].trim();
-                    if (rowArray[i] == "NaN") rowArray[i] = '';
+                var cells  = tr.children;
+                var rowArray = [];
+                for (var i = 0; i < headerArray.length; i++) {
+                    rowArray.push(cells[i].innerText);
                 }
-                rowArray.splice(0,1);
                 
-                // Create JSON object mapping headers to row values
-                const rowJSON = {};
-                headers.forEach((header, index) => {
-                    if (rowArray[index]) {
-                        rowJSON[header] = rowArray[index];
+                // remove blanks
+                for (var i = headerArray.length - 1; i > 0; i--) {
+                    if (rowArray[i] == '') {
+                        rowArray.splice(i, 1);
+                        headerArray.splice(i, 1);
                     }
-                });
-                console.log(JSON.stringify(rowJSON, null, 2));
+                }
+                
+                var clickedRow = '';
+                for (var i = 0; i < headerArray.length; i++) {
+                    clickedRow += headerArray[i] + ': ' + rowArray[i] + '\n';
+                }
+                
+                // TODO: battle summary table
+                // round wins ratio
+                // judge overall votes ratio
+                // judge per category votes ratio
+                // per round: judge vote ratio for overall and each category
+                
+                //         |              | Judge 1   | Judge 2   | Judge 3   |
+                // Round 1 | Overall      | 3.3 |     | 2   |     |     | 1   |
+                //         | Physical     | 5   |     | 2   |     | 3   |     |
+                //         | Artistic     |     | 2   |     |     |     |     |
+                //         | Interpretive | 0.3 |     |     |     |     | 2   |
+                // Round 2 | Overall      | 3.3 |     | 2   |     |     | 1   |
+                //         | Physical     | 5   |     | 2   |     | 3   |     |
+                //         | Artistic     |     | 2   |     |     |     |     |
+                //         | Interpretive | 0.3 |     |     |     |     | 2   |
+                
+                var numRounds = parseInt(rowArray[headerArray.indexOf('battle rounds')]);
+                var numJudges = parseInt(rowArray[headerArray.indexOf('number of judges')]);
+                var numCategories = parseInt(judgingSystems[judgingSystem]['numCategories']);
+                console.log('rounds: ' + numRounds);
+                console.log('judges: ' + numJudges);
+                console.log('categories: ' + numCategories);
+                
+                var battleDiv = document.getElementById('battleDiv');
+                battleDiv.innerHTML = '';
+                
+                var battleInfoDiv = document.createElement('div');
+                battleInfoDiv.innerHTML = 'Event: ' + rowArray[headerArray.indexOf('event')] + '<br>';
+                battleInfoDiv.innerHTML += 'Stage: ' + rowArray[headerArray.indexOf('stage')] + '<br>';
+                battleInfoDiv.innerHTML += rowArray[headerArray.indexOf('breaker 1 (red)')] + ' vs ' + rowArray[headerArray.indexOf('breaker 2 (blue)')];
+                battleDiv.appendChild(battleInfoDiv);
+                
+                var battleScoresArray = [['','']];
+                for (var j = 0; j < numJudges; j++) {
+                    battleScoresArray[0].push(rowArray[headerArray.indexOf('judge 1 name') + j]);
+                    battleScoresArray[0].push('');
+                }
+                
+                var c = 0;
+                var score;
+                for (var r = 0; r < numRounds; r++) {
+                    for (var j = 0; j < numJudges; j++) {
+                        c = 0;
+                        if (j == 0) {
+                            battleScoresArray.push([]);
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push('Round ' + (r + 1));
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push('Overall');
+                        }
+                        score = parseFloat(rowArray[headerArray.indexOf('r' + (r + 1) + 'j' + (j + 1) + 'over')]);
+                        if (score < 0) {
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push(Math.abs(score));
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push('');
+                        } else if (score > 0) {
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push('');
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push(Math.abs(score));
+                        } else {
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push('');
+                            battleScoresArray[(numCategories + 1) * r + c + 1].push('');
+                        }
+                        for (c = 0; c < numCategories; c++) {
+                            if (j == 0) {
+                                battleScoresArray.push(['']);
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push(judgingSystems[judgingSystem]['categories'][c]);
+                            }
+                            score = parseFloat(rowArray[headerArray.indexOf('r' + (r + 1) + 'j' + (j + 1) + judgingSystems[judgingSystem]['categoryAbbreviations'][c])]);
+                            if (score < 0) {
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push(Math.abs(score));
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push('');
+                            } else if (score > 0) {
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push('');
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push(Math.abs(score));
+                            } else {
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push('');
+                                battleScoresArray[(numCategories + 1) * r + c + 2].push('');
+                            }
+                        }
+                    }
+                }
+                battleDiv.appendChild(generateTableFromArray(battleScoresArray, 1, 2));
                 
                 // link to original data source
                 // create header row with event, stage, breakers, round count, vote count
@@ -904,45 +1252,214 @@
             // rate of voting with majority for each judge ratio for each judging system
             // rate of 0s (ties) given for each category for each system
             
-            // TODO: replace list with table, add text input box for filter
-            // table columns: # battles (all, each judging system,)
-            // function initializeJudgesTab() {
-            //     document.getElementById("loadingPlaceholder").innerText = 'Loading...'; // temporary placeholder while data loads
-            //     console.log('Loading judges...');
-            //     
-            //     const loadJudgesScript = document.createElement('script');
-            //     loadJudgesScript.type = 'py';
-            //     loadJudgesScript.textContent = `
-            //         try:
-            //             judges = np.unique(pd.concat([
-            //                 df_battlesTrivium['judge 1 name'],df_battlesTrivium['judge 2 name'],df_battlesTrivium['judge 3 name'],df_battlesTrivium['judge 4 name'],df_battlesTrivium['judge 5 name'],df_battlesTrivium['judge 6 name'],df_battlesTrivium['judge 7 name'],df_battlesTrivium['judge 8 name'],df_battlesTrivium['judge 9 name'],
-            //                 df_battlesWDSFSystem['judge 1 name'],df_battlesWDSFSystem['judge 2 name'],df_battlesWDSFSystem['judge 3 name'],df_battlesWDSFSystem['judge 4 name'],df_battlesWDSFSystem['judge 5 name'],df_battlesWDSFSystem['judge 6 name'],df_battlesWDSFSystem['judge 7 name'],df_battlesWDSFSystem['judge 8 name'],df_battlesWDSFSystem['judge 9 name'],
-            //                 df_battlesThreefold['judge 1 name'],df_battlesThreefold['judge 2 name'],df_battlesThreefold['judge 3 name'],df_battlesThreefold['judge 4 name'],df_battlesThreefold['judge 5 name'],df_battlesThreefold['judge 6 name'],df_battlesThreefold['judge 7 name'],df_battlesThreefold['judge 8 name'],df_battlesThreefold['judge 9 name'],
-            //                 df_battlesPseudoThreefold['judge 1 name'],df_battlesPseudoThreefold['judge 2 name'],df_battlesPseudoThreefold['judge 3 name'],df_battlesPseudoThreefold['judge 4 name'],df_battlesPseudoThreefold['judge 5 name'],df_battlesPseudoThreefold['judge 6 name'],df_battlesPseudoThreefold['judge 7 name'],df_battlesPseudoThreefold['judge 8 name'],df_battlesPseudoThreefold['judge 9 name'],
-            //                 df_battlesSingleSlider['judge 1 name'],df_battlesSingleSlider['judge 2 name'],df_battlesSingleSlider['judge 3 name'],df_battlesSingleSlider['judge 4 name'],df_battlesSingleSlider['judge 5 name'],df_battlesSingleSlider['judge 6 name'],df_battlesSingleSlider['judge 7 name'],df_battlesSingleSlider['judge 8 name'],df_battlesSingleSlider['judge 9 name']
-            //                 ]).dropna().astype(str).values)
-            //             document.getElementById('numJudgesAll').innerHTML = str(len(judges))
-            //             document.getElementById('judgesListAll').innerText = '\\n'.join(judges)
-            //             
-            //             document.getElementById("loadingPlaceholder").innerText = '';
-            //             print('-- Loading complete --')
-            //         
-            //         except Exception as e:
-            //             tb_info = traceback.extract_tb(e.__traceback__)[-1]  # Last frame (where error occurred)
-            //             
-            //             error_msg1 = 'Error: ' + str(e)
-            //             error_msg2 = 'File: ' + str(tb_info.filename)
-            //             error_msg3 = 'Line ' + str(tb_info.lineno) + ': ' + str(tb_info.line.strip())
-            //             
-            //             document.getElementById('loadingPlaceholder').innerHTML = '<p>' + error_msg1 + '</p><p>' + error_msg2 + '</p><p>' + error_msg3 + '</p>'
-            //     `
-            //     document.querySelector('section.pyscript').appendChild(loadJudgesScript);
-            //     document.querySelector('section.pyscript').removeChild(loadJudgesScript);
-            // }
+            // run on first switch to judges tab to create and populate elements
+            function initializeJudgesTab() {
+                var judgeListTemp = getJudgesList();
+                var judgeDropdownMenu = document.getElementById('judgeDropdownMenu');
+                var tempLi;
+                var tempA;
+                for (var j = 0; j < judgeListTemp.length; j++) {
+                    tempLi = document.createElement('li');
+                    tempLi.innerHTML = '<a class="dropdown-item" onclick="loadJudgeData(this.innerText)">' + judgeListTemp[j] + '</a>';
+                    judgeDropdownMenu.appendChild(tempLi);
+                }
+                // document.getElementById('allJudgesDiv').appendChild(generateTableFromArray(getJudgesList(),0,0));
+            }
+            
+            // create array of unique judges
+            function getJudgesList() {
+                var allJudgesList = [];
+                var judgingSystemJudgesList;
+                var filteredArray;
+                var judgeIndex;
+                for (var key in judgingSystems) {
+                    judgingSystemJudgesList = [];
+                    filteredArray = judgingSystems[key]['arrays']['filtered'];
+                    judgeIndex = filteredArray[0].indexOf('judge 1 name');
+                    for (var y = 1; y < filteredArray.length; y++) {
+                        for (var j = 0; j < 9; j++) {
+                            if (filteredArray[y][judgeIndex + j] == '') {
+                                break;
+                            }
+                            judgingSystemJudgesList.push(filteredArray[y][judgeIndex + j]);
+                            allJudgesList.push(filteredArray[y][judgeIndex + j]);
+                        }
+                    }
+                    judgingSystems[key]['arrays']['judges'] = [...new Set(judgingSystemJudgesList)].sort();
+                    
+                    console.log([...new Set(judgingSystemJudgesList)].sort());
+                }
+                allJudgesList = [...new Set(allJudgesList)].sort();
+                var counter;
+                var judgeBattles;
+                for (var j = 0; j < allJudgesList.length; j++) {
+                    counter = 0;
+                    judges[allJudgesList[j]] = {};
+                    judgeBattles = getBattlesJudged(allJudgesList[j]);
+                    for (var key in judgingSystems) {
+                        judges[allJudgesList[j]][Object.keys(judgingSystems)[counter]] = {
+                            'battles': judgeBattles[Object.keys(judgingSystems)[counter]]
+                        };
+                        counter++;
+                    }
+                }
+                console.log(judges);
+                console.log(allJudgesList);
+                return allJudgesList;
+            }
+            
+            // load data for judge clicked in dropdown menu
+            function loadJudgeData(judge) {
+                console.log('** loadJudgeData **');
+                console.log(judge);
+                document.getElementById('judgeDropdownButton').innerText = 'Judge: ' + judge;
+                
+                // TODO:
+                // 1. filter a judging system's data to only battles judged by selected judge
+                // 2. genericize previously created analysis functions to be usable here
+                
+                // link to and8 profile
+                // link to wdsf profile
+                
+                //             | total | trivium | wdsf | threefold | pseudo | single slider
+                // events      |
+                // battles     |
+                // rounds      |
+                // input sets  |
+                // inputs      |
+                // competitors |
+                
+                // separate by judging system?
+                //          | 3 judges | 5 judges | 7 judges | 9 judges
+                // 1 round  |
+                // 2 rounds |
+                // 3 rounds |
+                // 4 rounds |
+                // 5 rounds |
+                
+                // trivium | tech | vari | perf | musi | crea | pers
+                // max     |
+                // median  |
+                // min     |
+                // mean    |
+                // std dev |
+            }
+            
+            // filter dropdown list of individuals according to text input field
+            function filterDropdown(searchInput) {
+                console.log('** filterDropdown **');
+                var menu = searchInput.closest('.dropdown-menu');
+                var items = menu.querySelectorAll('.dropdown-item');
+                var filter = searchInput.value.toLowerCase();
+                console.log('filtering for ' + filter);
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    const match = text.indexOf(filter) > -1;
+                    item.parentElement.style.display = match ? '' : 'none';
+                });
+            }
+            
+            // create array of arrays containing list of battles judged by someone
+            function getBattlesJudged(judgeName) {
+                var battlesJudgedArray = {};
+                var battlesJudgedArrayIndex = 0;
+                var filteredArray;
+                var judgeIndex;
+                for (var key in judgingSystems) {
+                    battlesJudgedArray[Object.keys(judgingSystems)[battlesJudgedArrayIndex]] = [];
+                    filteredArray = judgingSystems[key]['arrays']['filtered'];
+                    judgeIndex = filteredArray[0].indexOf('judge 1 name');
+                    for (var y = 1; y < filteredArray.length; y++) {
+                        for (var j = 0; j < 9; j++) {
+                            if (filteredArray[y][judgeIndex + j] == judgeName) {
+                                battlesJudgedArray[Object.keys(judgingSystems)[battlesJudgedArrayIndex]].push(y);
+                                break;
+                            }
+                        }
+                    }
+                    battlesJudgedArrayIndex++;
+                }
+                return battlesJudgedArray;
+            }
             
             //
             // -- COMPETITORS TAB SCRIPTS --
             //
+            
+            // run on first switch to competitors tab to create and populate elements
+            function initializeCompetitorsTab() {
+                var competitorListTemp = getCompetitorsList();
+                var competitorDropdownMenu = document.getElementById('competitorDropdownMenu');
+                var tempA;
+                for (var j = 0; j < competitorListTemp.length; j++) {
+                    tempA = document.createElement('a');
+                    tempA.classList.add('dropdown-item');
+                    tempA.innerText = competitorListTemp[j];
+                    competitorDropdownMenu.appendChild(tempA);
+                }
+                // document.getElementById('allCompetitorsDiv').appendChild(generateTableFromArray(getCompetitorsList(),0,0));
+            }
+            
+            // create array of unique competitors 
+            function getCompetitorsList() {
+                var allCompetitorsList = [];
+                var judgingSystemCompetitorsList;
+                var filteredArray;
+                var competitorIndex;
+                for (var key in judgingSystems) {
+                    judgingSystemCompetitorsList = [];
+                    filteredArray = judgingSystems[key]['arrays']['filtered'];
+                    competitorIndex = filteredArray[0].indexOf('breaker 1 (red)');
+                    for (var y = 1; y < filteredArray.length; y++) {
+                        judgingSystemCompetitorsList.push(filteredArray[y][competitorIndex]);
+                        judgingSystemCompetitorsList.push(filteredArray[y][competitorIndex + 1]);
+                        allCompetitorsList.push(filteredArray[y][competitorIndex]);
+                        allCompetitorsList.push(filteredArray[y][competitorIndex + 1]);
+                    }
+                    judgingSystems[key]['arrays']['competitors'] = [...new Set(judgingSystemCompetitorsList)].sort();
+                    console.log([...new Set(judgingSystemCompetitorsList)].sort());
+                }
+                allCompetitorsList = [...new Set(allCompetitorsList)].sort();
+                var counter;
+                var competitorBattles;
+                for (var c = 0; c < allCompetitorsList.length; c++) {
+                    counter = 0;
+                    competitors[allCompetitorsList[c]] = {};
+                    competitorBattles = getBattlesCompeted(allCompetitorsList[c]);
+                    for (var key in judgingSystems) {
+                        competitors[allCompetitorsList[c]][Object.keys(judgingSystems)[counter]] = {
+                            'battles': competitorBattles[Object.keys(judgingSystems)[counter]]
+                        };
+                        counter++;
+                    }
+                }
+                console.log(competitors);
+                console.log(allCompetitorsList);
+                return allCompetitorsList;
+            }
+            
+            // create array of arrays containing list of battles competed in by someone
+            function getBattlesCompeted(competitorName) {
+                var battlesCompetedArray = {};
+                var battlesCompetedArrayIndex = 0;
+                var filteredArray;
+                var competitorIndex;
+                for (var key in judgingSystems) {
+                    battlesCompetedArray[Object.keys(judgingSystems)[battlesCompetedArrayIndex]] = [];
+                    filteredArray = judgingSystems[key]['arrays']['filtered'];
+                    competitorIndex = filteredArray[0].indexOf('breaker 1 (red)');                    
+                    for (var y = 1; y < filteredArray.length; y++) {
+                        for (var c = 0; c < 2; c++) {
+                            if (filteredArray[y][competitorIndex + c] == competitorName) {
+                                battlesCompetedArray[Object.keys(judgingSystems)[battlesCompetedArrayIndex]].push(y);
+                                break;
+                            }
+                        }
+                    }
+                    battlesCompetedArrayIndex++;
+                }
+                return battlesCompetedArray;
+            }
             
             // -- competitor view --
             // single competitor view:

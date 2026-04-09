@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Prelims Analysis</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        
+        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous'>
+        <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous'></script>
+    
+        <style>
+            .mainDiv {
+                padding: 1vh 2vw;
+            }
+            
+            .standardDiv {
+                padding: 1vh 0;
+            }
+            
+            textarea {
+                height: 175px;
+                font-family: 'Lucida Console', 'Courier New', monospace;
+            }
+        </style>
+    </head>
+    <body onload='loadPage();'>
+        <main>
+            
+            <!-- 
+            Steps for Use:
+            1. go to Prelims page of event
+            2. Order by: Assigned Number
+            3. run script to expand all rows
+            4. run script to produce CSV
+            -->
+            
+            <div id='inputsDiv' class='mainDiv'>
+                <div class='standardDiv dropdown'>
+                    <button id="eventDropdownButton" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select an Event:</button>
+                    <ul id='eventDropdownMenu' class="dropdown-menu" aria-labelledby="eventDropdownButton">
+                        <li id='dropdownSearch' class='px-3 pb-2'><input type='text' class='form-control' placeholder='Type to filter...' oninput='filterDropdown(this);'></li>
+                </div>
+                
+                <div class='standardDiv'>
+                    <div class='standardDiv'>
+                        or manually input data:
+                        <button class="expandButton btn btn-sm" onclick="expandCollapseSection(this, this.parentElement.parentElement);">▼</button>
+                    </div>
+                    <div class='collapse'>
+                        <textarea id='CSVDataTextarea' class='form-control'></textarea>
+                    </div>
+                    <div class='standardDiv collapse'>
+                        <button id='runAnalysisButton' class='btn btn-primary' type='button' onclick='runAnalysis();'>Run Analysis</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id='outputsDiv' class='mainDiv'>
+                <div id='linksDiv' class='standardDiv'></div>
+                <div id='dataTableDiv' class='standardDiv'></div>
+                <div id='descriptiveStatsDiv' class='standardDiv'></div>
+                <div id='graphsDiv' class='standardDiv'></div> <!-- TODO -->
+                <div id='normalizedTableDiv' class='standardDiv'></div> <!-- TODO -->
+            </div>
+        </main>
+        
+        <script src='prelimsData.js'></script>
+        <script>
+            function loadPage() {
+                populateDropdown();
+                populatePlaceholder();
+                parseURL();
+            }
+            
+            function populateDropdown() {
+                var eventDropdownMenu = document.getElementById('eventDropdownMenu');
+                var tempLi;
+                for (var key in dataJSON) {
+                    tempLi = document.createElement('li');
+                    tempLi.innerHTML = '<a class="dropdown-item" onclick="loadEvent(this.innerText);">' + dataJSON[key]['name'] + '</a>';
+                    eventDropdownMenu.appendChild(tempLi);
+                }
+            }
+            
+            function populatePlaceholder() {
+                document.getElementById('CSVDataTextarea').placeholder = 'paste data as csv here\n' + '\n' + 'example (spaces added for visual):\n' + ' ,   , j1 ,    ,    ,    , j2 ,    ,    ,    , j3 ,    ,    ,    ,\n' + '1, c1, 5.0, 6.0, 4.0, 5.0, 5.5, 5.5, 4.0, 5.0, 5.5, 6.0, 5.0, 5.5,\n' + '...';
+            }
+            
+            function parseURL() {
+                if (window.location.href.includes('?event=')) {
+                    for (var key in dataJSON) {
+                        if (dataJSON[key]['alias'] == window.location.href.split('?event=')[1]) {
+                            loadEvent(dataJSON[key]['name']);
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            function expandCollapseSection(button, section) {
+                if (button.innerText == '▼') {
+                    button.innerText = '▲';
+                }
+                else {
+                    button.innerText = '▼';
+                }
+                const collapseElementList = section.getElementsByClassName('collapse');
+                const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
+            }
+            
+            function loadEvent(event) {
+                document.getElementById('eventDropdownButton').innerText = 'Event: ' + event;
+                document.getElementById('CSVDataTextarea').value = dataJSON[event]['CSV'];
+                runAnalysis();
+                document.getElementById('linksDiv').innerHTML = '<p>Link to data source: <a href="' + dataJSON[event]['link'] + '" target="_blank">' + dataJSON[event]['link'] + '</a></p>';
+                document.getElementById('linksDiv').innerHTML += '<p>Link to video: <a href="' + dataJSON[event]['video'] + '" target="_blank">' + dataJSON[event]['video'] + '</a></p>';
+                window.history.pushState({}, '', window.location.pathname + '?event=' + dataJSON[event]['alias']);
+            }
+            
+            var dataCSV;
+            var dataArray;
+            var judges;
+            var numJudges;
+            var numRounds;
+            var judgeColumns;
+            
+            function runAnalysis() {
+                var outputsDivs = document.getElementById('outputsDiv').children;
+                for (var i = 0; i < outputsDivs.length; i++) {
+                    outputsDivs[i].innerHTML = '';
+                }
+                createDataTable();
+                styleDataTable();
+                calculateDescriptiveStats();
+            }
+            
+            function createDataTable() {
+                var dataTableDiv = document.getElementById('dataTableDiv');
+                
+                dataCSV = document.getElementById('CSVDataTextarea').value;
+                var dataRows = dataCSV.split('\n');
+                dataArray = [];
+                for (var i = 0; i < dataRows.length; i++) {
+                    dataArray.push(dataRows[i].split(','));
+                }
+                
+                judges = [];
+                for (var i = 0; i < dataArray[0].length; i++) {
+                    if (dataArray[0][i]) {
+                        if ((dataArray[0][i] != '#') && (dataArray[0][i] != 'Competitor') && (dataArray[0][i] != 'Crew') && (dataArray[0][i] != 'Overall')) {
+                            judges.push(dataArray[0][i]);
+                        }
+                    }
+                }
+                numJudges = judges.length;
+                
+                numRounds = dataArray[0].indexOf(judges[1]) - dataArray[0].indexOf(judges[0]) - 1;
+                if (numRounds == 0) {
+                    numRounds = 1;
+                }
+                
+                if (numRounds > 1) {
+                    dataTableDiv.appendChild(generateTableFromArray(dataArray, 2, 2));
+                }
+                else {
+                    dataTableDiv.appendChild(generateTableFromArray(dataArray, 1, 2));
+                }
+                var dataTable = dataTableDiv.getElementsByTagName('table')[0];
+                dataTable.id = 'dataTable';
+                
+                // add seed column between name and overall and calculate value
+                var rows = dataTable.getElementsByTagName('thead')[0].getElementsByTagName('tr');
+                var th;
+                for (var i = 0; i < rows.length; i++) {
+                    th = document.createElement('th');
+                    th.setAttribute('scope','col');
+                    if (i == (rows.length - 1)) {
+                        th.innerText = 'Seed';
+                    }
+                    rows[i].insertBefore(th, rows[i].children[2]);
+                }
+                rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                var td;
+                for (var i = 0; i < rows.length; i++) {
+                    td = document.createElement('td');
+                    rows[i].insertBefore(td, rows[i].children[2]);
+                }
+                rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                var scoreArray = [];
+                for (var i = 0; i < rows.length; i++) {
+                    scoreArray.push([i,rows[i].children[3].innerText]);
+                }
+                scoreArray.sort((a,b) => b[1] - a[1]);
+                for (var i = 0; i < scoreArray.length; i++) {
+                    rows[scoreArray[i][0]].children[2].innerText = i + 1;
+                }
+            }
+            
+            // this is same as from index_javascript
+            function generateTableFromArray(array, numHeaderRows, numHeaderColumns) {
+                console.log('** generateTableFromArray **');
+                var table = document.createElement('table');
+                table.classList = 'table table-sm table-striped table-hover';
+                var headerRow = document.createElement('thead');
+                var row;
+                var cell;
+                
+                // create table header rows if have them
+                if (numHeaderRows > 0) {
+                    for (var y = 0; y < numHeaderRows; y++) {
+                        row = document.createElement('tr');
+                        for (var x = 0; x < array[y].length; x++) {
+                            cell = document.createElement('th');
+                            cell.setAttribute('scope','col');
+                            cell.innerText = array[y][x];
+                            row.appendChild(cell);
+                        }
+                        headerRow.appendChild(row);
+                    }
+                    table.appendChild(headerRow);
+                }
+                
+                // create table body
+                var tableBody = document.createElement('tbody');
+                for (var y = numHeaderRows; y < array.length; y++) {
+                    row = document.createElement('tr');
+                    
+                    // create row headers if have them
+                    for (var x = 0; x < numHeaderColumns; x++) {
+                        cell = document.createElement('th');
+                        cell.setAttribute('scope','row');
+                        cell.innerText = array[y][x];
+                        row.appendChild(cell);
+                    }
+                    for (var x = numHeaderColumns; x < array[y].length; x++) {
+                        cell = document.createElement('td');
+                        cell.innerText = array[y][x];
+                        row.appendChild(cell);
+                    }
+                    tableBody.appendChild(row);
+                }
+                table.appendChild(tableBody);
+                return table;
+            }
+            
+            function styleDataTable() {
+                var dataTable = document.getElementById('dataTable');
+                
+                judgeColumns = [];
+                var headers = dataTable.getElementsByTagName('tr')[0].getElementsByTagName('th');
+                for (var i = 0; i < judges.length; i++) {
+                    for (var j = 0; j < headers.length; j++) {
+                        if (judges[i] == headers[j].innerText) {
+                            judgeColumns.push(j);
+                            break;
+                        }
+                    }
+                }
+                
+                // merge header judge cells
+                if (numRounds > 1) {
+                    var deleteCells = [];
+                    for (var i = 0; i < judgeColumns.length; i++) {
+                        for (var j = 1; j <= numRounds; j++) {
+                            deleteCells.push(judgeColumns[i] + j);
+                        }
+                    }
+                    
+                    var ths = dataTable.getElementsByTagName('tr')[0].getElementsByTagName('th');
+                    for (var i = 0; i < judgeColumns.length; i++) {
+                        ths[judgeColumns[i]].setAttribute('colspan', numRounds + 1);
+                    }
+                    for (var i = deleteCells.length - 1; i >= 0; i--) {
+                        ths[deleteCells[i]].remove();
+                    }
+                }
+                
+                // add left side border to judge columns
+                var headerRows = dataTable.getElementsByTagName('thead')[0].getElementsByTagName('tr');
+                if (numRounds > 1) {
+                    var topRowCells = headerRows[0].getElementsByTagName('th');
+                    for (var i = 0; i < topRowCells.length; i++) {
+                        if (topRowCells[i].innerText) {
+                            topRowCells[i].classList.add('border-start');
+                        }
+                    }
+                }
+                var headerRow = headerRows[headerRows.length - 1];
+                ths = headerRow.getElementsByTagName('th');
+                for (var j = 0; j < judgeColumns.length; j++) {
+                    ths[judgeColumns[j]].classList.add('border-start');
+                }
+                var rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                for (var i = 0; i < rows.length; i++) {
+                    for (var j = 0; j < judgeColumns.length; j++) {
+                        rows[i].children[judgeColumns[j]].classList.add('border-start');
+                    }
+                }
+                
+                // highlight overall cells
+                var overallColumns = [];
+                for (var i = 0; i < ths.length; i++) {
+                    if (ths[i].innerText == 'Overall') {
+                        overallColumns.push(i);
+                    }
+                }
+                for (var i = 0; i < rows.length; i++) {
+                    for (var j = 0; j < overallColumns.length; j++) {
+                        rows[i].children[overallColumns[j]].classList.add('table-active');
+                    }
+                }
+                
+                // TODO: style crew members names
+                
+                // TODO: add link to judges' pages
+                
+                // add sort button to column headers
+                ths[0].innerHTML = ths[0].innerHTML + '<button class="btn btn-sm" onclick="sortColumn(this)">▲</button>';
+                for (var i = 1; i < ths.length; i++) {
+                    ths[i].innerHTML = ths[i].innerHTML + '<button class="btn btn-sm text-secondary" onclick="sortColumn(this)">▽</button>';
+                }
+            }
+            
+            function sortColumn(sortButton) {
+                // update button caret according to which one was clicked
+                var dataTable = document.getElementById('dataTable');
+                var sortButtons = dataTable.getElementsByTagName('button');
+                switch(sortButton.innerText) {
+                    case '▲':
+                        sortButton.innerText = '▼';
+                        break;
+                    case '▼':
+                        sortButton.innerText = '▲';
+                        break;
+                    case '▽':
+                        for (var i = 0; i < sortButtons.length; i++) {
+                            sortButtons[i].innerText = '▽';
+                            sortButtons[i].classList.add('text-secondary');
+                        }
+                        sortButton.innerText = '▼';
+                        sortButton.classList.remove('text-secondary');
+                        break;
+                }
+                
+                // sort column and update table accordingly
+                var column = Array.from(sortButtons).indexOf(sortButton);
+                var rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                var sortingArray = []; // create an array of arrays containing row number and value in column being sorted
+                for (var i = 0; i < rows.length; i++) {
+                    sortingArray.push([i,rows[i].children[column].innerText]);
+                }
+                for (var i = 0; i < sortingArray.length; i++) {
+                    if (sortingArray[i][1]) {
+                        break;
+                    }
+                }
+                if (!Number.isNaN(Number(sortingArray[i][1]))) { // check whether column being sorted is numerical or string for appropriate comparison function
+                    if (sortButton.innerText == '▼') {
+                        sortingArray.sort((a,b) => b[1] - a[1]);
+                    }
+                    else {
+                        sortingArray.sort((a,b) => a[1] - b[1]);
+                    }
+                }
+                else {
+                    if (sortButton.innerText == '▼') {
+                        sortingArray.sort((a,b) => b[1].localeCompare(a[1]));
+                    }
+                    else {
+                        sortingArray.sort((a,b) => a[1].localeCompare(b[1]));
+                    }
+                }
+                var tempTbody = document.createElement('tbody'); // create a temporary element to copy rows to then pull from when updating table
+                for (var i = 0; i < rows.length; i++) {
+                    tempTbody.appendChild(rows[i].cloneNode(true));
+                }
+                dataTable.getElementsByTagName('tbody')[0].innerHTML = ''; // update the table with sorted rows
+                for (var i = 0; i < sortingArray.length; i++) {
+                    dataTable.getElementsByTagName('tbody')[0].appendChild(tempTbody.getElementsByTagName('tr')[sortingArray[i][0]].cloneNode(true));
+                }
+                tempTbody.remove();
+            }
+            
+            function calculateDescriptiveStats() {
+                var rows = document.getElementById('dataTable').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                var combinedScoresArray = [];
+                for (var i = 0; i < judgeColumns.length; i++) {
+                    combinedScoresArray.push([]);
+                    for (var j = 0; j < rows.length; j++) {
+                        for (var k = 0; k < numRounds; k++) {
+                            combinedScoresArray[i].push(rows[j].children[judgeColumns[i] + k].innerText);
+                        }
+                    }
+                }
+                console.log(combinedScoresArray);
+                
+                var descriptiveStatsArray = [[''],['max'],['median'],['min'],['range'],['mode'],['mean'],['std dev']];
+                var sortedArray;
+                var modeArray;
+                var found = false;
+                var maxCount;
+                var modes;
+                var mean;
+                for (var i = 0; i < judges.length; i++) {
+                    descriptiveStatsArray[0].push(judges[i]);
+                    
+                    sortedArray = [...combinedScoresArray[i]].filter(val => val !== '').map(Number).sort((a,b) => a - b);
+                    console.log(sortedArray);
+                    
+                    descriptiveStatsArray[1].push(sortedArray[sortedArray.length - 1]);
+                    
+                    sortedArrayMiddleIndex = Math.floor(sortedArray.length / 2);
+                    if (sortedArray.length % 2 != 0) {
+                        descriptiveStatsArray[2].push(sortedArray[sortedArrayMiddleIndex]);
+                    }
+                    else {
+                        descriptiveStatsArray[2].push((sortedArray[sortedArrayMiddleIndex - 1] + sortedArray[sortedArrayMiddleIndex]) / 2);
+                    }
+                    
+                    descriptiveStatsArray[3].push(sortedArray[0]);
+                    descriptiveStatsArray[4].push(descriptiveStatsArray[1][i + 1] - descriptiveStatsArray[3][i + 1]);
+                    
+                    modeArray = [];
+                    for (var j = 0; j < sortedArray.length; j++) {
+                        found = false;
+                        for (var k = 0; k < modeArray.length; k++) {
+                            if (modeArray[k][0] == sortedArray[j]) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found) {
+                            modeArray[k][1] += 1;
+                        }
+                        else {
+                            modeArray.push([sortedArray[j], 1]);
+                        }
+                    }
+                    console.log(modeArray);
+                    maxCount = 0;
+                    for (var j = 0; j < modeArray.length; j++) {
+                        if (modeArray[j][1] > maxCount) {
+                            maxCount = modeArray[j][1];
+                        }
+                    }
+                    console.log(maxCount);
+                    modes = '';
+                    for (var j = 0; j < modeArray.length; j++) {
+                        if (modeArray[j][1] == maxCount) {
+                            modes += modeArray[j][0] + ', ';
+                        }
+                    }
+                    modes = modes.slice(0, -2);
+                    descriptiveStatsArray[5].push(modes);
+                    
+                    mean = sortedArray.reduce((a, b) => a + b) / sortedArray.length;
+                    descriptiveStatsArray[6].push((Math.round(mean * 100) / 100).toFixed(2));
+                    descriptiveStatsArray[7].push((Math.round(Math.sqrt(sortedArray.map(x => (x - mean) ** 2).reduce((sum, x) => sum + x, 0) / (sortedArray.length - 1))* 100) / 100).toFixed(2)); // sample std dev
+                }
+                document.getElementById('descriptiveStatsDiv').appendChild(generateTableFromArray(descriptiveStatsArray, 1, 1));
+                
+                // remove same indexes if any are null
+                // then run anova comparing each judge to each other
+            }
+        </script>
+    </body>
+</html>
