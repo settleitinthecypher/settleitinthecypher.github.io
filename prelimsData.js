@@ -216,7 +216,7 @@ var bm6CSV = `#,Competitor,Overall,J*La-Rok,Kal,Stove
 4,furiousgeorge,6.5,4,8.5,7
 5,Knotty Soul,6.83,7,7.5,6
 6,FON,6.67,7,6.5,6.5
-7,"The Trodder of Forgotten Sands, ship of the desert",7,6,8,7
+7,"The Trodder of Forgotten Sands ship of the desert",7,6,8,7
 8,Waynor,5,4,6,5
 9,Question Marc,6.5,7,6.5,6
 10,Shockwave,6.17,5,7,6.5

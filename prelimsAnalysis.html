@@ -59,10 +59,11 @@
             </div>
             <hr>
             <div id='outputsDiv' class='mainDiv'>
+                <div id='tabsDiv' class='standardDiv'></div>
                 <div id='linksDiv' class='standardDiv'></div>
-                <div id='dataTableDiv' class='standardDiv'></div>
+                <div id='dataTableDiv' class='standardDiv overflow-x-scroll'></div>
                 <div id='descriptiveStatsDiv' class='standardDiv'></div>
-                <div id='graphsDiv' class='standardDiv'></div> <!-- TODO -->
+                <div id='graphsDiv' class='standardDiv d-flex flex-row'></div>
                 <div id='normalizedTableDiv' class='standardDiv'></div> <!-- TODO -->
             </div>
         </main>
@@ -114,9 +115,24 @@
             function loadEvent(event) {
                 document.getElementById('eventDropdownButton').innerText = 'Event: ' + event;
                 document.getElementById('CSVDataTextarea').value = dataJSON[event]['CSV'];
-                runAnalysis();
+                var outputsDivs = document.getElementById('outputsDiv').children;
+                for (var i = 0; i < outputsDivs.length; i++) {
+                    outputsDivs[i].innerHTML = '';
+                }
+                
+                //    <ul id='mainNavUl' class="nav nav-tabs" onclick='mainNavToggle(event);'>
+                //        <li class="nav-item">
+                //            <a id='prelimsTabA' class="nav-link active" aria-current="page" href="#">Prelims</a>
+                //        </li>
+                //        <li class="nav-item">
+                //            <a id='bracketTabA' class="nav-link" href="#">Bracket</a>
+                //        </li>
+                //    </ul>
+                // TODO: separate tabs for prelims and bracket
+                
                 document.getElementById('linksDiv').innerHTML = '<p>Link to data source: <a href="' + dataJSON[event]['link'] + '" target="_blank">' + dataJSON[event]['link'] + '</a></p>';
                 document.getElementById('linksDiv').innerHTML += '<p>Link to video: <a href="' + dataJSON[event]['video'] + '" target="_blank">' + dataJSON[event]['video'] + '</a></p>';
+                runAnalysis();
                 window.history.pushState({}, '', window.location.pathname + '?event=' + dataJSON[event]['alias']);
             }
             
@@ -126,15 +142,14 @@
             var numJudges;
             var numRounds;
             var judgeColumns;
+            var sortedArrays;
+            var modeArrays;
             
             function runAnalysis() {
-                var outputsDivs = document.getElementById('outputsDiv').children;
-                for (var i = 0; i < outputsDivs.length; i++) {
-                    outputsDivs[i].innerHTML = '';
-                }
                 createDataTable();
                 styleDataTable();
                 calculateDescriptiveStats();
+                generateGraphs();
             }
             
             function createDataTable() {
@@ -172,31 +187,250 @@
                 dataTable.id = 'dataTable';
                 
                 // add seed column between name and overall and calculate value
-                var rows = dataTable.getElementsByTagName('thead')[0].getElementsByTagName('tr');
+                var headerRows = dataTable.getElementsByTagName('thead')[0].getElementsByTagName('tr');
                 var th;
-                for (var i = 0; i < rows.length; i++) {
+                for (var i = 0; i < headerRows.length; i++) {
                     th = document.createElement('th');
                     th.setAttribute('scope','col');
-                    if (i == (rows.length - 1)) {
+                    if (i == (headerRows.length - 1)) {
                         th.innerText = 'Seed';
                     }
-                    rows[i].insertBefore(th, rows[i].children[2]);
+                    headerRows[i].insertBefore(th, headerRows[i].children[2]);
                 }
-                rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                var bodyRows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
                 var td;
-                for (var i = 0; i < rows.length; i++) {
+                for (var i = 0; i < bodyRows.length; i++) {
                     td = document.createElement('td');
-                    rows[i].insertBefore(td, rows[i].children[2]);
+                    bodyRows[i].insertBefore(td, bodyRows[i].children[2]);
                 }
-                rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
                 var scoreArray = [];
-                for (var i = 0; i < rows.length; i++) {
-                    scoreArray.push([i,rows[i].children[3].innerText]);
+                for (var i = 0; i < bodyRows.length; i++) {
+                    scoreArray.push([i, bodyRows[i].children[3].innerText]);
                 }
                 scoreArray.sort((a,b) => b[1] - a[1]);
                 for (var i = 0; i < scoreArray.length; i++) {
-                    rows[scoreArray[i][0]].children[2].innerText = i + 1;
+                    bodyRows[scoreArray[i][0]].children[2].innerText = i + 1;
                 }
+                
+                judgeColumns = [];
+                var headers = dataTable.getElementsByTagName('tr')[0].getElementsByTagName('th');
+                for (var i = 0; i < judges.length; i++) {
+                    for (var j = 0; j < headers.length; j++) {
+                        if (judges[i] == headers[j].innerText) {
+                            judgeColumns.push(j);
+                            break;
+                        }
+                    }
+                }
+                
+                // min
+                var th2;
+                var td2;
+                var currentScoreArray;
+                for (var i = 0; i < numRounds; i++) {
+                    for (var j = 0; j < headerRows.length; j++) {
+                        th = document.createElement('th');
+                        th2 = document.createElement('th');
+                        if (numRounds > 1) {
+                            if (j == headerRows.length - 1) {
+                                th.innerText = 'R' + (i + 1) + ' Min';
+                                th2.innerText = 'R' + (i + 1) + ' Min Judges';
+                            }
+                        }
+                        else {
+                            th.innerText = 'Min';
+                            th2.innerText = 'Min Judges';
+                        }
+                        headerRows[j].appendChild(th);
+                        headerRows[j].appendChild(th2);
+                    }
+                    for (var j = 0; j < bodyRows.length; j++) {
+                        td = document.createElement('td');
+                        td2 = document.createElement('td');
+                        currentScoreArray = [];
+                        for (var k = 0; k < judgeColumns.length; k++) {
+                            if (bodyRows[j].children[judgeColumns[k] + i].innerText) {
+                                currentScoreArray.push(Number(bodyRows[j].children[judgeColumns[k] + i].innerText));
+                            }
+                        }
+                        if (currentScoreArray.length > 0) {
+                            td.innerText = Math.min(...currentScoreArray);
+                            for (var l = 0; l < judgeColumns.length; l++) {
+                                if (Number(bodyRows[j].children[judgeColumns[l] + i].innerText) == Math.min(...currentScoreArray)) {
+                                    td2.innerText += judges[l] + ', ';
+                                }
+                            }
+                            td2.innerText = td2.innerText.slice(0, -2);
+                        }
+                        bodyRows[j].appendChild(td);
+                        bodyRows[j].appendChild(td2);
+                    }
+                }
+                if (numRounds > 1) {
+                    for (var i = 0; i < headerRows.length; i++) {
+                        if (i == headerRows.length - 1) {
+                            th = document.createElement('th');
+                            th2 = document.createElement('th');
+                            th.innerText = 'Overall Min';
+                            th2.innerText = 'Overall Min Judges';
+                            headerRows[i].appendChild(th);
+                            headerRows[i].appendChild(th2);
+                        }
+                    }
+                    for (var i = 0; i < bodyRows.length; i++) {
+                        td = document.createElement('td');
+                        td2 = document.createElement('td');
+                        currentScoreArray = [];
+                        for (var j = 0; j < judgeColumns.length; j++) {
+                            currentScoreArray.push(Number(bodyRows[i].children[judgeColumns[j] + numRounds].innerText));
+                        }
+                        td.innerText = Math.min(...currentScoreArray);
+                        for (var j = 0; j < judgeColumns.length; j++) {
+                            if (Number(bodyRows[i].children[judgeColumns[j] + numRounds].innerText) == Math.min(...currentScoreArray)) {
+                                td2.innerText += judges[j] + ', ';
+                            }
+                        }
+                        td2.innerText = td2.innerText.slice(0, -2);
+                        bodyRows[i].appendChild(td);
+                        bodyRows[i].appendChild(td2);
+                    }
+                }
+                
+                // max
+                for (var i = 0; i < numRounds; i++) {
+                    for (var j = 0; j < headerRows.length; j++) {
+                        th = document.createElement('th');
+                        th2 = document.createElement('th');
+                        if (numRounds > 1) {
+                            if (j == headerRows.length - 1) {
+                                th.innerText = 'R' + (i + 1) + ' Max';
+                                th2.innerText = 'R' + (i + 1) + ' Max Judges';
+                            }
+                        }
+                        else {
+                            th.innerText = 'Max';
+                            th2.innerText = 'Max Judges';
+                        }
+                        headerRows[j].appendChild(th);
+                        headerRows[j].appendChild(th2);
+                    }
+                    for (var j = 0; j < bodyRows.length; j++) {
+                        td = document.createElement('td');
+                        td2 = document.createElement('td');
+                        currentScoreArray = [];
+                        for (var k = 0; k < judgeColumns.length; k++) {
+                            if (bodyRows[j].children[judgeColumns[k] + i].innerText) {
+                                currentScoreArray.push(Number(bodyRows[j].children[judgeColumns[k] + i].innerText));
+                            }
+                        }
+                        if (currentScoreArray.length > 0) {
+                            td.innerText = Math.max(...currentScoreArray);
+                            for (var l = 0; l < judgeColumns.length; l++) {
+                                if (Number(bodyRows[j].children[judgeColumns[l] + i].innerText) == Math.max(...currentScoreArray)) {
+                                    td2.innerText += judges[l] + ', ';
+                                }
+                            }
+                            td2.innerText = td2.innerText.slice(0, -2);
+                        }
+                        bodyRows[j].appendChild(td);
+                        bodyRows[j].appendChild(td2);
+                    }
+                }
+                if (numRounds > 1) {
+                    for (var i = 0; i < headerRows.length; i++) {
+                        if (i == headerRows.length - 1) {
+                            th = document.createElement('th');
+                            th2 = document.createElement('th');
+                            th.innerText = 'Overall Max';
+                            th2.innerText = 'Overall Max Judges';
+                            headerRows[i].appendChild(th);
+                            headerRows[i].appendChild(th2);
+                        }
+                    }
+                    for (var i = 0; i < bodyRows.length; i++) {
+                        td = document.createElement('td');
+                        td2 = document.createElement('td');
+                        currentScoreArray = [];
+                        for (var j = 0; j < judgeColumns.length; j++) {
+                            currentScoreArray.push(Number(bodyRows[i].children[judgeColumns[j] + numRounds].innerText));
+                        }
+                        td.innerText = Math.max(...currentScoreArray);
+                        for (var j = 0; j < judgeColumns.length; j++) {
+                            if (Number(bodyRows[i].children[judgeColumns[j] + numRounds].innerText) == Math.max(...currentScoreArray)) {
+                                td2.innerText += judges[j] + ', ';
+                            }
+                        }
+                        td2.innerText = td2.innerText.slice(0, -2);
+                        bodyRows[i].appendChild(td);
+                        bodyRows[i].appendChild(td2);
+                    }
+                }
+                
+                // range
+                var columnHeaders = headerRows[headerRows.length - 1].children;
+                var minMaxColumns;
+                var matchText = '';
+                for (var i = 0; i < numRounds; i++) {
+                    for (var j = 0; j < headerRows.length; j++) {
+                        th = document.createElement('th');
+                        if (numRounds > 1) {
+                            if (j == headerRows.length - 1) {
+                                th.innerText = 'R' + (i + 1) + ' Range';
+                            }
+                        }
+                        else {
+                            th.innerText = 'Range';
+                        }
+                        headerRows[j].appendChild(th);
+                    }
+                    if (numRounds > 1) {
+                        var matchText = 'R' + (i + 1) + ' ';
+                    }
+                    minMaxColumns = [];
+                    for (var j = 0; j < columnHeaders.length; j++) {
+                        if (columnHeaders[j].innerText == matchText + 'Min') {
+                            minMaxColumns.push(j);
+                        }
+                        if (columnHeaders[j].innerText == matchText + 'Max') {
+                            minMaxColumns.push(j);
+                        }
+                    }
+                    for (var j = 0; j < bodyRows.length; j++) {
+                        td = document.createElement('td');
+                        if (bodyRows[j].children[minMaxColumns[1]].innerText) {
+                            td.innerText = Number(bodyRows[j].children[minMaxColumns[1]].innerText) - Number(bodyRows[j].children[minMaxColumns[0]].innerText);
+                        }
+                        bodyRows[j].appendChild(td);
+                    }
+                }
+                if (numRounds > 1) {
+                    for (var i = 0; i < headerRows.length; i++) {
+                        if (i == headerRows.length - 1) {
+                            th = document.createElement('th');
+                            th.innerText = 'Overall Range';
+                            headerRows[i].appendChild(th);
+                        }
+                    }
+                    minMaxColumns = [];
+                    for (var j = 0; j < columnHeaders.length; j++) {
+                        if (columnHeaders[j].innerText == 'Overall Min') {
+                            minMaxColumns.push(j);
+                        }
+                        if (columnHeaders[j].innerText == 'Overall Max') {
+                            minMaxColumns.push(j);
+                        }
+                    }
+                    for (var i = 0; i < bodyRows.length; i++) {
+                        td = document.createElement('td');
+                        td.innerText = Number(bodyRows[i].children[minMaxColumns[1]].innerText) - Number(bodyRows[i].children[minMaxColumns[0]].innerText);
+                        bodyRows[i].appendChild(td);
+                    }
+                }
+                
+                // if more than 1 round then mean for each round
+                // std dev
+                // difference from mean for each judge
+                // mean absolute difference
             }
             
             // this is same as from index_javascript
@@ -249,17 +483,6 @@
             function styleDataTable() {
                 var dataTable = document.getElementById('dataTable');
                 
-                judgeColumns = [];
-                var headers = dataTable.getElementsByTagName('tr')[0].getElementsByTagName('th');
-                for (var i = 0; i < judges.length; i++) {
-                    for (var j = 0; j < headers.length; j++) {
-                        if (judges[i] == headers[j].innerText) {
-                            judgeColumns.push(j);
-                            break;
-                        }
-                    }
-                }
-                
                 // merge header judge cells
                 if (numRounds > 1) {
                     var deleteCells = [];
@@ -293,10 +516,10 @@
                 for (var j = 0; j < judgeColumns.length; j++) {
                     ths[judgeColumns[j]].classList.add('border-start');
                 }
-                var rows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                for (var i = 0; i < rows.length; i++) {
+                var bodyRows = dataTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                for (var i = 0; i < bodyRows.length; i++) {
                     for (var j = 0; j < judgeColumns.length; j++) {
-                        rows[i].children[judgeColumns[j]].classList.add('border-start');
+                        bodyRows[i].children[judgeColumns[j]].classList.add('border-start');
                     }
                 }
                 
@@ -307,13 +530,20 @@
                         overallColumns.push(i);
                     }
                 }
-                for (var i = 0; i < rows.length; i++) {
+                for (var i = 0; i < bodyRows.length; i++) {
                     for (var j = 0; j < overallColumns.length; j++) {
-                        rows[i].children[overallColumns[j]].classList.add('table-active');
+                        bodyRows[i].children[overallColumns[j]].classList.add('table-active');
                     }
                 }
                 
-                // TODO: style crew members names
+                // style crew members names
+                var crewName;
+                if (bodyRows[0].children[1].innerText.includes('|')) {
+                    for (var i = 0; i < bodyRows.length; i++) {
+                        crewName = bodyRows[i].children[1].innerText;
+                        bodyRows[i].children[1].innerText = crewName.replaceAll(/[|;]/g,'\n- ');
+                    }
+                }
                 
                 // TODO: add link to judges' pages
                 
@@ -395,11 +625,12 @@
                         }
                     }
                 }
-                console.log(combinedScoresArray);
                 
                 var descriptiveStatsArray = [[''],['max'],['median'],['min'],['range'],['mode'],['mean'],['std dev']];
                 var sortedArray;
+                sortedArrays = [];
                 var modeArray;
+                modeArrays = [];
                 var found = false;
                 var maxCount;
                 var modes;
@@ -408,7 +639,7 @@
                     descriptiveStatsArray[0].push(judges[i]);
                     
                     sortedArray = [...combinedScoresArray[i]].filter(val => val !== '').map(Number).sort((a,b) => a - b);
-                    console.log(sortedArray);
+                    sortedArrays.push(sortedArray);
                     
                     descriptiveStatsArray[1].push(sortedArray[sortedArray.length - 1]);
                     
@@ -439,14 +670,13 @@
                             modeArray.push([sortedArray[j], 1]);
                         }
                     }
-                    console.log(modeArray);
+                    modeArrays.push(modeArray);
                     maxCount = 0;
                     for (var j = 0; j < modeArray.length; j++) {
                         if (modeArray[j][1] > maxCount) {
                             maxCount = modeArray[j][1];
                         }
                     }
-                    console.log(maxCount);
                     modes = '';
                     for (var j = 0; j < modeArray.length; j++) {
                         if (modeArray[j][1] == maxCount) {
@@ -464,7 +694,83 @@
                 
                 // remove same indexes if any are null
                 // then run anova comparing each judge to each other
+            }            
+        </script>
+        <script type='module'>
+            import * as Plot from 'https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm';
+            
+            function generateGraphs() {
+                // TODO: special handling x-axis values for Cypher Minds because Fleau went to 0.1 points precision
+                
+                var incrementsX = [];
+                for (var i = 0; i <= 10.5; i += 0.5) {
+                    incrementsX.push(i);
+                }
+                
+                var maxCount = 0;
+                for (var i = 0; i < modeArrays.length; i++) {
+                    for (var j = 0; j < modeArrays[i].length; j++) {
+                        if (modeArrays[i][j][1] > maxCount) {
+                            maxCount = modeArrays[i][j][1];
+                        }
+                    }
+                }
+                maxCount = Math.ceil(maxCount / 5) * 5;
+                var incrementsY = [];
+                for (var i = 0; i <= maxCount; i++) {
+                    incrementsY.push(i);
+                }
+                
+                var graphsDiv = document.getElementById('graphsDiv');
+                var judgeNameDiv;
+                var graphData;
+                var graphDiv;
+                for (var i = 0; i < judges.length; i++) {
+                    judgeNameDiv = document.createElement('div');
+                    judgeNameDiv.innerText = judges[i];
+                    graphDiv = document.createElement('div');
+                    graphData = modeArrays[i].map(([score, count]) => ({
+                        score,
+                        count,
+                        x1: score - 0.25,
+                        x2: score + 0.25
+                    }));
+                    var plot = Plot.plot({
+                        x: {
+                            domain: [0, 10.5],
+                            label: 'Score',
+                            tickFormat: d => d.toFixed(1),
+                            ticks: incrementsX,
+                            type: 'linear'
+                        },
+                        y: {
+                            domain: [0, maxCount],
+                            grid: true,
+                            label: 'Count',
+                            ticks: incrementsY
+                        },
+                        marks: [
+                            Plot.rectY(graphData, {
+                                x1: 'x1',
+                                x2: 'x2',
+                                y: 'count'
+                            }),
+                            Plot.text(graphData, {
+                                x: 'score',
+                                y: 'count',
+                                text: 'count',
+                                dy: -6,
+                                lineAnchor: 'bottom'
+                            }),
+                        ],
+                        style: {fontSize: '0.75rem'}
+                    });
+                    graphDiv.appendChild(judgeNameDiv);
+                    graphDiv.appendChild(plot);
+                    graphsDiv.appendChild(graphDiv);
+                }
             }
+            window.generateGraphs = generateGraphs;
         </script>
     </body>
 </html>
